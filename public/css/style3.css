@@ -1,0 +1,80 @@
+.comment-delete-btn i{
+    color: lightgray;
+}
+.comment-delete-btn i:hover{
+    color: red;
+}
+.hidden-box{
+    display: none;
+}
+.visible-box{
+    display: block;
+}
+.user-profile-container{
+    position: absolute;
+    top: 3rem;
+    right: 1.5rem;
+    margin-left: auto;
+    overflow: auto !important;
+}
+.user-profile-container ul, .post-edit-box ul{
+   width: fit-content;
+   height: fit-content;
+   padding: 1rem !important;
+   border-radius: 0.3rem;
+   background-color: rgba(10, 10, 10, 0.53);
+}
+.user-profile-container li, .post-edit-box li{
+    background-color: rgb(255, 255, 255);
+    margin: 0.2rem;
+    padding: 0.3rem 2rem 0.3rem 1rem;
+    border-radius: 0.2rem;
+    cursor: pointer;
+}
+.user-profile-container li:hover, .post-edit-box li:hover{
+    padding-left: 1.2rem;
+    padding-right: 1.8rem;
+    background-color: rgba(0, 0, 0, 0.187);
+    color: whitesmoke !important;
+}
+.user-profile-container li:hover i, .post-edit-box li:hover i{
+    color: aqua !important;
+}
+.user-profile-container li:hover button{
+    color: white;
+}
+.post-edit-box{
+    position: absolute !important;
+}
+/* ----------post form update---------- */
+.edit-heading{
+    font-family: monospace;
+    color: green;
+    text-shadow: 0 0 1px;
+}
+.edit-heading i{
+    color: rgb(255, 132, 0);
+}
+.post-edit-textarea{
+    border-top: 3rem solid #e2e2e2 !important;
+    border-bottom: 3rem solid #e2e2e2 !important;
+    border-left: 2px solid #e2e2e2 !important;
+    outline: none;
+}
+textarea::-webkit-scrollbar{
+    background-color: #e2e2e2;
+    width: 5px;
+}
+textarea::-webkit-scrollbar-thumb{
+    background-color: rgb(0, 0, 0);
+}
+.edit-post-title{
+    position: absolute;
+    font-weight: 600;
+    padding: 0.5rem;
+    font-size: 1.4rem;
+    color: green;
+}
+.edit-input-url{
+    border: 2px solid #e2e2e2;
+}

@@ -1,0 +1,383 @@
+<%- layout("/layouts/boilerplates.ejs") %>
+<section >
+    <div class="m-auto col-sm-11 col-md-11 col-lg-10 col-xl-9 col-12 mt-4 p-2">
+        <div class=" d-flex user-data-container">
+            <div class="d-flex justify-content-center mb-4 me-4">
+                <img src="<%= user.profile.profilePicture %>" alt="" height="250" class="user-profile-picture rounded-circle">
+            </div>
+            <div class=" border-1 col-sm">
+                <div class="d-flex justify-content-between">
+                    <span>
+                        <p class="fs-4 text-primary fw-bold text-break">
+                            <%= user.email %> <span class="text-body-secondary fs-6 fw-light fst-italic"> / <%=
+                                        (user.role || "student" ).toLowerCase() %></span>
+                        </p>
+                      
+                    </span>
+                    <span class=" edit-profile-btn btn-hover">
+                        <a href="#"><i class="fa-solid fa-pen text-secondary-emphasis"></i></a>
+                    </span>
+                </div>
+                <p class="fs-4 fw-bold  text-secondary mt-2">
+                    <%= user.profile.headline %>
+                </p>
+                <div class="d-flex mt-4 align-items-center justify-content-between">
+                    <div>
+                        <button class="btn btn-info" type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasRight1" aria-controls="offcanvasRight1">
+                            <b><i class="fas fa-user-plus"></i>followers <span
+                                    class="badge bg-primary-subtle text-black">
+                                    <%= user.profile.followers.length %>
+                                </span></b>
+                        </button>
+
+                        <button class="btn btn-info " type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasRight2" aria-controls="offcanvasRight2">
+                            <b><i class="fas fa-users"></i></i>following <span
+                                    class="badge bg-primary-subtle text-black">
+                                    <%= user.profile.following.length %>
+                                </span></b>
+                        </button>
+                    </div>
+                    <ul class="d-flex fs-4 align-items-center mb-0 ps-0 list-unstyled">
+                        <li><a href="<%= user.profile.socialLinks.github %>" class="hoverEff1"><i
+                                    class="fa-brands fa-square-github text-body-secondary"></i></a></li>
+
+                        <li><a href="<%= user.profile.socialLinks.linkedin %>" class="hoverEff1"><i
+                                        class="fa-brands fa-linkedin text-body-secondary"></i></a></li>
+
+                        <li><a href="<%=  %>" class="hoverEff1"><i
+                                    class="fa-brands fa-discord text-body-secondary"></i></a></li>
+                        
+                        <li><a href="#" class="hoverEff1"><i
+                                    class="fa-brands fa-square-facebook text-body-secondary"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="width-100 mt-5">
+            <div class="d-flex">
+                <button class="col-6 p-2 fw-bold text-success userContent userContent-btn"><i
+                        class="fas fa-pencil-alt text-success"></i> Posts</button>
+                <button class="col-6 p-2 fw-bold text-success userContent"><i class="fas fa-tools text-success"></i>
+                    Skills</button>
+            </div>
+
+            <div class=" specific-user mt-1">
+                <% for(let post of posts) {%>
+                    <div class=" border-3 border-bottom border-success mt-4 pb-3">
+                       
+                        <a href="/JobHelper/aboutPost/<%= post._id %>" class="row">
+                            <img src="<%= post.imageLink %>" alt="" class=" col-lg-5 col-md-12 mb-4 rounded">
+                            <p class="user-posts col-lg-7">
+                                <%= post.title %>
+                            </p>
+                        </a>
+                        <ul class="response-buttons">
+                            <li class="post-likes">
+                                <button class="positive-like me-3" data-id="<%= post._id %>">
+                                    
+                                    <i class="fa-regular fa-thumbs-up"></i>
+                                    <span id="like-count-<%= post._id %>"><%= post.likes %></span>
+                                </button>
+                                <i class="fa-regular fa-thumbs-down"></i>
+                            </li>
+                            <li>
+                                <a href="#">Share<i class="fa-regular fa-paper-plane"></i></a>
+                            </li>
+                            <li>
+                                <a href="#">Report<i class="fa-solid fa-share-nodes"></i></i></a>
+                            </li>
+                            <li>
+                                <a href="#">Save<i class="fa-regular fa-bookmark"></i></a>
+                            </li>
+                        </ul>
+                        <ul class="ps-0 pe-0 mt-1 list-unstyled">
+                            <% for(let comment of post.comments) {%>
+                                <li class="mt-2 mb-2">
+                                
+                                    <a href="/JobHelper/user/<%= comment.user._id %>" class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex align-items-center">
+                                            <img src="<%= comment.user.profile.profilePicture %>" alt="" class="user-image">
+                                            <span class="user-container pb-1">
+                                                <b class="text-break line-reducer"><%= comment.user.email %></b>
+                                                <p class="user-headline headline-reducer"><%= comment.user.profile.headline %></p>
+                                            </span>
+                                        </div>
+
+                                        <% if( comment.user._id == loginUser._id) {%>
+                                            <form method="post" action="/JobHelper/post/<%= post %>/comment/<%= comment._id %>?_method=DELETE">
+                                                <button type="submit" class="border-0 bg-transparent comment-delete-btn"><i class="fa-solid fa-trash"></i></button>
+                                            </form>
+                                        <% } %>
+                                    </a>
+
+                                    <div class="comment-title ms-5 bg-body-secondary p-2 rounded">
+                                        <p class="text-break"><%= comment.comment %></p>
+                                    </div>
+                                </li>
+                            <% } %>
+                        </ul>
+                    </div>
+                <% } %>
+            </div>
+            <div class="col-12 specific-user content-result mt-1">
+
+                <div class="Education-section card mb-3">
+                    <div class="card-body">
+                        <span class="d-flex justify-content-between">
+                            <h5 class="card-title text-bold fs-4 fw-bold ">
+                                <i class="fa-solid fa-user-graduate"></i> Education
+                            </h5>
+                            <a href=""><i class="fa-solid fa-ellipsis-vertical"></i></a>
+                        </span>
+
+                        <% for(let edu of user.profile.education) {%>
+                            <div class="ms-3 border-top pt-2">
+                                <p class="fw-medium text-secondary text-body-secondary">Institution: 
+                                    <span class="text-black text-break"><%= edu.institution %></span>
+                                </p>
+                                <p class="fw-medium text-secondary text-body-secondary">Degree:
+                                    <span class="text-black text-break"><%= edu.degree %></span>
+                                </p>
+                                <p class="fw-medium text-secondary text-body-secondary">Specialization: 
+                                    <span class="text-black text-break"><%= edu.fieldOfStudy %></span>
+                                </p>
+                                <p class="fw-medium text-secondary text-body-secondary">Duration: 
+                                    <span class="text-black text-break"><%= edu.duration %></span>
+                                </p>
+                            </div>
+                        <% } %>
+                        
+                    </div>
+                </div>
+
+                <div class="Education-section card mb-3">
+                    <div class="card-body">
+                        <span class="d-flex justify-content-between border-bottom mb-2">
+                            <h5 class="card-title text-bold fs-4 fw-bold ">
+                                <i class="fas fa-cogs text-danger"></i> Skills
+                            </h5>
+                            <a href=""><i class="fa-solid fa-ellipsis-vertical"></i></a>
+                        </span>
+                        
+                        <span class="row">
+                            <% for(let i = 0; i < user.profile.skills.length; i++) {%>
+                                <p class="col-6 text-break">
+                                    <%=i%><i class="fa-solid fa-chevron-right m-0 me-1"></i> <%= user.profile.skills[i] %> 
+                                </p>
+                            <% } %>
+                        </span>
+                        
+                    </div>
+                </div>
+
+                <div class="Experience-section card mb-3">
+                    <div class="card-body">
+                        <span class="d-flex justify-content-between">
+                            <h5 class="card-title text-bold fs-4 fw-bold"><i class="fas fa-briefcase"></i> Experience
+                            </h5>
+                            <a href=""><i class="fa-solid fa-ellipsis-vertical"></i></a>
+                        </span>
+                        <!-- Iterate the experience section -->
+                        <% for(let exp of user.profile.experience) { %>
+                            <div class="border-top p-1 ">
+                                <p class="card-text text-body-secondary text-break ms-3">
+                                    <span class="fw-medium text-secondary">Title: </span>
+                                    <%= exp.title %>
+                                </p>
+                                <p class="card-text text-body-secondary text-break ms-3">
+                                    <span class="fw-medium text-secondary">Company: </span>
+                                    <%= exp.company %>
+                                </p>
+                                <p class="card-text text-body-secondary text-break ms-3">
+                                    <span class="fw-medium text-secondary">Duration: </span>
+                                    <%= exp.duration %>
+                                </p>
+                                <p class="card-text text-body-secondary text-break ms-3">
+                                    <span class="fw-medium text-secondary">Description: </span>
+                                    <%= exp.description %>
+                                </p>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+
+                <div class="Projects-section card mb-3">
+                    <div class="card-body">
+                        <span class="d-flex justify-content-between">
+                            <h5 class="card-title text-bold fs-4 fw-bold"><i class="fa-solid fa-code"></i> Projects</h5>
+                            <a href=""><i class="fa-solid fa-ellipsis-vertical"></i></a>
+                        </span>
+                        <!-- Iterate the experience section -->
+                        <% for(let project of user.profile.projects){ %>
+                            <div class="border-top p-1 ">
+                                <p class="card-text text-body-secondary text-break ms-3">
+                                    <span class="fw-medium text-secondary">Title: </span>
+                                    <%= profile.title %>
+                                </p>
+                                <p class="card-text text-body-secondary text-break ms-3">
+                                    <span class="fw-medium text-secondary">Description: </span>
+                                    <%= project.description %>
+                                </p>
+                                <ul class="card-text text-body-secondary d-flex ps-0 text-break ms-3 mb-0">
+                                    <span class="fw-medium text-secondary">Technology: </span>
+                                    <% for(let tech of project.technologies) {%>
+                                        <%= tech %>&nbsp;
+                                    <% } %>
+                                </ul>
+                                <p class="card-text text-body-secondary text-break ms-3">
+                                    <span class="fw-medium text-secondary">Link: </span>
+                                    <a href="#" class="text-primary">project.link</a>
+                                </p>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+
+                <div class="card mb-3 p-3">
+                    <span class="d-flex justify-content-between">
+                        <h5 class="card-title text-bold fs-4 fw-bold"><i class="fa-solid fa-certificate"></i> Certificates</h5>
+                        <a href=""><i class="fa-solid fa-ellipsis-vertical"></i></a>
+                    </span>
+                    <div class="row g-0">
+                        <% for(let certificat of user.profile.certifications) { %>
+                            <div class="col-md-4">
+                                <img src="<%= certificat.link %>" class="rounded-start" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <p class="card-title"> <span class="fw-medium text-secondary">Title: </span><%= certificat.title %></p>
+                                </div>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="user-reviews">
+            <h5 class="card-title text-bold fs-4 fw-bold mt-3"><i class="fa-regular fa-circle-check"></i> Reviews: </h5>
+            <hr>
+            <ul class="row justify-content-between ps-0 mb-0">
+                <% for(let review of user.profile.reviews) { %>
+                    <li class="col-12 col-md-5 col-lg-3 col-sm-12 col-xl-3 border rounded p-1 m-2">
+                        <div class="d-flex justify-content-between border-bottom ">
+                            
+                            <span class="d-flex">
+                                <img src="<%=  %>" alt="" class="user-image">
+                                <div class="ms-2">userdata
+                                    <a href="#" style="font-size: 0.9rem;" class="text-break">
+                                        <%=  %> email
+                                    </a>
+                                    <p>....</p>
+                                </div>
+                            </span>
+
+                            <button class="btn btn-sm border-0 ">
+                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                            </button>
+                        </div>
+                        <p class="m-auto ms-0">
+                            <% for(let i = 0; i < 3; i++) {%>
+                                <i class="fa-solid fa-star ms-1 me-1 text-warning"></i>
+                            <% } %>
+                        </p>
+                        <p><%=  %>Reviews Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                    </li>
+
+                <% } %>
+            </ul>
+
+            <form action="" class="border border-warning rounded p-1 needs-validation mt-2" novalidate>
+                <p class="text-success fw-bold">Give Us Your Reviews: </p>
+                <div>
+                    <label for="customRange2" class="form-label mb-0 text-secondary">Rating </label>
+                    <input type="range" class="form-range " min="1" max="5" id="customRange2">
+                </div>
+                <div>
+                    <textarea name="review[comment]" id="comment" class="col-12 form-control no-focus-border" rows="2" placeholder="Feedback" required></textarea>
+                    <div class="invalid-feedback">
+                        Please Enter Feedback
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-outline-dark mt-1">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- First Right Offcanvas(followers) -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight1" aria-labelledby="offcanvasRightLabel1">
+        <div class="offcanvas-header border-bottom">
+            <h5 class="offcanvas-title d-flex" id="offcanvasRightLabel1">
+                <img src="<%= user.profile.profilePicture %>" alt="" class="user-image">
+                <p class="text-success m-auto fw-bold ms-3 fs-4 hover-border-bottom">Followers <span
+                        class="badge bg-success-subtle text-black">
+                        <%= user.profile.followers.length %>
+                    </span></p>
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body user-network-box">
+            <ul class="ps-0 user-network">
+                <% for(let follower of user.profile.followers) {%>
+                    <li class="d-flex ms-3 me-3 mt-1 p-1 rounded bg-body-secondary">
+                        <img src="<%= follower.user.profile.profilePicture %>" alt="" class="user-image">
+                        <div class="ms-2">
+                            <span class="d-flex justify-content-between align-items-center">
+                                <a href="/JobHelper/user/<%= follower.user._id %>" class="text-break text-primary fs-6 line-reducer">
+                                    <%= follower.user.email %>
+                                </a>
+                                <!-- delete request -->
+                                <form action="">
+                                    <button type="submit" class="p-1 bg bg-info-subtle bg-gradient rounded border border-secondary-subtle mb-1">
+                                        <i class="fa-solid fa-user-minus text-body-secondary fs-6"></i>
+                                    </button>
+                                </form>
+                            </span>
+                            <p class="text-break headline-reducer"><%= follower.user.profile.headline %></p>
+                        </div>
+                    </li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+
+    <!-- second Right Offcanvas(following) -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight2" aria-labelledby="offcanvasRightLabel2">
+        <div class="offcanvas-header border-bottom">
+            <h5 class="offcanvas-title d-flex" id="offcanvasRightLabel1">
+                <img src="<%= user.profile.profilePicture %>" alt="" class="user-image">
+                <p class="text-success m-auto fw-bold ms-3 fs-4 hover-border-bottom">Following <span
+                        class="badge bg-success-subtle text-black">
+                        <%= user.profile.following.length %>
+                    </span></p>
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="ps-0 user-network">
+                <% for(let follow of user.profile.following) {%>
+                    <li class="d-flex ms-3 me-3 mt-1 p-1 rounded bg-body-secondary">
+                        <img src="<%= follow.user.profile.profilePicture %>" alt="" class="user-image">
+                        <div class="ms-2">
+                            <span class="d-flex justify-content-between align-items-center">
+                                <a href="/JobHelper/user/<%= follow.user._id %>" class="text-break text-primary fs-6 line-reducer">
+                                    <%= follow.user.email %>
+                                </a>
+                                <!-- delete request -->
+                                <form action="">
+                                    <button type="submit" class="p-1 bg bg-info-subtle bg-gradient rounded border border-secondary-subtle mb-1">
+                                        <i class="fa-solid fa-user-minus text-body-secondary fs-6"></i>
+                                    </button>
+                                </form>
+                            </span>
+                            <p class="text-break headline-reducer"><%= follow.user.profile.headline %></p>
+                        </div>
+                    </li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+</section>

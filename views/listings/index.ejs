@@ -1,0 +1,118 @@
+<%= layout("/layouts/boilerplates.ejs") %>
+
+    <body>
+        <div class="posted-job-company">
+            <div class="posted-job-box">
+                <% for(let jobs of jobposts) { %>
+                    <img src="<%= jobs.imageLink %> " alt="" class="jobPosts">
+                <% } %>
+            </div>  
+            <button class="job-scroll-btn1"><i class="fa-solid fa-chevron-left text-light"></i></button> 
+            <button class="job-scroll-btn2"><i class="fa-solid fa-chevron-right text-light"></i></button>
+        </div>
+
+        <% for(let i=posts.length-1; i >= 0; i--) { %>
+            <div class=" post-box ">
+                <div class="post-header d-flex border-top border-bottom pt-1 pb-1">
+                    <a href="/JobHelper/user/<%= posts[i].user._id %>">
+                        <span class="user-email d-flex">
+                            <div class="d-flex align-items-center">
+                                <img src="<%= posts[i].user.profile.profilePicture %>" alt="" class="user-image">
+                            </div>
+                            <span class="user-container pb-1">
+                                <b class="text-break line-reducer"><%= posts[i].user.email %></b>
+                                <p class="user-headline headline-reducer"><%= posts[i].user.profile.headline %></p>
+                            </span>
+                        </span>
+                    </a>
+                    <button type="button" class="btn btn-outline-info rounded-pill ms-auto fw-semibold">
+                        <a href="#" class="ps-2 pe-2">Follow</a></button>
+                </div>
+                <p class="mt-2 mb-1 text-secondary">postedAt: <%= posts[i].createdAt.toString().split(" ").slice(1,4).join("-") %></p>
+                <a href="/JobHelper/aboutPost/<%= posts[i]._id %>">
+                    <div class="container-box">
+                        <div>
+                            <img class="rounded post-image" src="<%= posts[i].imageLink %>" alt="">
+                        </div>
+                    
+                        <div class="post-data pt-0">
+                            <p class="post-title">
+                                <%= posts[i].title %>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+                
+            
+
+                <ul class="response-buttons">
+
+                    <li class="post-likes">
+                        <button class="positive-like me-3" data-id="<%= posts[i]._id %>">
+                            
+                            <i class="fa-regular fa-thumbs-up"></i>
+                            <span id="like-count-<%= posts[i]._id %>"><%= posts[i].likes %></span>
+                        </button>
+                        <i class="fa-regular fa-thumbs-down"></i>
+                    </li>
+
+                    <li>
+                        <button class="comment-btn" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#multiCollapseExample<%= i %>" aria-expanded="false"> 
+                            Comments
+                            <i class="fa-regular fa-comment-dots"></i>
+                        </button>
+                    </li>
+                    <li>
+                        <a href="#">Share<i class="fa-regular fa-paper-plane"></i></a>
+                    </li>
+                    <li>
+                        <a href="#">Report<i class="fa-solid fa-share-nodes"></i></i></a>
+                    </li>
+                    <li>
+                        <a href="#">Save<i class="fa-regular fa-bookmark"></i></a>
+                    </li>
+                </ul>
+
+                <div class="collapse comment-collapse" id="multiCollapseExample<%= i %>">
+                    <ul class="comment-box border rounded p-1">
+                        <% for(let comment of posts[i].comments) {%>
+                            <li class="mt-2 mb-2">
+                            
+                                <a href="/JobHelper/user/<%= comment.user._id %>" class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center">
+                                        <img src="<%= comment.user.profile.profilePicture %>" alt="" class="user-image">
+                                        <span class="user-container pb-1">
+                                            <b class="text-break line-reducer"><%= comment.user.email %></b>
+                                            <p class="user-headline headline-reducer"><%= comment.user.profile.headline %></p>
+                                        </span>
+                                    </div>
+                                    <% if( comment.user._id == loginUser._id) {%>
+                                        <form method="post" action="/JobHelper/post/<%= posts[i]._id %>/comment/<%= comment._id %>?_method=DELETE">
+                                            <button type="submit" class="border-0 bg-transparent comment-delete-btn"><i class="fa-solid fa-trash"></i></button>
+                                        </form>
+                                    <% } %>
+                                </a>
+                                <div class="comment-title">
+                                    <p class="text-break"><%= comment.comment %></p>
+                                </div>
+                            </li>
+                        <% } %>
+                        <!-- patch request -->
+                         <hr>
+                        <form action="/JobHelper/comment/<%= posts[i]._id %>" method="post" class="comment-form input-group needs-validation" novalidate>
+                            <img src="<%= loginUser.profileImage %>" alt="" class="user-image rounded-circle me-2">
+                            <input type="text" class="form-control no-focus-border border-black" placeholder="Add Comments" name="title" required>
+                            <button class="btn border border-black comment-submit-btn ps-4 pe-4" type="submit">
+                                Send
+                            </button>
+                        </form>
+                    </ul>
+                </div>
+            </div>
+        <% } %>
+    </body>
+
+
+
+    

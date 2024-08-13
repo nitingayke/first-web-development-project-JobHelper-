@@ -1,0 +1,115 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+body{
+    width: 100%;
+    height: 100vh;
+}
+.login-box{
+    width: 23rem;
+    height: fit-content;
+    border: 3px solid rgb(192 192 192);
+    margin-top: 2rem;
+    border-radius: 5px;
+    padding-bottom: 2rem;
+}
+.no-focus-border:focus {
+    border-color: rgb(223, 223, 223); 
+    box-shadow: none;     
+}
+.header-login{
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: rgb(13 0 132 / 87%);
+    margin: 2rem;
+}
+.mx-auto{
+    margin-top: 0;
+    padding: 0.5rem 1rem !important;
+}
+.mx-auto label{
+    color: rgb(95, 95, 95);
+}
+.mx-auto .fa-circle-user{
+    color: rgb(1, 206, 196);
+}
+.mx-auto .fa-lock{
+    color: rgb(206, 189, 1);
+}
+.sign-box{
+    height: fit-content;
+    margin: 1rem 0 0 0;
+    padding: 0.5rem 1rem !important;
+}
+.sign-box form button{
+    text-decoration: none;
+    font-weight: 600 !important;
+    border: none;
+    background-color: transparent;
+    font-size: 1.2rem;
+    color: #ff3f00;
+    margin: 0.5rem 0;
+}
+.login-with {
+    display: flex;
+    justify-content: space-between;
+}
+.login-btn{
+    width: 7rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+/* -----------sign in------------- */
+.signin-form{
+    height: fit-content;
+}
+.signin-form form{
+    margin: 1rem 0 2rem 0;
+}
+/*------- error ----- */
+.error-emoji{
+    height: 200px;
+    width: 200px;
+    margin: auto;
+    border: 2px solid rgb(84, 84, 84);
+    box-shadow: 0 0 10px red;
+    transform: translateY(50%);
+}
+.error-emoji .first-box{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 25%;
+}
+.error-emoji .first-box span{
+    background: rgba(128, 128, 128, 0.498);
+    height: 2rem;
+    width: 1rem;
+    padding: 0.5rem;
+    box-shadow: 0 0 5px gray;
+    border: 1px solid black;
+}
+.error-emoji .second-box{
+    width: 50%;
+    height: 5%;
+    margin: 2.5rem auto;
+    border: 1px solid black;
+}
+
+.navbar-brand{ 
+    font-weight: 800;
+    font-size: 1.6rem;
+    padding: 0;
+    color: rgba(76, 76, 76, 0.874);
+    cursor: pointer;
+}
+.brand-char, .navbar-brand :hover{
+    color: #00215E;
+}
+.navbar-brand i{
+    color: #00215E;
+    margin: 0 0.4rem 0 0;
+    font-size: 1.9rem;
+}

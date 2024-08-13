@@ -1,0 +1,72 @@
+<%- layout("layouts/boilerplates") %>
+
+    <div class="post-edit-form col-sm-11 col-md-11 col-lg-10 col-xl-9 m-auto mt-4 p-2">
+        <h1 class="edit-heading">
+            <i class="fa-solid fa-square-check"></i>Please Enter Valid Data
+        </h1>
+        <div class="post-header d-flex mb-2 mt-4 rounded bg-gradient">
+            <a href="/JobHelper/user/<%= post.user._id %>">
+                <span class="user-email d-flex">
+                    <div class="d-flex align-items-center">
+                        <img src="<%= post.user.profile.profilePicture %>" alt="" class="user-image">
+                    </div>
+                    <span class="user-container pb-1">
+                        <b class="text-break text-primary-emphasis line-reducer">
+                            <%= post.user.email %>
+                        </b>
+                        <p class="user-headline text-secondary fw-semibold line-reducer">
+                            <%= post.user.profile.headline %>
+                        </p>
+                    </span>
+                </span>
+            </a>
+        </div>
+
+        <form method="post" action="/JobHelper/update/post/<%= post._id %>" class="needs-validation" novalidate>
+            <div class="col-12">
+                <img src="<%= post.imageLink %>" alt="" class="col-12 post-edit-profile rounded">
+            </div>
+
+            <div class="input-group flex-nowrap mt-4">
+                <span class="input-group-text" id="addon-wrapping">URL</span>
+                <input type="text" class="form-control edit-input-url" placeholder="Username" name="imageLink"
+                    aria-label="Username" value="<%= post.imageLink %>" aria-describedby="addon-wrapping">
+            </div>
+
+            <div>
+                <p class="edit-post-title">Post Title: </p>
+                <textarea name="title" id="floatingInputInvalid"
+                    class="form-control mt-3 post-edit-textarea no-focus-border" rows="10"
+                    required><%= post.title %></textarea>
+                <div class="invalid-feedback">
+                    Please Enter Text..
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-outline-success mt-3">Save Changes</button>
+
+            <button type="button" class="btn btn-outline-danger mt-3" data-bs-toggle="modal"
+                data-bs-target="#deletepostalert">Delete Post</button>
+        </form>
+    </div>
+
+    <!-- warning model -->
+    <div class="modal fade" id="deletepostalert" tabindex="-1" data-bs-backdrop="static"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header d-flex align-items-center">
+                    <h1 class="modal-title fs-5 text-break fw-bolder" id="exampleModalLabel"><i
+                            class="fa-regular fa-circle-question text-danger fw-bolder fs-3"></i> Do You Want To Delete This Post</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <form method="post" action="/JobHelper/update/deletepost/<%= post._id %>?_method=DELETE">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
