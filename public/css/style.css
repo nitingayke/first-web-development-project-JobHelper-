@@ -28,7 +28,7 @@ body{
     display: flex !important;
     width: 100%;
     justify-content: space-between;
-    padding: 0 1rem;
+    padding: 0.4rem 1rem;
 }
 .navbar-brand{ 
     font-weight: 800;
@@ -188,7 +188,7 @@ body{
 .footer-box{
     display: flex;
     justify-content: space-between;
-    background-color: rgba(193, 193, 193, 0.916);
+    background-color: rgb(193 193 193 / 24%);
     padding: 1rem 2rem;
     margin-top: auto;
 }
@@ -206,13 +206,16 @@ body{
     list-style-type: none;
     padding-left: 0;
 }
+.social-box li i{
+    color: rgba(53, 53, 53, 0.733);
+}
 .social-box li{
     font-size: 1.3rem;
-    color: rgb(71, 71, 71);
+    color: rgb(43, 43, 43);
     width: 2rem;
 }
 .social-box ul i:hover{
-    color: #1313ff;
+    color: #ff0000;
     text-shadow: 0 0 5px lightblue;
 }
 .footer-list{
@@ -243,17 +246,15 @@ body{
     display: flex;
     margin: 1rem;
     border-radius: 15px;
-    background-color: rgba(126, 21, 21, 0.438);
+    background-color: rgb(126 21 21 / 85%);
     color: white;
     cursor: pointer;
-}
-.download-card:hover{
-    box-shadow: 0 0 5px rgba(167, 30, 30, 0.932);
+    box-shadow: 0 0 5px rgba(167, 30, 30, 0.932), inset 0 -3em 3em #474742 
 }
 .download-card i{
     font-size: 2rem;
     margin: 0.5rem;
-    color: rgb(221, 221, 221);
+    color: rgb(255, 255, 255);
 }
 .download-card span{
     width: 10rem;
@@ -504,7 +505,7 @@ hr{
 }
 .hover-border-bottom2:hover{
     text-decoration: underline;
-    text-underline-offset: 20px;
+    text-underline-offset: 18px;
     text-decoration-thickness: 3px;
 }
 .edit-profile-btn{
@@ -517,9 +518,7 @@ hr{
     align-items: center;
     cursor: pointer;
 }
-#header-checkbox{
-    display: none;
-}
+
 .header-checkbox-btn{
     display: none;
 }
@@ -597,12 +596,6 @@ hr{
         opacity: 1;
     }
 }
-
-
-
-
-
-
 @media (max-width: 950px) {
     .user-data-container{
         display: block !important;
@@ -638,14 +631,35 @@ hr{
     .header-login-btn{
         border-left: 0;
     }
-    #header-checkbox:checked ~.header-content{
-        display: block !important;
+    .header-content{
         position: absolute;
-        top: 3.5rem;
-        background-color: white;
-        border: 2px solid gray;
-        border-radius: 5px;
-        padding: 0.5rem 0.8rem;
+        display: block !important;
+        top: 3rem;
+        right: 5.5rem;
+        overflow: auto !important;
+        width: fit-content;
+        height: fit-content;
+        padding: 1rem 0.5rem !important;
+        border-radius: 0.3rem;
+        background-color: rgba(255, 255, 255);
+        z-index: 150;
+    }
+    .header-content li{
+        background-color: rgb(203 203 203);
+        color: gray;
+        padding: 0.3rem 2rem 0.3rem 1rem;
+        border-radius: 0.2rem;
+        cursor: pointer;
+        width: 100%;
+    }
+    .header-content a{
+        width: 100%;
+    }
+    .header-content li:hover{
+        padding-left: 1.2rem;
+        padding-right: 1.8rem;
+        background-color: rgba(0, 0, 0, 0.187);
+        color: rgb(0, 0, 0) !important;
     }
     .header-content .hover-border-bottom2:hover{
         text-decoration: none;

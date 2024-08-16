@@ -12,11 +12,11 @@ router.get("/post/:id", wrapAsync(async(req, res, next) => {
         req.flash("error", "Does Not Found Post!, Please Try Again.");
         res.redirect(`/JobHelper/aboutPost/${id}`);
     }else{
-        res.render("./listings/editpost.ejs", {post, loginUser: ""});
+        res.render("./listings/editpost.ejs", {post});
     }
 }));
 // update post
-router.post("/post/:id", wrapAsync(async (req, res) => {
+router.post("/post/:id", wrapAsync(async (req, res, next) => {
     let { id } = req.params;
     let { imageLink: newimageLink, title: newtitle } = req.body;
     let user = await Post.findByIdAndUpdate(id, {$set: {imageLink: newimageLink, title: newtitle}});

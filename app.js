@@ -58,12 +58,13 @@ passport.deserializeUser(User.deserializeUser());
 
 const userloginRouter = require("./routes/logindata.js");
 const updateRouter = require("./routes/updation.js");
+const reviewRouter = require("./routes/reviews.js");
 const listingRouter = require("./routes/userdata.js");
-
 
 app.use((req, res, next) => {
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
+    res.locals.loginUser = req.user; // most important (locals) we can define variable here and access anywhere
     next();
 });
 
@@ -79,6 +80,7 @@ app.use("/JobHelper", (req, res, next) => {
 });
 
 app.use("/JobHelper/update", updateRouter);
+app.use("/JobHelper/reviews", reviewRouter);
 app.use("/JobHelper", listingRouter);
 
 // ----------------------------------------Errors and invalid path------------------------------------------------------------------------------------
@@ -109,5 +111,4 @@ app.listen(8520, () => {
 /*
     comments part
     deletion (middleware mongoose)
-    cookies
 */

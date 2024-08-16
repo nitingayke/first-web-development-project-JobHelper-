@@ -16,9 +16,11 @@
     <link rel="stylesheet" href="/css/style3.css">
 </head>
 <body>
-    <%- include("../includes/header.ejs") %>
-    <%- include("../includes/flashMsg.ejs") %>
-
+    <nav class="navbar border-bottom sticky-top p-0">
+        <%- include("../includes/header.ejs") %>
+        <%- include("../includes/flashMsg.ejs") %>
+    </nav>
+   
     <div class="body-container"><%- body %></div>
 
     <%- include("../includes/footer.ejs") %>

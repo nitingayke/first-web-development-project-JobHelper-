@@ -1,22 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const { userSchema } = require("../joiSchema.js");
-const ExpressError = require("../utilError/expressError.js");
 const wrapAsync = require("../utilError/errorHandling.js");
 const passport = require("passport");
 const User = require("../models/userValidation.js");
-
-// --------------validation (joi)-------------
-const validateListing = (req, res, next) => {
-    let { error } = userSchema.validate(req.body);
-    
-    if(error){
-        let errMsg = error.details.map((el) => el.message).join(", ");
-        throw new ExpressError(400, errMsg);
-    }else{
-        next();
-    }
-}
+const { validateListing } = require("../middleware.js");
 
 // user login
 router.get("/login", (req, res) => {
@@ -49,9 +36,11 @@ router.get("/signup", (req, res, next) =>{
 // Create new account
 router.post("/signup", validateListing, wrapAsync(async (req, res, next) =>{
     let { listing: newuser, password } = req.body;
-
-    let user = new User(newuser);
-    User.register(user, password, (err, registeredUser) => {
+    const user = new User(newuser);
+ 
+    const registeredUser = await User.register(user, password);
+    
+    req.login(registeredUser, (err) => {
         if(err){
             return next(err);
         }
@@ -59,7 +48,5 @@ router.post("/signup", validateListing, wrapAsync(async (req, res, next) =>{
         res.redirect("/JobHelper");
     });
 }));
-
-
 
 module.exports = router;

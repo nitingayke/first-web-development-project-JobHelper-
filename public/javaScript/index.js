@@ -1,15 +1,3 @@
-let theme = document.querySelector(".web-theme");
-let bodyContainer = document.querySelector(".body-container");
-let icons = document.querySelector(".theme-icon");
-
-if(icons){
-    theme.addEventListener("click", (event) => {
-        bodyContainer.classList.toggle("backgroundColor");
-        icons.classList.toggle("fa-sun");
-        icons.classList.toggle("fa-moon");
-    });
-}
-
 
 let likeButtons = document.querySelectorAll(".positive-like");
 for(let likebtn of likeButtons){
@@ -72,6 +60,15 @@ if(profile_btn){
 }
 
 
+const header_content = document.querySelector(".header-content");
+const header_button = document.querySelector(".header-checkbox-btn");
+if(header_content){
+    header_button.addEventListener("mouseover", ()=> handleMouseOver(header_content));
+    header_button.addEventListener("mouseout", ()=> handleMouseOut(header_content));
+    header_content.addEventListener("mouseover", ()=> handleMouseOver(header_content));
+    header_content.addEventListener("mouseout", ()=> handleMouseOut(header_content));
+}
+
 function handleMouseOver(box){
     box.classList.remove("hidden-box");
     box.classList.add("visible-box");
@@ -87,29 +84,5 @@ if(inputURL){
     inputURL.addEventListener("input", () => {
         console.log(inputURL.value);
         editimage_box.src = inputURL.value;
-    });
-}
-
-const commentForm = document.querySelector(".comment-form");
-if(commentForm){
-    commentForm.addEventListener("submit", function(event){
-
-        event.preventDefault();
-        const formData = new FormData(commentForm);
-        const actionURL = commentForm.getAttribute("action");
-        
-        fetch(actionURL, {
-            method: "POST",
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            alert("Comment Has Been Posted");
-            // Clear the input field after successful submission
-            commentForm.querySelector(`input[name="title"]`).value = "";
-        })
-        .catch(error => {
-            alert("Error Posting Comment");
-        })
     });
 }

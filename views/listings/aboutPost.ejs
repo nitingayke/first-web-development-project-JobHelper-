@@ -26,9 +26,11 @@
             <i class="text-body-secondary mt-1">Posted At: 
                 <%= post.createdAt.toString().split(" ").slice(1,4).join("-") %>
             </i>
-            <span class=" edit-profile-btn btn-hover">
-                <a href="/JobHelper/update/post/<%= post._id %>"><i class="fa-solid fa-pen text-secondary"></i></a>
-            </span>
+            <% if(post.user._id.equals(loginUser._id)) { %>
+                <span class=" edit-profile-btn btn-hover">
+                    <a href="/JobHelper/update/post/<%= post._id %>"><i class="fa-solid fa-pen text-secondary"></i></a>
+                </span>
+            <% } %>
         </div>
 
         <a type="button" data-bs-toggle="modal" class="w-100" data-bs-target="#secondModal">
@@ -96,7 +98,7 @@
                         <li class="ps-2">block<i class="fa-solid fa-ban text-secondary"></i></li>
 
                         <li class="ps-2">
-                            <% if( comment.user._id==loginUser._id) { %>
+                            <% if( comment.user._id.equals(loginUser._id)) { %>
 
                                 <button type="button" class="comment-delete-btn border-0 bg-transparent" data-bs-toggle="modal"
                                      data-bs-target="#deletecommentalert"><i class="fa-solid fa-trash"></i></button>
@@ -135,7 +137,8 @@
             <hr>
             <form action="/JobHelper/comment/<%= post._id %>" method="post" class="input-group needs-validation"
                 novalidate>
-                <img src="<%= loginUser.profileImage %>" alt="" class="user-image rounded-circle me-2">
+            
+                <img src="<%= loginUser.profile.profilePicture %>" alt="" class="user-image rounded-circle me-2">
                 <input type="text" class="form-control no-focus-border" placeholder="Add Comments" name="title"
                     required>
                 <button class="btn border border-black comment-submit-btn ps-4 pe-4" type="submit">

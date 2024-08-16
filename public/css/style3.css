@@ -1,3 +1,6 @@
+.fa-solid, .fa-regular{
+    color: #828282 ;
+}
 .comment-delete-btn i{
     color: lightgray;
 }
@@ -14,18 +17,22 @@
     position: absolute;
     top: 3rem;
     right: 1.5rem;
-    margin-left: auto;
     overflow: auto !important;
+    z-index: 150;
+}
+.user-profile-container i{
+    color: gray;
 }
 .user-profile-container ul, .post-edit-box ul{
    width: fit-content;
    height: fit-content;
    padding: 1rem !important;
    border-radius: 0.3rem;
-   background-color: rgba(10, 10, 10, 0.53);
+   background-color: rgba(255, 255, 255);
 }
 .user-profile-container li, .post-edit-box li{
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(203 203 203);
+    color: gray;
     margin: 0.2rem;
     padding: 0.3rem 2rem 0.3rem 1rem;
     border-radius: 0.2rem;
@@ -35,13 +42,16 @@
     padding-left: 1.2rem;
     padding-right: 1.8rem;
     background-color: rgba(0, 0, 0, 0.187);
-    color: whitesmoke !important;
+    color: rgb(0, 0, 0) !important;
 }
 .user-profile-container li:hover i, .post-edit-box li:hover i{
-    color: aqua !important;
+    color: rgb(255, 0, 0) !important;
+}
+.user-profile-container li button{
+    color: gray;
 }
 .user-profile-container li:hover button{
-    color: white;
+    color: rgb(0, 0, 0);
 }
 .post-edit-box{
     position: absolute !important;
@@ -77,4 +87,10 @@ textarea::-webkit-scrollbar-thumb{
 }
 .edit-input-url{
     border: 2px solid #e2e2e2;
+}
+.alert{
+    margin: 0 !important;
+}
+.flashError{
+    width: 100% !important;
 }

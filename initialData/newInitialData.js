@@ -81,14 +81,8 @@ const updateData = async() => {
     //     duration: "2022 - 2026", 
     // }
 
-    // let user = await User.findById("66b0eba61fba5085cbffaa5f");
-    // user.profile.education.push(edu);
 
-    // await user.save();
-
-    // console.log(user);
-
-    let user = await User.findById("66b0eba61fba5085cbffaa5f");
+    let user = await User.findById("66bd92705d84305cc7d27c87");
     // let user2 = await User.findById("66b0f5b5ed135fb27f719504");
     // let usr = {
     //     user: user2,
@@ -97,28 +91,52 @@ const updateData = async() => {
     // user.profile.socialLinks.linkedin = "https://www.linkedin.com/in/nitin-gayke92",
     // user.profile.socialLinks.github = "https://github.com/nitingayke",
 
-    user.profile.username = "gaykenitin92",
-    user.profile.headline = "Aspiring Software Internship || Java || SQL || FrontEnd, BackEnd & DataBase || Data Structure And Algorighm",
-    user.profile.location = "fadol mala ambad nashik, Maharashtra",
-    user.profile.profilePicture = "https://assets.leetcode.com/users/Nitin_Gayke/avatar_1721416810.png";
+    // user.profile.username = "gaykenitin92",
+    // user.profile.headline = "Aspiring Software Internship || Java || SQL || FrontEnd, BackEnd & DataBase || Data Structure And Algorighm",
+    // user.profile.location = "fadol mala ambad nashik, Maharashtra",
+    // user.profile.profilePicture = "https://assets.leetcode.com/users/Nitin_Gayke/avatar_1721416810.png";
+    // user.profile.skills.push("C++");
+    // user.profile.skills.push("Java");
+    // user.profile.skills.push("DSA");
+    // user.profile.skills.push("Node.js");
+    // user.profile.skills.push("HTML");
+    // user.profile.skills.push("CSS");
+    // user.profile.skills.push("JavaScript");
+    // user.profile.skills.push("Express.js");
+    // user.profile.skills.push("MongoDB");
+    // user.profile.skills.push("SQL");
 
+    let edu = {
+        institution: "Sandip University Nashik",
+        degree: "Bachelor Of Technology (B-Tech)",
+        fieldOfStudy: "Computer Science & Engineering",
+        duration: "2022-2026",
+    }
+    user.profile.education.push(edu);
     await user.save();
     console.log(user);
 }
 
 // updateData();
 
-const insertImage = async() => {
+// const insertImage = async() => {
 
-    let jobposts = new JobPost({
-        user: await User.findById("66b0eba61fba5085cbffaa5f"),
-        imageLink: "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/we-are-hiring-linkedin-banner-design-template-849b7e760d0e7b89aef0078ba5ac1ea7_screen.jpg?ts=1618937264",
-    });
-    let post = await jobposts.save();
+//     let jobposts = new JobPost({
+//         user: await User.findById("66b0eba61fba5085cbffaa5f"),
+//         imageLink: "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/we-are-hiring-linkedin-banner-design-template-849b7e760d0e7b89aef0078ba5ac1ea7_screen.jpg?ts=1618937264",
+//     });
+//     let post = await jobposts.save();
+
+//     console.log(post);
+// }
+
+// insertImage();
+
+const updatePosts = async(req, res) => {
+    let post = await Post.findByIdAndUpdate("66bd92ed5d84305cc7d27c94", {$set: {comments: []}}, {new: true});
 
     console.log(post);
 }
-
-insertImage();
+updatePosts();
 
 

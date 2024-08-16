@@ -5,6 +5,7 @@
             <div class="d-flex justify-content-center mb-4 me-4">
                 <img src="<%= user.profile.profilePicture %>" alt="" height="250" class="user-profile-picture rounded-circle">
             </div>
+          
             <div class=" border-1 col-sm">
                 <div class="d-flex justify-content-between">
                     <span>
@@ -116,6 +117,45 @@
                                     <div class="comment-title ms-5 bg-body-secondary p-2 rounded">
                                         <p class="text-break"><%= comment.comment %></p>
                                     </div>
+                                    <ul class="d-flex ps-0 mb-0 p-1 ms-5 list-unstyled">
+                                        <li class="ps-2"><i class="fa-regular fa-thumbs-up text-secondary"></i></li>
+                                        <li class="ps-2"><i class="fa-solid fa-share text-secondary"></i></li>
+                                        <li class="ps-2">block<i class="fa-solid fa-ban text-secondary"></i></li>
+                
+                                        <li class="ps-2">
+                                            <% if( comment.user._id.equals(loginUser._id)) { %>
+                
+                                                <button type="button" class="comment-delete-btn border-0 bg-transparent" data-bs-toggle="modal"
+                                                     data-bs-target="#deletecommentalert"><i class="fa-solid fa-trash"></i></button>
+                    
+                                                <!-- post delete warning -->
+                                                <div class="modal fade" id="deletecommentalert" tabindex="-1" data-bs-backdrop="static"
+                                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header d-flex align-items-center">
+                                                                <h1 class="modal-title fs-5 text-break fw-bolder" id="exampleModalLabel"><i
+                                                                        class="fa-regular fa-circle-question text-danger fw-bolder fs-3"></i>Do
+                                                                    you want to delete this comment</h1>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                    aria-label="Close"></button>
+                                                            </div>
+                    
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-bs-dismiss="modal">Cancel</button>
+                                                                <form method="post"
+                                                                    action="/JobHelper/post/<%= post._id %>/comment/<%= comment._id %>?_method=DELETE">
+                                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                    
+                                            <% } %>
+                                        </li>
+                                    </ul>
                                 </li>
                             <% } %>
                         </ul>
@@ -260,44 +300,79 @@
         <div class="user-reviews">
             <h5 class="card-title text-bold fs-4 fw-bold mt-3"><i class="fa-regular fa-circle-check"></i> Reviews: </h5>
             <hr>
-            <ul class="row justify-content-between ps-0 mb-0">
+            <ul class="row justify-content-evenly list-unstyled ps-0 mb-0">
+                
                 <% for(let review of user.profile.reviews) { %>
-                    <li class="col-12 col-md-5 col-lg-3 col-sm-12 col-xl-3 border rounded p-1 m-2">
+                    
+                    <li class="col-12 col-md-5 col-lg-4 col-sm-12 col-xl-4 border rounded p-1 m-1">
                         <div class="d-flex justify-content-between border-bottom ">
-                            
-                            <span class="d-flex">
-                                <img src="<%=  %>" alt="" class="user-image">
-                                <div class="ms-2">userdata
-                                    <a href="#" style="font-size: 0.9rem;" class="text-break">
-                                        <%=  %> email
-                                    </a>
-                                    <p>....</p>
-                                </div>
-                            </span>
-
-                            <button class="btn btn-sm border-0 ">
-                                <i class="fa-solid fa-ellipsis-vertical"></i>
-                            </button>
+                            <img src="<%= review.user.profile.profilePicture %>" alt="" class="user-image">
+                            <div class="ms-2">
+                                <a href="#" class="text-break fs-6 fw-bold text-primary line-reducer">
+                                    <%= review.user.email %>
+                                </a>
+                                <p class="line-reducer text-secondary mb-1" style="font-size: 0.7rem;"><%= review.user.profile.headline %></p>
+                            </div>
                         </div>
                         <p class="m-auto ms-0">
                             <% for(let i = 0; i < 3; i++) {%>
                                 <i class="fa-solid fa-star ms-1 me-1 text-warning"></i>
                             <% } %>
                         </p>
-                        <p><%=  %>Reviews Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        <p class="border-bottom pb-1"><%= review.reviewTitle %></p>
+
+                        <ul class="d-flex ps-0 mb-0 p-1 list-unstyled">
+                            <li class="pe-2"><i class="fa-regular fa-thumbs-up text-secondary"></i></li>
+                            <li class="pe-2"><i class="fa-solid fa-share text-secondary"></i></li>
+                            <li class="pe-2">block<i class="fa-solid fa-ban text-secondary"></i></li>
+    
+                            <li class="pe-2">
+                                <% if( review.user._id.equals(loginUser._id)) { %>
+    
+                                    <button type="button" class="comment-delete-btn border-0 bg-transparent" data-bs-toggle="modal"
+                                         data-bs-target="#deletecommentalert"><i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </button>
+        
+                                    <!-- post delete warning -->
+                                    <div class="modal fade" id="deletecommentalert" tabindex="-1" data-bs-backdrop="static"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header d-flex align-items-center">
+                                                    <h1 class="modal-title fs-5 text-break fw-bolder" id="exampleModalLabel"><i
+                                                            class="fa-regular fa-circle-question text-danger fw-bolder fs-3"></i>Do
+                                                        you want to delete this comment</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+        
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Cancel</button>
+                                                    <form method="post" > <!-- write url -->
+                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+        
+                                <% } %>
+                            </li>
+                        </ul>
                     </li>
 
                 <% } %>
             </ul>
 
-            <form action="" class="border border-warning rounded p-1 needs-validation mt-2" novalidate>
-                <p class="text-success fw-bold">Give Us Your Reviews: </p>
+            <form method="post" action="/JobHelper/reviews/<%= user._id %>" class="border border-warning rounded p-1 needs-validation mt-2" novalidate>
+                <p class="text-success fw-bold">Share Your Valuable Feedback with Us: </p>
                 <div>
                     <label for="customRange2" class="form-label mb-0 text-secondary">Rating </label>
-                    <input type="range" class="form-range " min="1" max="5" id="customRange2">
+                    <input type="range" name="review[rating]" class="form-range " min="1" max="5" id="customRange2">
                 </div>
                 <div>
-                    <textarea name="review[comment]" id="comment" class="col-12 form-control no-focus-border" rows="2" placeholder="Feedback" required></textarea>
+                    <textarea name="review[reviewTitle]" id="comment" class="col-12 form-control no-focus-border" rows="2" placeholder="Feedback" required></textarea>
                     <div class="invalid-feedback">
                         Please Enter Feedback
                     </div>

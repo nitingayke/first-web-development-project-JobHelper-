@@ -8,25 +8,12 @@ const Post = require("../models/postValidation.js");
 const Review = require("../models/userReviews.js");
 const JobPost = require("../models/jobheaderimage.js");
 
-
-let currUser = {
-    _id: '66b0eba61fba5085cbffaa5f',
-    name: 'Nitin Gayke',
-    username: 'gaykenitin',
-    email: 'gaykenitin@9209gmail.com',
-    password: 920914,
-    profileImage: 'https://avatars.githubusercontent.com/u/157243300?s=400&u=560eea5c857a11451d560b0739f4685e01b37242&v=4',
-    mobileNo: 9209143657,
-    country: 'India',
-    followers: [ 'ujjwalPatil@654gmail.com', 'gaurav@852gmail.com' ],
-    __v: 0
-};
-
 // Home Page Router
 router.get("/", wrapAsync (async (req, res, next)=> {
     let posts = await Post.find({}).populate("user").populate({path: "comments.user", select: "_id email profile.profilePicture profile.headline"});
     let jobposts = await JobPost.find({});
-    return res.render("./listings/index.ejs", { posts, jobposts, loginUser: currUser });// start over here
+   
+    return res.render("./listings/index.ejs", { posts, jobposts });// start over here
 }));
 
 // update likes
@@ -70,7 +57,7 @@ router.get("/aboutPost/:id", wrapAsync( async(req, res, next) =>{
         req.flash("error", "Post Does Not Found!");
         res.redirect("/JobHelper");
     }else{
-        res.render("./listings/aboutPost.ejs", { post, loginUser: currUser });
+        res.render("./listings/aboutPost.ejs", { post });
     }
 }));
 
@@ -79,15 +66,24 @@ router.get("/user/:id", wrapAsync(async (req, res, next) =>{
     let { id } = req.params;
     let userData = await User.findById(id)
         .populate({path: "profile.followers.user" , select: "_id email profile.profilePicture profile.headline"})
-        .populate({path: "profile.following.user" , select: "_id email profile.profilePicture profile.headline"});
+        .populate({path: "profile.following.user" , select: "_id email profile.profilePicture profile.headline"})
+        .populate({
+            path: "profile.reviews",
+            populate: {
+                path: "user", // Populate the user field inside the Review model
+                select: "_id email profile.profilePicture profile.headline"
+            },
+            select: "reviewTitle rating" // Select fields from the Review model
+        });
 
+    console.log(userData.profile.reviews);
     let posts = await Post.find({ user: id}).populate("user").populate({path: "comments.user", select: "_id email profile.profilePicture profile.headline" });
    
     if(!userData){
         req.flash("error", "User Does Not Have An Account!");
         res.redirect("/JobHelper");
     }else{
-        res.render("./listings/aboutUser.ejs", {user: userData, posts, loginUser: currUser});
+        res.render("./listings/aboutUser.ejs", {user: userData, posts});
     }
 }));
 
@@ -95,15 +91,14 @@ router.get("/user/:id", wrapAsync(async (req, res, next) =>{
 router.post("/comment/:id", wrapAsync(async(req, res) => {
     let { id } = req.params;
     let title = req.body.title;
-    let userComment = await User.findById("66b0eba61fba5085cbffaa5f");// change this id to the current login user id
 
     let newComment = {
-        user: userComment,
+        user: req.user._id,
         comment: title,
         createAt: Date(),
     }
-    await Post.findByIdAndUpdate(id, {$push: {comments: newComment}}, {new: true});
-    req.flash("success", `A new comment has been posted to ${userComment.name}'s post.`);
+    let postdata = await Post.findByIdAndUpdate(id, {$push: {comments: newComment}}, {new: true}).populate("user");
+    req.flash("success", `A new comment has been posted to ${postdata.user.username}'s post.`);
     return res.redirect("/JobHelper");
 }));
 
