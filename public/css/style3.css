@@ -41,11 +41,11 @@
 .user-profile-container li:hover, .post-edit-box li:hover{
     padding-left: 1.2rem;
     padding-right: 1.8rem;
-    background-color: rgba(0, 0, 0, 0.187);
-    color: rgb(0, 0, 0) !important;
+    background-color: rgba(0, 0, 0, 0.42);
+    color: rgb(255, 255, 255) !important;
 }
 .user-profile-container li:hover i, .post-edit-box li:hover i{
-    color: rgb(255, 0, 0) !important;
+    color: rgb(0, 255, 251) !important;
 }
 .user-profile-container li button{
     color: gray;
@@ -93,4 +93,38 @@ textarea::-webkit-scrollbar-thumb{
 }
 .flashError{
     width: 100% !important;
+}
+.review-form{
+    border: 1px solid goldenrod;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+}
+.card-hover:hover{
+    box-shadow: 0 0 10px #76767691, inset 0 0 50px #ffffff96;
+    margin: 0.3rem;
+}
+/* edit user profile */
+.edit-profile-header{
+    align-items: center !important;
+}
+.edit-user-profile img{
+    height: 13rem !important;
+}
+.edit-profile-header h1{
+    font-size: 4rem;
+    padding: 0.3rem 1rem;
+    box-shadow: inset 0 0 20px lightsteelblue, 0 0 20px lightslategray;
+}
+.edit-user-profile img{
+    box-shadow: inset 0 0 20px lightsteelblue, 0 0 20px lightslategray;
+}
+/* bootstrap scrollspy */
+.scrollspy-example {
+    position: relative;
+    height: 400px;
+    margin-top: .5rem;
+    overflow-y: auto;
+}
+.scrollspy-example h4 {
+    margin-top: 100px;
 }

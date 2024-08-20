@@ -1,0 +1,52 @@
+<%- layout("/layouts/boilerplates.ejs") %>
+    <div class="mt-5 col-11 col-md-11 col-lg-10 col-xl-10 m-2 m-auto">
+        <div class="row edit-profile-header mb-4">
+            <div class="d-flex justify-content-center edit-user-profile col-sm-12 col-md-4 col-lg-4 col-xl-3">
+                <img src="<%= loginUser.profile.profilePicture %>" alt="" class=" rounded-circle">
+            </div>
+            <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
+                <h1 class="fw-bold text-secondary d-flex justify-content-center">
+                    <span class="text-danger">E</span>dit 
+                    <span class="text-danger">Y</span>our 
+                    <span class="text-danger">P</span>rofile
+                </h1>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-4">
+                <div id="list-example" class="list-group ">
+                    <a class="list-group-item list-group-item-action" href="#list-item-1">User Content</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-2">Education</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-3">Skills</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-4">Experience</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-5">Projects</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-6">Certificates</a>
+                </div>
+            </div>
+            <div class="col-8">
+                <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-smooth-scroll="true" class="scrollspy-example">
+                    <div id="list-item-1">
+                        <h4 >Item 1</h4>
+                        <p>Content for item 1 goes here...</p>
+                    </div>
+                    <h4 id="list-item-2">Item 2</h4>
+                    <p>Content for item 2 goes here...</p>
+                    <h4 id="list-item-3">Item 3</h4>
+                    <p>Content for item 3 goes here...</p>
+                    <h4 id="list-item-4">Item 4</h4>
+                    <p>Content for item 4 goes here...</p>
+                    <h4 id="list-item-5">Item 3</h4>
+                    <p>Content for item 3 goes here...</p>
+                    <h4 id="list-item-6">Item 4</h4>
+                    <p>Content for item 4 goes here...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

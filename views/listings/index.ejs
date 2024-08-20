@@ -28,12 +28,20 @@
                     <button type="button" class="btn btn-outline-info rounded-pill ms-auto fw-semibold">
                         <a href="#" class="ps-2 pe-2">Follow</a></button>
                 </div>
-                <p class="mt-2 mb-1 text-secondary">postedAt: <%= posts[i].createdAt.toString().split(" ").slice(1,4).join("-") %></p>
+                
+                <p class="mt-2 mb-1 text-secondary">
+                    postedAt: <%= posts[i].createdAt.toString().split(" ").slice(1,4).join("-") %>
+                    <% if(posts[i].createdAt.getTime() !== posts[i].updatedAt.getTime()) { %>
+                        <i class="text-danger m-0">
+                            this post are updated at: <%= posts[i].updatedAt.toString().split(" ").slice(1,4).join("-") %>
+                        </i>
+                    <% } %>
+                </p>
                 <a href="/JobHelper/aboutPost/<%= posts[i]._id %>">
                     <div class="container-box">
-                        <div>
-                            <img class="rounded post-image" src="<%= posts[i].imageLink %>" alt="">
-                        </div>
+                        <% if(posts[i].imageLink.url) { %>
+                            <img class="rounded post-image col-lg-4 col-md-5 fit-content" src="<%= posts[i].imageLink.url %>" alt="">
+                        <% } %>
                     
                         <div class="post-data pt-0">
                             <p class="post-title">

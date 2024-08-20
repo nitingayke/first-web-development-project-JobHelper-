@@ -1,0 +1,32 @@
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg box-shadow">
+        <div class="modal-content">
+            <div class="modal-header">
+                <img src="<%= loginUser.profile.profilePicture %>" alt="" class="user-image me-3">
+                <h1 class="modal-title fs-2 " id="staticBackdropLabel"><b>New Post</b></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form method="post" action="/JobHelper/newPost/<%= loginUser._id %>" enctype="multipart/form-data" class="needs-validation" novalidate>
+                <div class="modal-body pb-0">
+                    <textarea placeholder="Enter Text" name="title" rows="5" required></textarea >
+                    <div class="invalid-feedback">
+                        Please Enter Text    
+                    </div>
+                           
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-image text-info"></i></span>
+                        <input type="file" class="form-control" name="imageURL">
+                    </div>
+                </div>
+    
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><b>Cancel</b></button>
+                    <button type="submit" class="btn btn-primary" ><b>Post</b> <i class="fa-solid fa-paper-plane text-body"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

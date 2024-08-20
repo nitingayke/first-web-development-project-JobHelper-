@@ -23,9 +23,14 @@
         </div>
 
         <div class="d-flex justify-content-between mt-1">
-            <i class="text-body-secondary mt-1">Posted At: 
+            <p class="text-body-secondary mt-1">Posted At: 
                 <%= post.createdAt.toString().split(" ").slice(1,4).join("-") %>
-            </i>
+                <% if(post.createdAt.getTime() !== post.updatedAt.getTime()) { %>
+                    <i class="text-danger m-0">
+                        this post are updated at: <%= post.updatedAt.toString().split(" ").slice(1,4).join("-") %>
+                    </i>
+                <% } %>
+                </p>
             <% if(post.user._id.equals(loginUser._id)) { %>
                 <span class=" edit-profile-btn btn-hover">
                     <a href="/JobHelper/update/post/<%= post._id %>"><i class="fa-solid fa-pen text-secondary"></i></a>
@@ -35,7 +40,7 @@
 
         <a type="button" data-bs-toggle="modal" class="w-100" data-bs-target="#secondModal">
             <div class="mt-1 img-fluid">
-                <img src="<%= post.imageLink %>" alt="" class=" rounded posted-image card-img-top">
+                <img src="<%= post.imageLink.url %>" alt="" class=" rounded posted-image card-img-top">
             </div>
         </a>
 
@@ -157,7 +162,7 @@
                 <div class="modal-body p-0">
                     <button type="button" class="btn posted-image-close-btn" data-bs-dismiss="modal"><i
                             class="fa-solid fa-xmark text-body-emphasis"></i></button>
-                    <img src="<%= post.imageLink %>" alt="" class=" rounded posted-image card-img-top h-100">
+                    <img src="<%= post.imageLink.url %>" alt="" class=" rounded posted-image card-img-top h-100">
                 </div>
             </div>
         </div>

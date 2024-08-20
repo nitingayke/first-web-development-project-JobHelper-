@@ -22,15 +22,14 @@
             </a>
         </div>
 
-        <form method="post" action="/JobHelper/update/post/<%= post._id %>" class="needs-validation" novalidate>
+        <form method="post" action="/JobHelper/update/post/<%= post._id %>" class="needs-validation" novalidate enctype="multipart/form-data">
             <div class="col-12">
-                <img src="<%= post.imageLink %>" alt="" class="col-12 post-edit-profile rounded">
+                <img src="<%= post.imageLink.url %>" alt="" class="col-12 post-edit-profile rounded">
             </div>
-
-            <div class="input-group flex-nowrap mt-4">
-                <span class="input-group-text" id="addon-wrapping">URL</span>
-                <input type="text" class="form-control edit-input-url" placeholder="Username" name="imageLink"
-                    aria-label="Username" value="<%= post.imageLink %>" aria-describedby="addon-wrapping">
+         
+            <div class="input-group flex-nowrap mb-4 mt-3">
+                <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-image text-info"></i></span>
+                <input type="file" class="form-control" value="<%= post.imageLink.url %>" name="imageLink">
             </div>
 
             <div>

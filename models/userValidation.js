@@ -25,7 +25,10 @@ const userSchema = new Schema({
         name: String,
         headline: String, // Short description or headline
         location: String, 
-        profilePicture: String, // URL or path to profile picture
+        profilePicture: {
+            url: String,
+            filename: String,
+        }, // URL or path to profile picture
         skills: [String], // List of skills
 
         education: [

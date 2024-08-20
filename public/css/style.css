@@ -96,10 +96,7 @@ body{
     color: white;
     background-color: rgb(25, 25, 25);
 }
-.header-login-btn{
-    border-left: 2px solid rgba(128, 128, 128, 0.251);
-    padding: 0 0 0 1rem !important;
-}
+
 .new-posts-btn{
     border: none;
     background-color: transparent;
@@ -544,7 +541,7 @@ hr{
 .user-posts{
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 7;
+    -webkit-line-clamp: 8;
     overflow: hidden;
     margin-bottom: 1rem;
 }
@@ -609,59 +606,5 @@ hr{
     }
     .post-data{
         margin: 1rem 0 0 0 ;
-    }
-}
-@media (max-width: 950px) {
-    .header-content{
-        position: absolute;
-        display: none !important;
-    }
-    .header-checkbox-btn{
-        height: 2.5rem;
-        width: 1.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 2px solid #8080803d;
-        cursor: pointer;
-    }
-    .header-checkbox-btn i{
-        cursor: pointer;
-    }
-    .header-login-btn{
-        border-left: 0;
-    }
-    .header-content{
-        position: absolute;
-        display: block !important;
-        top: 3rem;
-        right: 5.5rem;
-        overflow: auto !important;
-        width: fit-content;
-        height: fit-content;
-        padding: 1rem 0.5rem !important;
-        border-radius: 0.3rem;
-        background-color: rgba(255, 255, 255);
-        z-index: 150;
-    }
-    .header-content li{
-        background-color: rgb(203 203 203);
-        color: gray;
-        padding: 0.3rem 2rem 0.3rem 1rem;
-        border-radius: 0.2rem;
-        cursor: pointer;
-        width: 100%;
-    }
-    .header-content a{
-        width: 100%;
-    }
-    .header-content li:hover{
-        padding-left: 1.2rem;
-        padding-right: 1.8rem;
-        background-color: rgba(0, 0, 0, 0.187);
-        color: rgb(0, 0, 0) !important;
-    }
-    .header-content .hover-border-bottom2:hover{
-        text-decoration: none;
     }
 }

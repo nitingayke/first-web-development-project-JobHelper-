@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV != "production"){
+    require("dotenv").config();
+}
+
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -12,6 +16,9 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/userValidation.js");
 
+// const { saveRedirectUrl } = require("./middleware.js");
+
+
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
@@ -19,6 +26,8 @@ app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json()); // Middleware to parse JSON request bodies
+
+
 
 // ------------mongoDB server  -----------
 const MONGO_URL = "mongodb://127.0.0.1:27017/JobHelpers";
@@ -60,6 +69,7 @@ const userloginRouter = require("./routes/logindata.js");
 const updateRouter = require("./routes/updation.js");
 const reviewRouter = require("./routes/reviews.js");
 const listingRouter = require("./routes/userdata.js");
+const userprofileRouter = require("./routes/userprofile.js");
 
 app.use((req, res, next) => {
     res.locals.success = req.flash("success");
@@ -81,12 +91,13 @@ app.use("/JobHelper", (req, res, next) => {
 
 app.use("/JobHelper/update", updateRouter);
 app.use("/JobHelper/reviews", reviewRouter);
+app.use("/JobHelper/userprofile", userprofileRouter);
 app.use("/JobHelper", listingRouter);
+
 
 // ----------------------------------------Errors and invalid path------------------------------------------------------------------------------------
 app.get("*",(req, res) => {
-    let error = "Page Does Not Found!";
-    req.flash("error", "We couldn't find the page you were looking for. Please check the URL and try again.");
+    req.flash("error", "404 We couldn't find the page you were looking for. Please check the URL and try again.");
     res.redirect("/JobHelper");
 });
 app.use((err, req, res, next) =>{
@@ -109,6 +120,5 @@ app.listen(8520, () => {
 
 // hw
 /*
-    comments part
     deletion (middleware mongoose)
 */

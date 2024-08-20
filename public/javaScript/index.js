@@ -59,16 +59,6 @@ if(profile_btn){
     profile_box.addEventListener("mouseout", () => handleMouseOut(profile_box));
 }
 
-
-const header_content = document.querySelector(".header-content");
-const header_button = document.querySelector(".header-checkbox-btn");
-if(header_content){
-    header_button.addEventListener("mouseover", ()=> handleMouseOver(header_content));
-    header_button.addEventListener("mouseout", ()=> handleMouseOut(header_content));
-    header_content.addEventListener("mouseover", ()=> handleMouseOver(header_content));
-    header_content.addEventListener("mouseout", ()=> handleMouseOut(header_content));
-}
-
 function handleMouseOver(box){
     box.classList.remove("hidden-box");
     box.classList.add("visible-box");
@@ -78,11 +68,11 @@ function handleMouseOut(box){
     box.classList.add("hidden-box");
 }
 
-const editimage_box = document.querySelector(".post-edit-profile");
-const inputURL = document.querySelector(".edit-input-url");
-if(inputURL){
-    inputURL.addEventListener("input", () => {
-        console.log(inputURL.value);
-        editimage_box.src = inputURL.value;
-    });
-}
+// const editimage_box = document.querySelector(".post-edit-profile");
+// const inputURL = document.querySelector(".edit-input-url");
+// if(inputURL){
+//     inputURL.addEventListener("input", () => {
+//         console.log(inputURL.value);
+//         editimage_box.src = inputURL.value;
+//     });
+// }

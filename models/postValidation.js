@@ -13,7 +13,10 @@ const postSchema = new Schema({
         type: String,
         required: true,
     },
-    imageLink: String,
+    imageLink: {
+        url: String,
+        filename: String,
+    },
     likes: {
         type: Number,
         default: 0,

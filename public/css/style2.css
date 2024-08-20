@@ -138,3 +138,14 @@ body{
     margin: 0 0.4rem 0 0;
     font-size: 1.9rem;
 }
+/* bootstrap scroll */
+.scrollspy-example {
+    position: relative;
+    height: 400px;
+    margin-top: .5rem;
+    overflow: auto;
+}
+
+.scrollspy-example h4 {
+    margin-top: 100px;
+}
