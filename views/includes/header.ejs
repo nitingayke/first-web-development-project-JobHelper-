@@ -106,20 +106,23 @@
         </div>
     </form>
     <div class="navbar-links">
-        
-        <div type="button" class="header-login-btn">
-            <img src="<%= loginUser.profile.profilePicture %>" alt="" class="user-image">
-        </div>
-        <button type="button" class="new-posts-btn d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            <p class="new-posts hover-border-bottom2"><i class="fa-solid fa-plus"></i>Post</p>
+    
+        <button type="button" class="new-posts-btn d-flex align-items-center me-3 border rounded" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            <p class="new-posts"><i class="fa-solid fa-plus"></i>Post</p>
         </button>
+        <div type="button" class="header-login-btn position-relative me-3">
+            <img src="<%= loginUser.profile.profilePicture %>" alt="" class="user-image">
+            <span class="position-absolute start-100 top-0 ms-1 mt-2 translate-middle badge rounded-pill bg-danger">
+                9+
+            </span>
+        </div>
     </div>
     <div class="user-profile-container hidden-box">
         <ul class="list-unstyled ps-0 mb-0">
         
             <a href="/JobHelper/user/<%= loginUser._id %>"><li><i class="fa-solid fa-user"></i> Profile</li></a>
             <a href=""><li><i class="fa-solid fa-pen-to-square"></i>Update Information</li></a>
-            <a href=""><li><i class="fa-solid fa-bell"></i> Notifications</li></a>
+            <a href=""><li><i class="fa-solid fa-bell"></i> Notifications <span class=" badge text-bg-light">9+</span></li></a>
             <a href=""><li><i class="fa-solid fa-circle-question"></i> Help</li></a>
             <a href=""><li><i class="fa-solid fa-key"></i> Change Password</li></a>
             <a href="/JobHelper/userListings/logout"><li><i class="fa-solid fa-sign-out-alt"></i> Logout</li></a>

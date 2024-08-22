@@ -68,11 +68,4 @@ function handleMouseOut(box){
     box.classList.add("hidden-box");
 }
 
-// const editimage_box = document.querySelector(".post-edit-profile");
-// const inputURL = document.querySelector(".edit-input-url");
-// if(inputURL){
-//     inputURL.addEventListener("input", () => {
-//         console.log(inputURL.value);
-//         editimage_box.src = inputURL.value;
-//     });
-// }
+

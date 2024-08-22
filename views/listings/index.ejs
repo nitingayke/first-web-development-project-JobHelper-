@@ -1,17 +1,30 @@
 <%= layout("/layouts/boilerplates.ejs") %>
 
     <body>
-        <div class="posted-job-company">
-            <div class="posted-job-box">
-                <% for(let jobs of jobposts) { %>
-                    <img src="<%= jobs.imageLink %> " alt="" class="jobPosts">
-                <% } %>
-            </div>  
-            <button class="job-scroll-btn1"><i class="fa-solid fa-chevron-left text-light"></i></button> 
-            <button class="job-scroll-btn2"><i class="fa-solid fa-chevron-right text-light"></i></button>
-        </div>
 
-        <% for(let i=posts.length-1; i >= 0; i--) { %>
+        <div id="carouselExampleIndicators" class="carousel slide d-flex post-box" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <% for(let i = 0; i < jobposts.length; i++) { %>
+                    <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
+                        <img src="<%= jobposts[i].imageLink %>" class="job-post-img" alt="">
+                    </div>
+                <% } %>
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    
+        
+
+
+        <% for(let i=posts.length-1; i>= 0; i--) { %>
             <div class=" post-box ">
                 <div class="post-header d-flex border-top border-bottom pt-1 pb-1">
                     <a href="/JobHelper/user/<%= posts[i].user._id %>">
@@ -20,53 +33,60 @@
                                 <img src="<%= posts[i].user.profile.profilePicture %>" alt="" class="user-image">
                             </div>
                             <span class="user-container pb-1">
-                                <b class="text-break line-reducer"><%= posts[i].user.email %></b>
-                                <p class="user-headline headline-reducer"><%= posts[i].user.profile.headline %></p>
+                                <b class="text-break line-reducer">
+                                    <%= posts[i].user.email %>
+                                </b>
+                                <p class="user-headline headline-reducer">
+                                    <%= posts[i].user.profile.headline %>
+                                </p>
                             </span>
                         </span>
                     </a>
                     <button type="button" class="btn btn-outline-info rounded-pill ms-auto fw-semibold">
                         <a href="#" class="ps-2 pe-2">Follow</a></button>
                 </div>
-                
+
                 <p class="mt-2 mb-1 text-secondary">
-                    postedAt: <%= posts[i].createdAt.toString().split(" ").slice(1,4).join("-") %>
-                    <% if(posts[i].createdAt.getTime() !== posts[i].updatedAt.getTime()) { %>
-                        <i class="text-danger m-0">
-                            this post are updated at: <%= posts[i].updatedAt.toString().split(" ").slice(1,4).join("-") %>
-                        </i>
-                    <% } %>
+                    postedAt: <%= posts[i].createdAt.toString().split(" ").slice(1,4).join(" -") %>
+                        <% if(posts[i].createdAt.getTime() !==posts[i].updatedAt.getTime()) { %>
+                            <i class="text-danger m-0"> this post are updated at:
+                                <%= posts[i].updatedAt.toString().split(" ").slice(1,4).join("-") %>
+                            </i>
+                            <% } %>
                 </p>
                 <a href="/JobHelper/aboutPost/<%= posts[i]._id %>">
                     <div class="container-box">
                         <% if(posts[i].imageLink.url) { %>
-                            <img class="rounded post-image col-lg-4 col-md-5 fit-content" src="<%= posts[i].imageLink.url %>" alt="">
-                        <% } %>
-                    
-                        <div class="post-data pt-0">
-                            <p class="post-title">
-                                <%= posts[i].title %>
-                            </p>
-                        </div>
+                            <img class="rounded post-image col-lg-4 col-md-5 fit-content"
+                                src="<%= posts[i].imageLink.url %>" alt="">
+                            <% } %>
+
+                                <div class="post-data pt-0">
+                                    <p class="post-title">
+                                        <%= posts[i].title %>
+                                    </p>
+                                </div>
                     </div>
                 </a>
-                
-            
+
+
 
                 <ul class="response-buttons">
 
                     <li class="post-likes">
                         <button class="positive-like me-3" data-id="<%= posts[i]._id %>">
-                            
+
                             <i class="fa-regular fa-thumbs-up"></i>
-                            <span id="like-count-<%= posts[i]._id %>"><%= posts[i].likes %></span>
+                            <span id="like-count-<%= posts[i]._id %>">
+                                <%= posts[i].likes %>
+                            </span>
                         </button>
                         <i class="fa-regular fa-thumbs-down"></i>
                     </li>
 
                     <li>
                         <button class="comment-btn" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#multiCollapseExample<%= i %>" aria-expanded="false"> 
+                            data-bs-target="#multiCollapseExample<%= i %>" aria-expanded="false">
                             Comments
                             <i class="fa-regular fa-comment-dots"></i>
                         </button>
@@ -86,76 +106,86 @@
                     <ul class="comment-box border rounded p-1">
                         <% for(let comment of posts[i].comments) {%>
                             <li class="mt-2 mb-2">
-                               
-                                <a href="/JobHelper/user/<%= comment.user._id %>" class="d-flex justify-content-between align-items-center">
+
+                                <a href="/JobHelper/user/<%= comment.user._id %>"
+                                    class="d-flex justify-content-between align-items-center">
                                     <div class="d-flex align-items-center">
                                         <img src="<%= comment.user.profile.profilePicture %>" alt="" class="user-image">
                                         <span class="user-container pb-1">
-                                            <b class="text-break line-reducer"><%= comment.user.email %></b>
-                                            <p class="user-headline headline-reducer"><%= comment.user.profile.headline %></p>
+                                            <b class="text-break line-reducer">
+                                                <%= comment.user.email %>
+                                            </b>
+                                            <p class="user-headline headline-reducer">
+                                                <%= comment.user.profile.headline %>
+                                            </p>
                                         </span>
                                     </div>
                                 </a>
                                 <div class="comment-title">
-                                    <p class="text-break"><%= comment.comment %></p>
+                                    <p class="text-break">
+                                        <%= comment.comment %>
+                                    </p>
                                 </div>
                                 <ul class="d-flex ps-0 mb-0 p-1 ms-5 list-unstyled">
                                     <li class="ps-2"><i class="fa-regular fa-thumbs-up text-secondary"></i></li>
                                     <li class="ps-2"><i class="fa-solid fa-share text-secondary"></i></li>
                                     <li class="ps-2">block<i class="fa-solid fa-ban text-secondary"></i></li>
-            
+
                                     <li class="ps-2">
                                         <% if( comment.user._id.equals(loginUser._id)) { %>
-            
-                                            <button type="button" class="comment-delete-btn border-0 bg-transparent" data-bs-toggle="modal"
-                                                 data-bs-target="#deletecommentalert"><i class="fa-solid fa-trash"></i></button>
-                
+
+                                            <button type="button" class="comment-delete-btn border-0 bg-transparent"
+                                                data-bs-toggle="modal" data-bs-target="#deletecommentalert"><i
+                                                    class="fa-solid fa-trash"></i></button>
+
                                             <!-- post delete warning -->
-                                            <div class="modal fade" id="deletecommentalert" tabindex="-1" data-bs-backdrop="static"
-                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="deletecommentalert" tabindex="-1"
+                                                data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
+                                                aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header d-flex align-items-center">
-                                                            <h1 class="modal-title fs-5 text-break fw-bolder" id="exampleModalLabel"><i
+                                                            <h1 class="modal-title fs-5 text-break fw-bolder"
+                                                                id="exampleModalLabel"><i
                                                                     class="fa-regular fa-circle-question text-danger fw-bolder fs-3"></i>Do
                                                                 you want to delete this comment</h1>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                                aria-label="Close"></button>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
-                
+
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
                                                                 data-bs-dismiss="modal">Cancel</button>
                                                             <form method="post"
                                                                 action="/JobHelper/post/<%= posts[i]._id %>/comment/<%= comment._id %>?_method=DELETE">
-                                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                                                <button type="submit"
+                                                                    class="btn btn-danger">Delete</button>
                                                             </form>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                
-                                        <% } %>
+
+                                            <% } %>
                                     </li>
                                 </ul>
                             </li>
-                        <% } %>
-                        <!-- patch request -->
-                         <hr>
-                        <form action="/JobHelper/comment/<%= posts[i]._id %>" method="post" class="comment-form input-group needs-validation" novalidate>
-                           
-                            <img src="<%= loginUser.profile.profilePicture %>" alt="" class="user-image rounded-circle me-2">
-                            <input type="text" class="form-control no-focus-border " placeholder="Add Comments" name="title" required>
-                            <button class="btn border border-black comment-submit-btn ps-4 pe-4" type="submit">
-                                Send
-                            </button>
-                        </form>
+                            <% } %>
+                                <!-- patch request -->
+                                <hr>
+                                <form action="/JobHelper/comment/<%= posts[i]._id %>" method="post"
+                                    class="comment-form input-group needs-validation" novalidate>
+
+                                    <img src="<%= loginUser.profile.profilePicture %>" alt=""
+                                        class="user-image rounded-circle me-2">
+                                    <input type="text" class="form-control no-focus-border " placeholder="Add Comments"
+                                        name="title" required>
+                                    <button class="btn border border-black comment-submit-btn ps-4 pe-4" type="submit">
+                                        Send
+                                    </button>
+                                </form>
                     </ul>
                 </div>
             </div>
-        <% } %>
+            <% } %>
     </body>
-
-
-
-    

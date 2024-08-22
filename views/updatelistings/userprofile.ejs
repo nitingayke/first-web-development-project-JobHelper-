@@ -1,52 +1,107 @@
 <%- layout("/layouts/boilerplates.ejs") %>
     <div class="mt-5 col-11 col-md-11 col-lg-10 col-xl-10 m-2 m-auto">
         <div class="row edit-profile-header mb-4">
-            <div class="d-flex justify-content-center edit-user-profile col-sm-12 col-md-4 col-lg-4 col-xl-3">
-                <img src="<%= loginUser.profile.profilePicture %>" alt="" class=" rounded-circle">
-            </div>
-            <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
-                <h1 class="fw-bold text-secondary d-flex justify-content-center">
-                    <span class="text-danger">E</span>dit 
-                    <span class="text-danger">Y</span>our 
-                    <span class="text-danger">P</span>rofile
+            <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
+                <h1 class="fw-bold text-secondary d-flex flex-wrap justify-content-center text-break">
+                    <p><span class="text-danger">E</span>dit</p>
+                    <p><span class="text-danger">Y</span>our</p>
+                    <p><span class="text-danger">P</span>rofile</p>
                 </h1>
             </div>
-        </div>
-
-
-    </div>
-
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-4">
-                <div id="list-example" class="list-group ">
-                    <a class="list-group-item list-group-item-action" href="#list-item-1">User Content</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-2">Education</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-3">Skills</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-4">Experience</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-5">Projects</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-6">Certificates</a>
-                </div>
-            </div>
-            <div class="col-8">
-                <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-smooth-scroll="true" class="scrollspy-example">
-                    <div id="list-item-1">
-                        <h4 >Item 1</h4>
-                        <p>Content for item 1 goes here...</p>
-                    </div>
-                    <h4 id="list-item-2">Item 2</h4>
-                    <p>Content for item 2 goes here...</p>
-                    <h4 id="list-item-3">Item 3</h4>
-                    <p>Content for item 3 goes here...</p>
-                    <h4 id="list-item-4">Item 4</h4>
-                    <p>Content for item 4 goes here...</p>
-                    <h4 id="list-item-5">Item 3</h4>
-                    <p>Content for item 3 goes here...</p>
-                    <h4 id="list-item-6">Item 4</h4>
-                    <p>Content for item 4 goes here...</p>
-                </div>
+            <div class="d-flex justify-content-center edit-user-profile col-sm-12 col-md-12 col-lg-4 col-xl-3 mt-3">
+                <img src="<%= loginUser.profile.profilePicture %>" alt="" class=" rounded-circle">
             </div>
         </div>
+        <%= loginUser %>
+        <div class="profile-edit-box row mt-3 border">
+            <ul class="profile-edit-content list-unstyled col-sm-12 col-md-12 col-lg-3 col-xl-3 ">
+                <a class="" href="#edit-user-section">
+                    <li class="d-flex align-items-center"><i class="fa-solid fa-user-tag"></i>UserContent</li>
+                </a>
+                <a class="" href="#edit-education-section">
+                    <li class="d-flex align-items-center"><i class="fa-solid fa-user-graduate"></i>Education</li>
+                </a>
+                <a class="" href="#edit-skill-section">
+                    <li class="d-flex align-items-center"><i class="fas fa-cogs"></i>Skills</li>
+                </a>
+                <a class="" href="#edit-experience-section">
+                    <li class="d-flex align-items-center"><i class="fas fa-briefcase"></i>Experience</li>
+                </a>
+                <a class="" href="#edit-project-section">
+                    <li class="d-flex align-items-center"><i class="fa-solid fa-code"></i>Projects</li>
+                </a>
+                <a class="" href="#edit-certificates-section">
+                    <li class="d-flex align-items-center"><i class="fa-solid fa-certificate"></i>Certificates</li>
+                </a>
+            </ul>
+            <form method="post" action="" class="col-sm-12 col-md-12 col-lg-9 col-xl-9 p-0">
+                <div class="profile-edit-section pb-3">
+                    <section id="edit-user-section mb-4 col-12">
+                        <h2 class="fw-bold text-danger p-2">User Content</h2>
+                        <div class="ps-2 pe-2">
+            
+                            <div class="input-group flex-nowrap mb-2">
+                                <span class="input-group-text" id="addon-wrapping">Username: </span>
+                                <input type="text" class="form-control" placeholder="Username" value="<%= loginUser.username %>" disabled>
+                            </div>
+                            <div class="input-group flex-nowrap mb-2">
+                                <span class="input-group-text" id="addon-wrapping">Email: </span>
+                                <input type="text" class="form-control" placeholder="Username" value="<%= loginUser.email %>" disabled>
+                            </div>
+                            
+                            <div class="row col-lg-12 mb-2">
+                            
+                                <div class="col-12 col-md-6 col-lg-6 ">
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="addon-wrapping">Role: </span>
+                                        <select class="form-select no-focus-border" name="listing[role]" aria-label="Role select example" required>
+                                            <option value="Student">Student</option>
+                                            <option value="Employee">Employee</option>
+                                            <option value="Freelancer">Freelancer</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            
+                                <div class="col-12 col-lg-6 col-md-6">
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="addon-wrapping">Mobile no: </span>
+                                        <input type="number" class="form-control" placeholder="Mobile number" value="<%= loginUser.mobileNumber %>">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fa-brands fa-linkedin"></i></span>
+                                <input type="url" class="form-control" placeholder="github link" value="<%= loginUser.profile.socialLinks.github %>">
+                                <span class="input-group-text"><i class="fa-brands fa-square-linkedin"></i></span>
+                                <input type="url" class="form-control" placeholder="github link" value="<%= loginUser.profile.socialLinks.linkedin %>">
+                            </div>
+                        </div>
+                    </section>
+                    <hr>
+                    <section id="edit-education-section mb-4">
+                        <h2 class="fw-bold text-secondary p-2">Education</h2>
+                    </section>
+                    <hr>
+                    <section id="edit-skill-section mb-4">
+                        <h2 class="fw-bold text-danger p-2">Skills</h2>
+                    </section>
+                    <hr>
+                    <section id="edit-experience-section mb-4">
+                        <h2 class="fw-bold text-secondary p-2">Experience</h2>
+                    </section>
+                    <hr>
+                    <section id="edit-project-section mb-4">
+                        <h2 class="fw-bold text-danger p-2">Project</h2>
+                        
+                    </section>
+                    <hr>
+                    <section id="edit-certificates-section">
+                        <h2 class="fw-bold text-secondary p-2">Certificates</h2>
+                    </section>
+                </div>
+                <button type="submit" class="btn btn-outline-success fw-bolder">Submit</button>
+            </form>
+        </div>
+        
     </div>
-    
-</div>
