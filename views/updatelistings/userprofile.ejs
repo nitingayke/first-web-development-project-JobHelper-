@@ -2,19 +2,51 @@
     <div class="mt-5 col-11 col-md-11 col-lg-10 col-xl-10 m-2 m-auto">
         <div class="row edit-profile-header mb-4">
             <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
-                <h1 class="fw-bold text-secondary d-flex flex-wrap justify-content-center text-break">
+                <h1 id="edit-title" class="fw-bold text-secondary d-flex flex-wrap justify-content-center text-break">
                     <p><span class="text-danger">E</span>dit</p>
                     <p><span class="text-danger">Y</span>our</p>
                     <p><span class="text-danger">P</span>rofile</p>
                 </h1>
             </div>
             <div class="d-flex justify-content-center edit-user-profile col-sm-12 col-md-12 col-lg-4 col-xl-3 mt-3">
-                <img src="<%= loginUser.profile.profilePicture %>" alt="" class=" rounded-circle">
+                <div class="position-relative">
+                    <img src="<%= loginUser.profile.profilePicture.url %>" alt="" class="user-profile-image rounded">
+                    <button type="button" class="btn-profile-image-edit border-0 bg-transparent" data-bs-toggle="modal"
+                                data-bs-target="#updateProfileImage"><i class="fa-solid fa-pencil"></i></i></button>
+                   
+                </div>
+                <!-- photo Edit Form -->
+                <div class="modal fade" id="updateProfileImage" tabindex="-1" data-bs-backdrop="static"
+                    aria-labelledby="updateProfileImage" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header d-flex align-items-center border-bottom border-success">
+                                <h1 class="modal-title fs-5 text-break fw-bolder" id="exampleModalLabel">
+                                    <i class="fa-regular fa-image text-success fw-bolder text-success fs-3"></i>
+                                    Updated Your Profile Image</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <form method="post" action="/JobHelper/userprofile/userpicture/<%= loginUser._id %>" class="needs-validation" enctype="multipart/form-data" novalidate>
+                                <input name="profilePicture" type="file" class="form-control mt-2" required>
+                                <div class="invalid-feedback">
+                                    Please Select Image
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-success">Change</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
-        <%= loginUser %>
+      
         <div class="profile-edit-box row mt-3 border">
-            <ul class="profile-edit-content list-unstyled col-sm-12 col-md-12 col-lg-3 col-xl-3 ">
+            <ul class="profile-edit-content list-unstyled col-sm-12 col-md-12 col-lg-3 col-xl-3">
                 <a class="" href="#edit-user-section">
                     <li class="d-flex align-items-center"><i class="fa-solid fa-user-tag"></i>UserContent</li>
                 </a>
@@ -34,27 +66,28 @@
                     <li class="d-flex align-items-center"><i class="fa-solid fa-certificate"></i>Certificates</li>
                 </a>
             </ul>
-            <form method="post" action="" class="col-sm-12 col-md-12 col-lg-9 col-xl-9 p-0">
+            <!-- Edit form -->
+            <form method="post" action="/JobHelper/userprofile" class="col-sm-12 col-md-12 col-lg-9 col-xl-9 p-0">
                 <div class="profile-edit-section pb-3">
-                    <section id="edit-user-section mb-4 col-12">
-                        <h2 class="fw-bold text-danger p-2">User Content</h2>
+
+                    <h2 id="edit-user-section" class="fw-bold text-danger p-2">User Content</h2>
+                    <section class="mb-4 col-12">
                         <div class="ps-2 pe-2">
             
                             <div class="input-group flex-nowrap mb-2">
                                 <span class="input-group-text" id="addon-wrapping">Username: </span>
-                                <input type="text" class="form-control" placeholder="Username" value="<%= loginUser.username %>" disabled>
+                                <input name="editlisting[username]" type="text" class="form-control" placeholder="Username" value="<%= loginUser.username %>" disabled>
                             </div>
                             <div class="input-group flex-nowrap mb-2">
                                 <span class="input-group-text" id="addon-wrapping">Email: </span>
-                                <input type="text" class="form-control" placeholder="Username" value="<%= loginUser.email %>" disabled>
+                                <input name="editlisting[email]" type="text" class="form-control" placeholder="Email" value="<%= loginUser.email %>" disabled>
                             </div>
-                            
+
                             <div class="row col-lg-12 mb-2">
-                            
                                 <div class="col-12 col-md-6 col-lg-6 ">
                                     <div class="input-group">
                                         <span class="input-group-text" id="addon-wrapping">Role: </span>
-                                        <select class="form-select no-focus-border" name="listing[role]" aria-label="Role select example" required>
+                                        <select class="form-select no-focus-border" name="editlisting[role]" aria-label="Role select example" required>
                                             <option value="Student">Student</option>
                                             <option value="Employee">Employee</option>
                                             <option value="Freelancer">Freelancer</option>
@@ -65,43 +98,152 @@
                                 <div class="col-12 col-lg-6 col-md-6">
                                     <div class="input-group">
                                         <span class="input-group-text" id="addon-wrapping">Mobile no: </span>
-                                        <input type="number" class="form-control" placeholder="Mobile number" value="<%= loginUser.mobileNumber %>">
+                                        <input name="editlisting[mobileNumber]" type="number" class="form-control" placeholder="Mobile number" value="<%= loginUser.mobileNumber %>">
                                     </div>
                                 </div>
                             </div>
-                            
-                            <div class="input-group">
-                                <span class="input-group-text"><i class="fa-brands fa-linkedin"></i></span>
-                                <input type="url" class="form-control" placeholder="github link" value="<%= loginUser.profile.socialLinks.github %>">
-                                <span class="input-group-text"><i class="fa-brands fa-square-linkedin"></i></span>
-                                <input type="url" class="form-control" placeholder="github link" value="<%= loginUser.profile.socialLinks.linkedin %>">
+
+                            <div class="input-group flex-nowrap mb-2">
+                                <span class="input-group-text" id="addon-wrapping">Name: </span>
+                                <input name="editprofile[name]" type="text" class="form-control" placeholder="full name" value="<%= loginUser.profile.name %>">
+                            </div>
+                            <div class="input-group flex-nowrap mb-2">
+                                <span class="input-group-text" id="addon-wrapping">Headline: </span>
+                                <input name="editprofile[headline]" type="text" class="form-control" placeholder="Headline" value="<%= loginUser.profile.headline %>">
+                            </div>
+                            <div class="input-group flex-nowrap mb-2">
+                                <span class="input-group-text" id="addon-wrapping">Address: </span>
+                                <input name="editprofile[location]" type="text" class="form-control" placeholder="your current address" value="<%= loginUser.profile.location %>">
+                            </div>
+
+                            <p class="fs-4 fw-bold text-primary">Social Links:</p>
+                            <div class="input-group mb-1 col-xl-5 col-lg-5 col-md-5">
+                                <span class="input-group-text" id="basic-addon1"><i class="fa-brands fa-square-github"></i></span>
+                                <input name="editsocialLinks[github]" type="url" class="form-control me-1" placeholder="github link" value="<%= loginUser.profile.socialLinks.github %>">
+                            </div>
+                            <div class="input-group mb-1 col-xl-5 col-lg-5 col-md-5">
+                                <span class="input-group-text" id="basic-addon1"><i class="fa-brands fa-linkedin  text-primary"></i></span>
+                                <input name="editsocialLinks[linkedin]" type="url" class="form-control me-1" placeholder="github link" value="<%= loginUser.profile.socialLinks.linkedin %>">
+                            </div>
+                            <div class="input-group mb-1 col-xl-5 col-lg-5 col-md-5">
+                                <span class="input-group-text p-2" id="basic-addon1"><i class="fa-brands fa-discord"></i></span>
+                                <input name="editsocialLinks[discord]" type="url" class="form-control me-1" placeholder="Discord link" value="<%= loginUser.profile.socialLinks.discord %>">
+                            </div>
+                            <div class="input-group mb-1 col-xl-5 col-lg-5 col-md-5">
+                                <span class="input-group-text" id="basic-addon1"><i class="fa-brands fa-square-facebook text-primary"></i></span>
+                                <input name="editsocialLinks[facebook]" type="url" class="form-control me-1" placeholder="Facebook link" value="<%= loginUser.profile.socialLinks.facebook %>">
                             </div>
                         </div>
                     </section>
                     <hr>
-                    <section id="edit-education-section mb-4">
-                        <h2 class="fw-bold text-secondary p-2">Education</h2>
-                    </section>
-                    <hr>
-                    <section id="edit-skill-section mb-4">
-                        <h2 class="fw-bold text-danger p-2">Skills</h2>
-                    </section>
-                    <hr>
-                    <section id="edit-experience-section mb-4">
-                        <h2 class="fw-bold text-secondary p-2">Experience</h2>
-                    </section>
-                    <hr>
-                    <section id="edit-project-section mb-4">
-                        <h2 class="fw-bold text-danger p-2">Project</h2>
+
+                    <h2 id="edit-education-section" class="fw-bold text-secondary p-2">Education</h2>
+                    <section class="mb-4">
+
+                        <% for(let i = 0; i < loginUser.profile.education.length; i++) { %>
+                    
+                            <div class="p-1 border">
+                                <% if(loginUser.profile.education.length > 1) {%>
+                                    <p class="text-success"><%= i+1 %><i class="fa-solid fa-angle-right text-success"></i></p>
+                                <% } %>
                         
+                                <div class="input-group mb-1">
+                                    <span class="input-group-text" id="basic-addon<%= i %>">Institution</span>
+                                    <input name="editeducation[<%= i %>][institution]" type="text" class="form-control" placeholder="Institution" value="<%= loginUser.profile.education[i].institution %>" aria-describedby="basic-addon<%= i %>">
+                                </div>
+                            
+                                <div class="input-group mb-1">
+                                    <span class="input-group-text" id="basic-addon<%= i %>">Degree</span>
+                                    <input name="editeducation[<%= i %>][degree]"  type="text" class="form-control" placeholder="Degree" value="<%= loginUser.profile.education[i].degree %>" aria-describedby="basic-addon<%= i %>">
+                                </div>
+                            
+                                <div class="input-group mb-1">
+                                    <span class="input-group-text" id="basic-addon<%= i %>">FieldOfStudy</span>
+                                    <input  name="editeducation[<%= i %>][fieldOfStudy]"  type="text" class="form-control" placeholder="Class" value="<%= loginUser.profile.education[i].fieldOfStudy %>" aria-describedby="basic-addon<%= i %>">
+                                </div>
+                        
+                                <div class="input-group mb-1">
+                                    <span class="input-group-text" id="basic-addon<%= i %>">Duration</span>
+                                    <input  name="editeducation[<%= i %>][duration]"  type="text" class="form-control" placeholder="Duration" value="<%= loginUser.profile.education[i].duration %>" aria-describedby="basic-addon<%= i %>">
+                                </div>
+                          
+                            </div>
+                        <% } %>
                     </section>
                     <hr>
-                    <section id="edit-certificates-section">
-                        <h2 class="fw-bold text-secondary p-2">Certificates</h2>
+
+                    <h2 id="edit-skill-section" class="fw-bold text-danger p-2">Skills</h2>
+                    <section class="mb-4">
+                        <div class="d-flex flex-wrap ">
+                            <% for(let skl of loginUser.profile.skills) { %>
+                                <p class="border p-2 m-2 rounded"><%= skl %></p>
+                            <% } %>
+                        </div>
+                    </section>
+                    <hr>
+
+                    <h2 id="edit-experience-section" class="fw-bold text-secondary p-2">Experience</h2>
+                    <section class="mb-4">
+        
+                        <% for(let i = 0; i < loginUser.profile.experience.length; i++) { %>
+                            <div class="border p-1">
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text" id="basic-addon1">Title</span>
+                                    <input name="editexperience[<%= i %>][title]" type="text" class="form-control" placeholder="Duration" value="<%= loginUser.profile.experience[i].title %>" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text" id="basic-addon1">Company</span>
+                                    <input name="editexperience[<%= i %>][company]"  type="text" class="form-control" placeholder="Duration" value="<%= loginUser.profile.experience[i].company %>" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text" id="basic-addon1">Duration</span>
+                                    <input  name="editexperience[<%= i %>][duration]"  type="text" class="form-control" placeholder="Duration" value="<%= loginUser.profile.experience[i].duration %>" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text" id="basic-addon1">Description</span>
+                                    <textarea  name="editexperience[<%= i %>][description]"  class="form-control" id="floatingTextarea"><%= loginUser.profile.experience[i].description %></textarea>
+                                </div>
+                            </div>
+                        <% } %>
+                    </section>
+                    <hr>
+
+                    <h2 id="edit-project-section" class="fw-bold text-danger p-2">Project's</h2>
+                    <section class="mb-4">
+
+                        <% for(let i = 0; i < loginUser.profile.projects.length; i++) { %>
+                            <div class="border p-1">
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text" id="basic-addon1">Title</span>
+                                    <input name="editprojects[<%= i %>][title]" type="text" class="form-control" placeholder="Project Title" value="<%= loginUser.profile.projects[i].title %>" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text" id="basic-addon1">Description</span>
+                                    <textarea name="editprojects[<%= i %>][description]" class="form-control" id="floatingTextarea" placeholder="Project Description"><%= loginUser.profile.projects[i].description %></textarea>
+                                </div>
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text" id="basic-addon1">Technology</span>
+                                    <input  name="editprojects[<%= i %>][technologies]" type="text" class="form-control" placeholder="Used Technologies" value="<%= loginUser.profile.projects[i].technologies %>" aria-describedby="basic-addon1" disabled>
+                                </div>
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text" id="basic-addon1">Link</span>
+                                    <input  name="editprojects[<%= i %>][link]" type="text" class="form-control" placeholder="Project Github Link" value="<%= loginUser.profile.projects[i].link %>" aria-describedby="basic-addon1">
+                                </div>
+                            </div>
+                        <% } %>
+                    </section>
+                    <hr>
+                
+                    <h2 id="edit-certificates-section" class="fw-bold text-secondary p-2">Certificates</h2>
+                    <section class="mb-3">
+                        
+                        <div class="p-2 border">
+                            <img src="https://lwfiles.mycourse.app/62a6cd5e1e9e2fbf212d608d-public/5749a165648e99d68118fdfe4cfe5616.png" width="100%" alt="">
+                        </div>
                     </section>
                 </div>
-                <button type="submit" class="btn btn-outline-success fw-bolder">Submit</button>
+                <button type="submit" class="btn btn-outline-success fw-bolder mt-2">Submit</button>
             </form>
         </div>
-        
     </div>
+    

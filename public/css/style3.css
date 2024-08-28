@@ -15,7 +15,7 @@
 }
 .user-profile-container{
     position: absolute;
-    top: 3rem;
+    top: 2.8rem;
     right: 1.5rem;
     overflow: auto !important;
     z-index: 150;
@@ -100,8 +100,7 @@ textarea::-webkit-scrollbar-thumb{
     padding: 0.5rem;
 }
 .card-hover:hover{
-    box-shadow: 0 0 10px #76767691, inset 0 0 50px #ffffff96;
-    margin: 0.3rem;
+    box-shadow: inset 0 0 20px #c6c6c6c6;
 }
 /* edit user profile */
 .edit-profile-header{
@@ -112,7 +111,7 @@ textarea::-webkit-scrollbar-thumb{
     box-shadow: inset 0 0 20px lightsteelblue, 0 0 20px lightslategray;
     
 }
-.edit-profile-header h1{
+.edit-profile-header #edit-title{
     font-size: 4rem;
     padding: 0.3rem 1rem;
     box-shadow: inset 0 0 20px lightsteelblue, 0 0 20px lightslategray;
@@ -120,6 +119,8 @@ textarea::-webkit-scrollbar-thumb{
 /* profile edit */
 .profile-edit-box{
     margin-bottom: 3rem;
+    border-top: 2rem solid #0000001a !important;
+    border-bottom: 2rem solid #0000001a !important;
 }
 .profile-edit-content{
     margin-bottom: 0;
@@ -158,9 +159,6 @@ textarea::-webkit-scrollbar-thumb{
         width: 100% !important;
         overflow-x: auto;
     }
-    .profile-edit-content li{
-        margin: 0 0.2rem;
-    }
     .profile-edit-section{
         padding: 0.5rem 0;
         border-top: 0 !important;
@@ -171,7 +169,154 @@ textarea::-webkit-scrollbar-thumb{
 }
 /* posted job header */
 .job-post-img{
-    height: 20rem !important;
+    height: 23rem !important;
     width: 100%;
 }
+.position-relative{
+    display: flex;
+}
+.btn-profile-image-edit {
+    display: flex;
+    height: fit-content;
+    margin: 0.9rem 0 0 -2rem;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
 
+.user-profile-image {
+    cursor: pointer;
+    border: 1px solid rgb(161, 159, 159);
+    width: 13rem;
+}
+
+.position-relative:hover .btn-profile-image-edit {
+    opacity: 1 !important;
+}
+
+/*---------------- header modefied---------- */
+@media (max-width: 720px) {
+    .container-fluids{
+        height: 3rem;
+        padding: 0.4rem 0.5rem;
+    }
+    .sidebar-btn{
+        height: 2rem;
+        width: 2rem;
+        font-size: 0.8rem;
+        margin-right: 0.4rem;
+    }
+    .navbar-brand-content{
+        display: flex;
+        align-items: center;
+        font-size: 1.4rem !important;
+    }
+    .navbar-brand-content i{
+        font-size: 1.4rem;
+    }
+    .header-input-group{
+        height: 2rem;
+        margin: 0 0.3rem 0 0;
+    }
+    .input-reset-btn{
+        display: none;
+    }
+    .new-posts{
+        font-size: 1rem !important;
+        padding: 0.18rem 0.4rem !important;
+    }
+    #user-image{
+        height: 2rem;
+        width: 2rem;
+    }
+    #notification-box{
+        height: 1rem;
+        width: 1.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    } 
+    .job-post-img{
+        height: 15rem !important;
+    }
+    .post-box{
+        padding: 1rem !important;
+    }
+    .user-profile-container{
+        position: absolute;
+        top: 2.5rem;
+        right: 1.5rem;
+        overflow: auto !important;
+        z-index: 150;
+    }
+}
+@media (max-width: 500px) {
+    .container-fluids{
+        height: 3rem;
+    }
+    .sidebar-btn{
+        height: 1.8rem;
+        width: 1.8rem;
+        font-size: 0.8rem;
+        margin-right: 0.4rem;
+    }
+    .navbar-brand-content{
+        display: flex;
+        align-items: center;
+        font-size: 1.2rem !important;
+    }
+    .navbar-brand-content i{
+        font-size: 1.2rem;
+    }
+    .header-input-group{
+        height: 1.8rem;
+        margin: 0 0.3rem 0 0;
+    }
+    .input-reset-btn{
+        display: none;
+    }
+    .input-search-btn{
+        padding: 0.2rem;
+    }
+    .new-posts{
+        font-size: 0.9rem !important; 
+        padding: 0.2rem 0.2rem !important;
+    }
+    #user-image{
+        height: 2rem;
+        width: 2rem;
+    }
+    #notification-box{
+        height: 1rem;
+        width: 1.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .job-post-img{
+        height: 12rem !important;
+    }
+    .post-box{
+        padding: 1rem 0.5rem !important;
+    }
+    .user-profile-container{
+        position: absolute;
+        top: 2.5rem;
+        right: 1.5rem;
+        overflow: auto !important;
+        z-index: 150;
+    }
+}
+
+/* edit upser profile contents */
+.user-profile-edit-containers{
+    height: fit-content;
+}
+.user-profile-edit-containers input, .user-profile-edit-containers span, .user-profile-edit-containers textarea{
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid lightgray;
+}
+.user-profile-edit-containers:hover{
+    box-shadow: 0 0 15px #c5c5c5, inset 0 0 70px #a5faf678;
+    cursor: pointer;
+}

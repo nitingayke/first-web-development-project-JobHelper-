@@ -16,9 +16,6 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/userValidation.js");
 
-// const { saveRedirectUrl } = require("./middleware.js");
-
-
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
@@ -26,7 +23,6 @@ app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json()); // Middleware to parse JSON request bodies
-
 
 
 // ------------mongoDB server  -----------
@@ -70,6 +66,7 @@ const updateRouter = require("./routes/updation.js");
 const reviewRouter = require("./routes/reviews.js");
 const listingRouter = require("./routes/userdata.js");
 const userprofileRouter = require("./routes/userprofile.js");
+// const { saveRedirectUrl } = require("./middleware.js");
 
 app.use((req, res, next) => {
     res.locals.success = req.flash("success");
@@ -97,6 +94,7 @@ app.use("/JobHelper", listingRouter);
 
 // ----------------------------------------Errors and invalid path------------------------------------------------------------------------------------
 app.get("*",(req, res) => {
+    console.log(req.url)
     req.flash("error", "404 We couldn't find the page you were looking for. Please check the URL and try again.");
     res.redirect("/JobHelper");
 });
@@ -109,16 +107,3 @@ app.listen(8520, () => {
     console.log("App Has Been Started On Port: 8520");
 });
 
-
-
-
-
-
-
-
-
-
-// hw
-/*
-    deletion (middleware mongoose)
-*/

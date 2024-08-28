@@ -30,7 +30,7 @@
                     <a href="/JobHelper/user/<%= posts[i].user._id %>">
                         <span class="user-email d-flex">
                             <div class="d-flex align-items-center">
-                                <img src="<%= posts[i].user.profile.profilePicture %>" alt="" class="user-image">
+                                <img src="<%= posts[i].user.profile.profilePicture.url %>" alt="" class="user-image">
                             </div>
                             <span class="user-container pb-1">
                                 <b class="text-break line-reducer">
@@ -110,7 +110,7 @@
                                 <a href="/JobHelper/user/<%= comment.user._id %>"
                                     class="d-flex justify-content-between align-items-center">
                                     <div class="d-flex align-items-center">
-                                        <img src="<%= comment.user.profile.profilePicture %>" alt="" class="user-image">
+                                        <img src="<%= comment.user.profile.profilePicture.url %>" alt="" class="user-image">
                                         <span class="user-container pb-1">
                                             <b class="text-break line-reducer">
                                                 <%= comment.user.email %>
@@ -166,26 +166,26 @@
                                                 </div>
                                             </div>
 
-                                            <% } %>
+                                        <% } %>
                                     </li>
                                 </ul>
                             </li>
-                            <% } %>
-                                <!-- patch request -->
-                                <hr>
-                                <form action="/JobHelper/comment/<%= posts[i]._id %>" method="post"
-                                    class="comment-form input-group needs-validation" novalidate>
+                        <% } %>
+                        <!-- patch request -->
+                        <hr>
+                        <form action="/JobHelper/comment/<%= posts[i]._id %>" method="post"
+                            class="comment-form input-group needs-validation" novalidate>
 
-                                    <img src="<%= loginUser.profile.profilePicture %>" alt=""
-                                        class="user-image rounded-circle me-2">
-                                    <input type="text" class="form-control no-focus-border " placeholder="Add Comments"
-                                        name="title" required>
-                                    <button class="btn border border-black comment-submit-btn ps-4 pe-4" type="submit">
-                                        Send
-                                    </button>
-                                </form>
+                            <img src="<%= loginUser.profile.profilePicture.url %>" alt=""
+                                class="user-image rounded-circle me-2">
+                            <input type="text" class="form-control no-focus-border " placeholder="Add Comments"
+                                name="title" required>
+                            <button class="btn border border-black comment-submit-btn ps-4 pe-4" type="submit">
+                                Send
+                            </button>
+                        </form>
                     </ul>
                 </div>
             </div>
-            <% } %>
+        <% } %>
     </body>

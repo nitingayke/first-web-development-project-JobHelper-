@@ -23,12 +23,12 @@ async function main() {
 }
 
 main()
-.then(() =>{
-    console.log("Connection Successfull");
-})
-.catch((err) => {
-    console.log("Connection Fail");
-});
+    .then(() => {
+        console.log("Connection Successfull");
+    })
+    .catch((err) => {
+        console.log("Connection Fail");
+    });
 
 // const inserData = async() => {
 //     try {
@@ -72,8 +72,8 @@ main()
 
 // addComment();
 
-const updateData = async() => {
-    
+const updateData = async () => {
+
     // let edu = {
     //     institution: "Sandip University Nashik, Maharashtra",
     //     degree: "bachelor of technology (B-Tech)",
@@ -132,11 +132,65 @@ const updateData = async() => {
 
 // insertImage();
 
-const updatePosts = async(req, res) => {
-    let post = await Post.findByIdAndUpdate("66bd92ed5d84305cc7d27c94", {$set: {comments: []}}, {new: true});
+// const updatePosts = async(req, res) => {
+//     let post = await Post.findByIdAndUpdate("66bd92ed5d84305cc7d27c94", {$set: {comments: []}}, {new: true});
 
-    console.log(post);
+//     console.log(post);
+// }
+// updatePosts();
+
+function insertnewdata() {
+    let userdata = {
+        profile: {
+            skills: [
+                'C++', 'Java',
+                'DSA', 'Node.js',
+                'HTML', 'CSS',
+                'JavaScript', 'Express.js',
+                'MongoDB', 'SQL'
+            ],
+            education: [
+                {
+                    institution: 'Sandip University Nashik',
+                    degree: 'Bachelor Of Technology (B-Tech)',
+                    fieldOfStudy: 'Computer Science & Engineering',
+                    duration: '2022-2026'
+                },
+                {
+                    institution: 'KVN Naik College Jategaon',
+                    degree: '',
+                    fieldOfStudy: '11th and 12th',
+                    duration: '2020-2022'
+                }
+            ],
+            experience: [
+                {
+                    title: 'Software Engineer Intern',
+                    company: 'Tech Solutions Ltd.',
+                    duration: 'June 2022 - August 2022',
+                    description: 'Worked on developing and maintaining web applications using Node.js and Express. Collaborated with a team of developers to implement new features, optimize existing code, and ensure the smooth functioning of the product. Gained experience in backend development and database management.'
+                }
+            ],
+            projects: [
+                {
+                    title: 'Airbnb Clone Project',
+                    description: 'Developed a full-stack clone of Airbnb, including features like property listings, user authentication etc.',
+                    technologies: [],
+                    link: 'https://github.com/nitingayke/airbnb-webproject'
+                }
+            ],
+
+            headline: 'Aspiring Software Internship || Java || SQL || FrontEnd, BackEnd & DataBase || Data Structure And Algorighm',
+            location: 'fadol mala ambad nashik, Maharashtra',
+            profilePicture: {
+                url: 'https://res.cloudinary.com/dnpg99izj/image/upload/v1724739401/jobhelper/ro262neunom1tqwek5ta.jpg',
+                filename: 'jobhelper/ro262neunom1tqwek5ta'
+            },
+            socialLinks: {
+                linkedin: 'https://www.linkedin.com/in/nitin-gayke92',
+                github: 'https://github.com/nitingayke'
+            },
+            name: 'Nitin Valmik Gayke'
+        },
+    } 
 }
-updatePosts();
-
-

@@ -52,3 +52,7 @@ module.exports.deleteaccount = async (req, res, next) => {
         res.redirect("/JobHelper/userListings/login");
     }
 };
+
+module.exports.userContent = async(req, res, next) => {
+    res.render("./updatelistings/userContentEdit.ejs")
+};

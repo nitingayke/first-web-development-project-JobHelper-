@@ -7,6 +7,7 @@ const listingController = require("../routescontroller/updations.js");
 
 const { storage } = require("../cloudConfig2.js");
 const multer = require("multer");
+const { route } = require("./logindata.js");
 const upload = multer({ storage });
 
 router.route("/post/:id")
@@ -17,4 +18,5 @@ router.delete("/deletepost/:id", wrapAsync(listingController.deletepost));
 
 router.delete("/removeaccount", wrapAsync(listingController.deleteaccount));
 
+router.get("/user-content", wrapAsync(listingController.userContent));
 module.exports = router;

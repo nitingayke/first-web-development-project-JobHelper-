@@ -94,15 +94,17 @@
     </div>
 
     <a href="/JobHelper" class="navbar-brand">
-        <span><i class="fa-solid fa-user-tie"></i> <span class="brand-char">J</span>ob<span
-                class="brand-char">H</span>elper</span>
+        <span class="navbar-brand-content">
+            <i class="fa-solid fa-user-tie"></i> 
+            <span class="brand-char" style="margin-left: -0.2rem;">J</span>ob<span class="brand-char">H</span>elper
+        </span>
     </a>
 
     <form class="search-form">
         <div class="input-group header-input-group">
-            <input type="text" class="form-control no-focus-border" placeholder="Search">
-            <button type="reset" class="input-group-text "><i class="fa-solid fa-xmark"></i></i></button>
-            <button type="submit" class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <input type="text" class="form-control no-focus-border pe-0" placeholder="Search">
+            <button type="reset" class="input-reset-btn input-group-text ps-0"><i class="fa-solid fa-xmark"></i></button>
+            <button type="submit" class="input-search-btn input-group-text"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
     </form>
     <div class="navbar-links">
@@ -111,8 +113,8 @@
             <p class="new-posts"><i class="fa-solid fa-plus"></i>Post</p>
         </button>
         <div type="button" class="header-login-btn position-relative me-3">
-            <img src="<%= loginUser.profile.profilePicture %>" alt="" class="user-image">
-            <span class="position-absolute start-100 top-0 ms-1 mt-2 translate-middle badge rounded-pill bg-danger">
+            <img src="<%= loginUser.profile.profilePicture.url %>" alt="" class="user-image" id="user-image">
+            <span id="notification-box" class="position-absolute start-100 top-0 ms-1 mt-2 translate-middle badge rounded-pill bg-danger">
                 9+
             </span>
         </div>
@@ -127,16 +129,16 @@
             <a href=""><li><i class="fa-solid fa-key"></i> Change Password</li></a>
             <a href="/JobHelper/userListings/logout"><li><i class="fa-solid fa-sign-out-alt"></i> Logout</li></a>
             
-            <form action="/JobHelper/userListings/removeaccount?_method=DELETE" method="post" class="w-100">
-                <li>
-                    <i class="fa-solid fa-trash-alt"></i> 
-                    <button type="submit" class="border-0 bg-transparent width-100">Delete Account</button>
-                </li>
-            </form>
+            <li>
+                <i class="fa-solid fa-trash-alt"></i> 
+                <button type="button" class="border-0 bg-transparent width-100" data-bs-toggle="modal" data-bs-target="#delete-profile-warning">Delete Account</button>
+            </li>
+            
             
             <a href=""><li><i class="fa-solid fa-cog"></i> Setting</li></a>
         </ul>
     </div>
 </div>
+
 
 

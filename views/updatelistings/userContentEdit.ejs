@@ -1,0 +1,194 @@
+<%- layout("layouts/boilerplates.ejs") %>
+
+<div class="p-3 d-flex flex-wrap justify-content-evenly">
+    <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
+        <h1 id="edit-title" class="fw-bold text-secondary d-flex flex-wrap justify-content-center text-break">
+            <p><span class="text-danger">A</span>dd &nbsp;</p>
+            <p><span class="text-danger">N</span>ew &nbsp;</p>
+            <p><span class="text-danger">S</span>ection &nbsp;</p>
+            <p><span class="text-danger">T</span>o &nbsp;</p>
+            <p><span class="text-danger">P</span>rofile </p>
+        </h1>
+    </div>
+
+    <div class="edit-user-education col-11 col-lg-5 border m-4 rounded p-2 user-profile-edit-containers">
+        
+        <% for(let edu of loginUser.profile.education) { %>
+            <div class="col-12 d-flex align-items-center justify-content-between border rounded p-1 mb-2">
+                <p class="headline-reducer text-primary"><%= edu.institution %></p>
+                <form method="post" action="/JobHelper/update/remove-education/<%= edu._id %>?_method=DELETE">
+                    <button type="submit" class="btn btn-outline-danger">Delete</button>
+                </form>
+            </div>
+        <% } %>
+
+        <h4 class="fw-bold text-success text-decoration-underline"><i class="fa-solid fa-user-graduate text-success"></i> Add Education: </h4>
+        <form method="post" action="" class="needs-validation" novalidate>
+            <div class="input-group mb-1">
+                <span class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-school text-secondary"></i></span>
+                <input name="education[institution]" type="text" class="form-control" placeholder="Institution Name" required>
+                <div class="invalid-feedback">please enter institution name</div>
+            </div>
+
+            <div class="input-group mb-1">
+                <span class="input-group-text" id="addon-wrapping"><i class="fas fa-graduation-cap text-secondary"></i></span>
+                <input name="education[degree]" type="text" class="form-control" placeholder="User Degree">
+            </div>
+            
+            <div class="input-group mb-1">
+                <span class="input-group-text" id="addon-wrapping"><i class="fas fa-book pe-1 text-secondary"></i></span>
+                <input name="education[fieldOfStudy]" type="text" class="form-control" placeholder="Enter study of Field" required>
+                <div class="invalid-feedback">please enter field</div>
+            </div>
+
+            <div class="input-group mb-1">
+                <span class="input-group-text" id="addon-wrapping"><i class="fa-regular fa-clock text-secondary"></i></span>
+                <input name="education[duration]" type="text" class="form-control" placeholder="Degree Duration" required>
+                <div class="invalid-feedback">please enter duration</div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 mt-3">Add Education</button>
+        </form>
+    </div>
+
+    <div class="edit-user-skills col-11 col-lg-5 border m-4 rounded p-2 user-profile-edit-containers">
+        
+        <% for(let i = 0; i < loginUser.profile.skills.length; i++) { %>
+            <div class="col-12 d-flex align-items-center justify-content-between border rounded p-1 mb-2">
+                <p class="headline-reducer text-primary"><%= loginUser.profile.skills[i] %></p>
+                <form method="post" action="/JobHelper/update/remove-skill/<%= [i] %>?_method=DELETE">
+                    <button type="submit" class="btn btn-outline-danger">Delete</button>
+                </form>
+            </div>
+        <% } %>
+
+        <h4 class="fw-bold text-success text-decoration-underline"><i class="fas fa-cogs text-success"></i> Add Skills: </h4>
+        <form method="post" action="" class="needs-validation" novalidate>
+
+            <i class="text-danger"><i class="fa-solid fa-circle-exclamation text-danger"></i>please enter one skill at a time</i>
+            
+            <div class="input-group mb-1">
+                <span class="input-group-text" id="addon-wrapping">Skill</span>
+                <input name="skill" type="text" class="form-control" placeholder="Enter Skill" required>
+                <div class="invalid-feedback">please enter skill</div>
+            </div>
+        
+            <button type="submit" class="btn btn-primary w-100 mt-3">Add Skill</button>
+        </form>
+    </div>
+
+    <div class="edit-user-experience col-11 col-lg-5 border m-4 rounded p-2 user-profile-edit-containers">
+        
+        <% for(let exp of loginUser.profile.experience) { %>
+            <div class="col-12 d-flex align-items-center justify-content-between border rounded p-1 mb-2">
+                <p class="headline-reducer text-primary"><%= exp.title %></p>
+                <form method="post" action="/JobHelper/update/remove-experience/<%= exp._id %>?_method=DELETE">
+                    <button type="submit" class="btn btn-outline-danger">Delete</button>
+                </form>
+            </div>
+        <% } %>
+        <h4 class="fw-bold text-success text-decoration-underline"><i class="fas fa-briefcase text-success"></i> Add Experience: </h4>
+        <form method="post" action="" class="needs-validation" novalidate>
+            
+            <div class="input-group mb-1">
+                <span class="input-group-text" id="addon-wrapping">Title</span>
+                <input name="experience[title]" type="text" class="form-control" placeholder="title" required>
+                <div class="invalid-feedback">please enter title</div>
+            </div>
+
+            <div class="input-group mb-1">
+                <span class="input-group-text" id="addon-wrapping">Company</span>
+                <input name="experience[company]" type="text" class="form-control" placeholder="Company Name" required>
+                <div class="invalid-feedback">please enter company name</div>
+            </div>
+            
+            <div class="input-group mb-1">
+                <span class="input-group-text text-secondary" id="addon-wrapping">Duration</span>
+                <input name="experience[duration]" type="text" class="form-control" placeholder="Enter Duration eg(2020-2022)" required>
+                <div class="invalid-feedback">please enter duration time</div>
+            </div>
+
+            <div class="input-group mb-1">
+                <textarea name="experience[description]" type="text" class="form-control" placeholder="Description" required></textarea>
+                <div class="invalid-feedback">please enter description</div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 mt-3">Add Experience</button>
+        </form>
+    
+    </div>
+
+    <div class="edit-user-projects col-11 col-lg-5 border m-4 rounded p-2 user-profile-edit-containers">
+
+        <% for(let project of loginUser.profile.projects) { %>
+            <div class="col-12 d-flex align-items-center justify-content-between border rounded p-1 mb-2">
+                <p class="headline-reducer text-primary"><%= project.title %></p>
+                <form method="post" action="/JobHelper/update/remove-project/<%= project._id %>?_method=DELETE">
+                    <button type="submit" class="btn btn-outline-danger">Delete</button>
+                </form>
+            </div>
+        <% } %>
+
+        <h4 class="fw-bold text-success text-decoration-underline"><i class="fas fa-folder text-success"></i> Add Project: </h4>
+        <form method="post" action="" class="needs-validation" novalidate>
+            
+            <div class="input-group mb-1">
+                <span class="input-group-text" id="addon-wrapping">Title</span>
+                <input name="project[title]" type="text" class="form-control" placeholder="title" required>
+                <div class="invalid-feedback">please enter title</div>
+            </div>
+
+            <div class="input-group mb-1">
+                <span class="input-group-text" id="addon-wrapping">Description</span>
+                <input name="project[description]" type="text" class="form-control" placeholder="project description" required>
+                <div class="invalid-feedback">please enter description</div>
+            </div>
+            
+            <div class="input-group mb-1">
+                <span class="input-group-text text-secondary" id="addon-wrapping">Technologies</span>
+                <input name="project[technologies]" type="text" class="form-control" placeholder="Technology (HTMl, CSS etc)" required>
+                <div class="invalid-feedback">please enter technologies</div>
+            </div>
+
+            <div class="input-group mb-1">
+                <input name="project[link]" type="text" class="form-control" placeholder="Project Link" required>
+                <div class="invalid-feedback">please enter project link</div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 mt-3">Add Project</button>
+        </form>
+
+    </div>
+
+    <div class="edit-user-certificates col-11 col-lg-5 border m-4 rounded p-2 user-profile-edit-containers"><%= loginUser.projects %>
+
+        <% for(let certificate of loginUser.profile.certifications) { %>
+            <div class="col-12 d-flex align-items-center justify-content-between border rounded p-1 mb-2">
+                <p class="headline-reducer text-primary"><%= certificate.title %></p>
+                <form method="post" action="/JobHelper/update/remove-certificate/<%= certificate._id %>?_method=DELETE">
+                    <button type="submit" class="btn btn-outline-danger">Delete</button>
+                </form>
+            </div>
+        <% } %>
+
+        <h4 class="fw-bold text-success text-decoration-underline"><i class="fa-solid fa-certificate text-success"></i> Add Certificates: </h4>
+        
+        <form method="post" action="" class="needs-validation" novalidate enctype="multipart/form-data">
+            
+            <div class="input-group mb-1">
+                <span class="input-group-text" id="addon-wrapping">Title</span>
+                <input name="certificat[title]" type="text" class="form-control" placeholder="Enter Title" required>
+                <div class="invalid-feedback">please enter title</div>
+            </div>
+
+            <p class="text-secondary mt-2 ps-2">Certificate</p>
+            <div class="input-group mb-1">
+                <input name="certificat[link]" type="file" class="form-control" placeholder="Select Certificate" required>
+                <div class="invalid-feedback">please select certificate</div>
+            </div>
+        
+            <button type="submit" class="btn btn-primary w-100 mt-3">Add Skill</button>
+        </form>
+
+    </div>
+</div>

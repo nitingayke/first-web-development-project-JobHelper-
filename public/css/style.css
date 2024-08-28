@@ -26,6 +26,7 @@ body{
 }
 .container-fluids{
     display: flex !important;
+    align-items: center;
     width: 100%;
     justify-content: space-between;
     padding: 0.4rem 1rem;
@@ -68,12 +69,10 @@ body{
 }
 .navbar-links a, .new-posts-btn p{
     display: flex;
-    align-items: center;
     text-decoration: none;
     color: rgba(129, 129, 129, 0.874) !important;
-    padding: 0.2rem 0.5rem;
+    padding: 0.33rem 0.5rem;
     font-weight: 600;
-    font-size: 1.1rem;
 }
 .navbar-links ul{
     display: flex;
@@ -451,15 +450,11 @@ hr{
 .posted-image-close-btn i{
     color: whitesmoke !important;
 }
-/* .special-users-data{
-    padding: 2rem 10%;
-} */
 .special-users-data li{
     list-style-type: none;
 }
 .hoverEff1 i:hover{
-    /* color: #1313ff !important; */
-    color: #9a0202 !important;
+    color: #ff000075 !important;
 }
 
 .userContent{

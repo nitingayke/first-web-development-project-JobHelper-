@@ -33,7 +33,6 @@ const userSchema = new Schema({
 
         education: [
             {
-                _id: false,
                 institution: String,
                 degree: String,
                 fieldOfStudy: String,
@@ -42,7 +41,6 @@ const userSchema = new Schema({
         ],
         experience: [
             {
-                _id: false,
                 title: String,
                 company: String,
                 duration: String, // e.g., Jan 2020 - Present
@@ -50,25 +48,26 @@ const userSchema = new Schema({
             }
         ],
         socialLinks: {
-            _id: false,
             linkedin: String,
             github: String,
-            twitter: String,
+            discord: String,
+            facebook: String,
         },
         projects: [
             {
-                _id: false,
                 title: String,
                 description: String,
-                technologies: [String],
+                technologies: String,
                 link: String,
             }
         ],
         certifications: [
             {
-                _id: false,
                 title: String,
-                link: String // Link to the certificate
+                link: {
+                    url: String,
+                    filename: String,
+                }
             }
         ],
         //--------------------Reference---------------------
@@ -98,6 +97,7 @@ const userSchema = new Schema({
 },{
     timestamps: true,
 });
+
 
 userSchema.plugin(passportLocalMongoose);
 

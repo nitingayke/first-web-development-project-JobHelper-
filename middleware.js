@@ -11,12 +11,19 @@ module.exports.validateListing = (req, res, next) => {
     }
 };
 
-module.exports.isOwner = async(req, res, next) => {
+module.exports.isListingOwner = async(req, res, next) => {
     
     if(req.params.id != req.user._id){
-        req.flash("error", "You Are Not The Owner Of This Listing, Not Access To Delete.");
+        req.flash("error", "You Are Not The Owner Of This Listing, Not Access To Update Something.");
         return res.redirect("/JobHelper");
     }else{
         next();     
     }
 }
+
+// module.exports.saveRedirectUrl = (req, res, next) => {
+//     if(req.session.redirectUrl){
+//         res.locals.redirectUrl = req.session.redirectUrl;
+//     }
+//     next();
+// }

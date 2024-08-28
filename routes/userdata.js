@@ -29,4 +29,5 @@ router.post("/comment/:id", wrapAsync(listingController.postcomment));
 // Delete Route
 router.delete("/post/:postid/comment/:commentid", wrapAsync(listingController.removecomment));
 
+
 module.exports = router;
