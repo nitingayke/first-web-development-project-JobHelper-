@@ -11,6 +11,7 @@ const upload = multer({ storage });
 // Home Page Router
 router.get("/", wrapAsync (listingController.homepage));
 
+router.get("/search", wrapAsync(listingController.searchQuery))
 // update likes
 router.patch("/likes/:id", wrapAsync(listingController.postlike));
 

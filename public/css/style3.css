@@ -282,6 +282,7 @@ textarea::-webkit-scrollbar-thumb{
         padding: 0.2rem 0.2rem !important;
     }
     #user-image{
+        object-fit: contain;
         height: 2rem;
         width: 2rem;
     }
@@ -317,6 +318,31 @@ textarea::-webkit-scrollbar-thumb{
     border-bottom: 1px solid lightgray;
 }
 .user-profile-edit-containers:hover{
-    box-shadow: 0 0 15px #c5c5c5, inset 0 0 70px #a5faf678;
+    box-shadow: 0 0 15px #c5c5c5, inset 0 0 70px #ffe9e97a;
     cursor: pointer;
+}
+.search-user-image{
+    object-fit: contain;
+    height: 10rem;
+    width: 10rem;
+    border: 2px solid #ffa07a30;
+    background: #8080801f;
+    box-shadow: 0 0 10px;
+}
+
+.post-not-found-box{
+    animation: rotatebox 2s ease-in-out 2 forwards;
+}
+@keyframes rotatebox {
+    0%{
+        rotate: 5deg;
+    }30%{
+        rotate: 10deg;
+    }50%{
+        rotate: -10deg;
+    }70%{
+        rotate: 5deg;
+    }100%{
+        rotate: 0deg;
+    }
 }

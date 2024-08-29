@@ -298,6 +298,7 @@ body{
     align-items: center;
 }
 .user-image{
+    object-fit: contain;
     height: 2.5rem;
     width: 2.5rem;
     border-radius: 50%;
@@ -515,6 +516,7 @@ hr{
     display: none;
 }
 .user-profile-picture{
+    object-fit: contain;
     height: 15rem;
     width: 15rem;
     border: 2px solid #ffa07a30;

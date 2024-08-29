@@ -66,7 +66,8 @@ const updateRouter = require("./routes/updation.js");
 const reviewRouter = require("./routes/reviews.js");
 const listingRouter = require("./routes/userdata.js");
 const userprofileRouter = require("./routes/userprofile.js");
-// const { saveRedirectUrl } = require("./middleware.js");
+const removeContent = require("./routes/deleteData.js");
+const profileIncrementDec = require("./routes/userprofileupdate.js");
 
 app.use((req, res, next) => {
     res.locals.success = req.flash("success");
@@ -89,12 +90,15 @@ app.use("/JobHelper", (req, res, next) => {
 app.use("/JobHelper/update", updateRouter);
 app.use("/JobHelper/reviews", reviewRouter);
 app.use("/JobHelper/userprofile", userprofileRouter);
+app.use("/JobHelper/remove-content", removeContent);
+app.use("/JobHelper/profile-update", profileIncrementDec);
 app.use("/JobHelper", listingRouter);
+
 
 
 // ----------------------------------------Errors and invalid path------------------------------------------------------------------------------------
 app.get("*",(req, res) => {
-    console.log(req.url)
+    
     req.flash("error", "404 We couldn't find the page you were looking for. Please check the URL and try again.");
     res.redirect("/JobHelper");
 });

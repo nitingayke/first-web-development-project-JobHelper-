@@ -100,9 +100,9 @@
         </span>
     </a>
 
-    <form class="search-form">
+    <form method="get" action="/JobHelper/search" class="search-form">
         <div class="input-group header-input-group">
-            <input type="text" class="form-control no-focus-border pe-0" placeholder="Search">
+            <input name="query" type="text" class="form-control no-focus-border pe-0" placeholder="Search">
             <button type="reset" class="input-reset-btn input-group-text ps-0"><i class="fa-solid fa-xmark"></i></button>
             <button type="submit" class="input-search-btn input-group-text"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
@@ -123,8 +123,7 @@
         <ul class="list-unstyled ps-0 mb-0">
         
             <a href="/JobHelper/user/<%= loginUser._id %>"><li><i class="fa-solid fa-user"></i> Profile</li></a>
-            <a href=""><li><i class="fa-solid fa-pen-to-square"></i>Update Information</li></a>
-            <a href=""><li><i class="fa-solid fa-bell"></i> Notifications <span class=" badge text-bg-light">9+</span></li></a>
+            <a href=""><li><i class="fa-solid fa-bell"></i> Notifications <span class=" badge text-bg-danger">9+</span></li></a>
             <a href=""><li><i class="fa-solid fa-circle-question"></i> Help</li></a>
             <a href=""><li><i class="fa-solid fa-key"></i> Change Password</li></a>
             <a href="/JobHelper/userListings/logout"><li><i class="fa-solid fa-sign-out-alt"></i> Logout</li></a>
@@ -133,7 +132,6 @@
                 <i class="fa-solid fa-trash-alt"></i> 
                 <button type="button" class="border-0 bg-transparent width-100" data-bs-toggle="modal" data-bs-target="#delete-profile-warning">Delete Account</button>
             </li>
-            
             
             <a href=""><li><i class="fa-solid fa-cog"></i> Setting</li></a>
         </ul>

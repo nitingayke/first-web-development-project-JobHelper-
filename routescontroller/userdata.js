@@ -10,6 +10,14 @@ module.exports.homepage = async (req, res, next)=> {
     return res.render("./listings/index.ejs", { posts, jobposts });// start over here
 };
 
+module.exports.searchQuery = async(req, res, next) => {
+    let query = req.query.query;
+
+    let users = await User.find({username: query});
+
+    res.render("./listings/users.ejs", { users });
+};
+
 module.exports.newpost = async (req, res, next) =>{
     let { id } = req.params;
     let { title } = req.body;

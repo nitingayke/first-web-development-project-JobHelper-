@@ -1,0 +1,33 @@
+
+<%- layout("/layouts/boilerplates.ejs") %>
+
+<% if(users.length > 0) {%>
+    <div class="m-auto col-12 p-2 col-sm-11 col-md-10 col-lg-9 col-xl-9">
+        <% for(let user of users) { %>
+            <a href="/JobHelper/user/<%= user._id %>">
+                <div class="d-flex border rounded mt-4 p-3">
+                    <div>
+                        <img src="<%= user.profile.profilePicture.url %>" alt="" class="search-user-image rounded-circle" >
+                    </div>
+                    <div class="col-9 m-auto">
+                        <h2 class="text-primary fw-bold line-reducer"><%= user.username %></h2>
+                        <h5 class="text-secondary headline-reducer"><%= user.profile.headline %></h5>
+                        <div class="d-flex">
+                            <i><%= user.profile.followers.length %>+ Connections</i>
+                            <% if(user.profile.socialLinks.linkedin) { %>
+                                <a href="<%= user.profile.socialLinks.linkedin %> " class="text-primary"><i class="fa-brands fa-linkedin text-primary"></i>Linkedin</a>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        <% } %>
+    </div>
+<% } else { %>
+    <div class="col-12 d-flex justify-content-center align-items-center mt-3 mb-3" style="height: 100%;">
+        <div>            
+            <h2 class="d-flex fw-bold justify-content-center text-secondary">NOT FOUND </h2>
+            <i class="fas fa-box-open post-not-found-box" style="font-size: 10rem; color: lightgray;"></i>
+        </div>
+    </div>
+<% } %>

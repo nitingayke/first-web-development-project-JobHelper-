@@ -25,7 +25,7 @@
         <div class="d-flex justify-content-between mt-1">
             <p class="text-body-secondary mt-1">Posted At: 
                 <%= post.createdAt.toString().split(" ").slice(1,4).join("-") %>
-                <% if(post.createdAt.getTime() !== post.updatedAt.getTime()) { %>
+                <% if(post.createdAt.toDateString() !== post.updatedAt.toDateString()) { %>
                     <i class="text-danger m-0">
                         this post are updated at: <%= post.updatedAt.toString().split(" ").slice(1,4).join("-") %>
                     </i>
@@ -45,7 +45,7 @@
         </a>
 
         <div class=" mt-4 border border-1 rounded p-2 bg-dark.bg-gradient ">
-            <p class="post-title2">
+            <p class="post-title2 "  style="white-space: pre-wrap;">
                 <%= post.title %>
             </p>
         </div>

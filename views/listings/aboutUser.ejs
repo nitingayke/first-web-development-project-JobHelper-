@@ -22,12 +22,12 @@
                             </span>
                         <% } %>
                     </div>
-                    <p class="fs-4 fw-bold  text-secondary mt-2">
+                    <p class="fs-4 fw-bold text-secondary mt-2">
                         <%= user.profile.headline %>
                     </p>
-                    <div class="d-flex mt-4 align-items-center justify-content-between">
-                        <div>
-                            <button class="btn btn-info" type="button" data-bs-toggle="offcanvas"
+                    <div class="d-flex mt-4 align-items-center col-11 justify-content-between">
+                        <div >
+                            <button class="btn btn-info mb-2" type="button" data-bs-toggle="offcanvas"
                                 data-bs-target="#offcanvasRight1" aria-controls="offcanvasRight1">
                                 <b><i class="fas fa-user-plus"></i>followers <span
                                         class="badge bg-primary-subtle text-black">
@@ -35,7 +35,7 @@
                                     </span></b>
                             </button>
 
-                            <button class="btn btn-info " type="button" data-bs-toggle="offcanvas"
+                            <button class="btn btn-info mb-2" type="button" data-bs-toggle="offcanvas"
                                 data-bs-target="#offcanvasRight2" aria-controls="offcanvasRight2">
                                 <b><i class="fas fa-users"></i></i>following <span
                                         class="badge bg-primary-subtle text-black">
@@ -79,7 +79,7 @@
                                         <img class="col-sm-12 rounded post-image col-lg-4 col-md-5 col-xl-5 fit-content" src="<%= post.imageLink.url %>" alt="">
                                     <% } %>
                                 
-                                    <div class="post-data pt-0">
+                                    <div class="line-reducer post-data pt-0" style="white-space: pre-wrap;">
                                         <p >
                                             <%= post.title %>
                                         </p>
@@ -207,22 +207,26 @@
 
                             <% for(let edu of user.profile.education) {%>
                                 <div class="ms-3 pt-2 pb-1">
-                                    <p class="fw-medium text-secondary text-body-">Institution:
+                                    <p class="fw-medium text-secondary text-body-secondary "> 
+                                        <span class="text-decoration-underline">Institution:</span>
                                         <span class="text-black text-break">
                                             <%= edu.institution %>
                                         </span>
                                     </p>
-                                    <p class="fw-medium text-secondary text-body-secondary">Degree:
+                                    <p class="fw-medium text-secondary text-body-secondary">
+                                        <span class="text-decoration-underline">Degree:</span>
                                         <span class="text-black text-break">
                                             <%= edu.degree %>
                                         </span>
                                     </p>
-                                    <p class="fw-medium text-secondary text-body-secondary">Specialization:
+                                    <p class="fw-medium text-secondary text-body-secondary">
+                                        <span class="text-decoration-underline">Specialization:</span>
                                         <span class="text-black text-break">
                                             <%= edu.fieldOfStudy %>
                                         </span>
                                     </p>
-                                    <p class="fw-medium text-secondary text-body-secondary">Duration:
+                                    <p class="fw-medium text-secondary text-body-secondary">
+                                        <span class="text-decoration-underline">Duration:</span>
                                         <span class="text-black text-break">
                                             <%= edu.duration %>
                                         </span>
@@ -266,19 +270,19 @@
                             <% for(let exp of user.profile.experience) { %>
                                 <div class="border-top p-1 ">
                                     <p class="card-text text-body-secondary text-break ms-3">
-                                        <span class="fw-medium text-secondary">Title: </span>
+                                        <span class="fw-medium text-secondary text-decoration-underline">Title: </span>
                                         <span class="text-black"><%= exp.title %></span>
                                     </p>
                                     <p class="card-text text-body-secondary text-break ms-3">
-                                        <span class="fw-medium text-secondary">Company: </span>
+                                        <span class="fw-medium text-secondary text-decoration-underline">Company: </span>
                                         <span class="text-black"><%= exp.company %></span>
                                     </p>
                                     <p class="card-text text-body-secondary text-break ms-3">
-                                        <span class="fw-medium text-secondary">Duration: </span>
+                                        <span class="fw-medium text-secondary text-decoration-underline">Duration: </span>
                                         <span class="text-black"><%= exp.duration %></span>
                                     </p>
                                     <p class="card-text text-body-secondary text-break ms-3">
-                                        <span class="fw-medium text-secondary">Description: </span>
+                                        <span class="fw-medium text-secondary text-decoration-underline">Description: </span>
                                         <span class="text-black"><%= exp.description %> %></span>
                                     </p>
                                 </div>
@@ -297,22 +301,20 @@
                             <% for(let project of user.profile.projects){ %>
                                 <div class="border-top p-1 ">
                                     <p class="card-text text-body-secondary text-break ms-3">
-                                        <span class="fw-medium text-secondary">Title: </span>
+                                        <span class="fw-medium text-secondary text-decoration-underline">Title: </span>
                                         <span class="text-black"><%= project.title %></span>
                                     </p>
                                     <p class="card-text text-body-secondary text-break ms-3">
-                                        <span class="fw-medium text-secondary">Description: </span>
+                                        <span class="fw-medium text-secondary text-decoration-underline">Description: </span>
                                         <span class="text-black"><%= project.description %></span>
                                         
                                     </p>
                                     <ul class="card-text text-body-secondary d-flex ps-0 text-break ms-3 mb-0">
-                                        <span class="fw-medium text-secondary">Technology: </span>
-                                        <% for(let tech of project.technologies) {%>
-                                            <span class="text-black"><%= tech %>&nbsp;</span>
-                                        <% } %>
+                                        <span class="fw-medium text-secondary text-decoration-underline">Technology: </span>
+                                        <span class="text-black"><%= project.technologies %>&nbsp;</span>
                                     </ul>
                                     <p class="card-text text-body-secondary text-break ms-3">
-                                        <span class="fw-medium text-secondary">Link: </span>
+                                        <span class="fw-medium text-secondary text-decoration-underline">Link: </span>
                                         <a href="<%= project.link %>" class="text-primary">project.link</a>
                                     </p>
                                 </div>
@@ -328,17 +330,13 @@
                         </span>
                         <div class="row g-0">
                             <% for(let certificat of user.profile.certifications) { %>
-                                <div class="col-md-4">
-                                    <img src="<%= certificat.link %>" class="rounded-start" alt="...">
+                                <p class="card-title"> <span class="fw-medium text-secondary text-decoration-underline">Title: </span>
+                                    <%= certificat.title %>
+                                </p>
+                                <div class="mb-4">
+                                    <img src="<%= certificat.link.url %>" class="rounded-start col-12" alt="">
                                 </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <p class="card-title"> <span class="fw-medium text-secondary">Title: </span>
-                                            <%= certificat.title %>
-                                        </p>
-                                    </div>
-                                </div>
-                                <% } %>
+                            <% } %>
                         </div>
                     </div>
                 </div>
@@ -474,21 +472,14 @@
             <div class="offcanvas-body user-network-box">
                 <ul class="ps-0 user-network">
                     <% for(let follower of user.profile.followers) {%>
-                        <li class="d-flex ms-3 me-3 mt-1 p-1 rounded bg-body-secondary">
+                        <li class="d-flex ms-3 me-3 mt-1 p-1 rounded" style="background-color: rgb(147 199 250 / 14%);">
                             <img src="<%= follower.user.profile.profilePicture.url %>" alt="" class="user-image">
-                            <div class="ms-2">
+                            <div class="ms-2" style="width: 15rem;">
                                 <span class="d-flex justify-content-between align-items-center">
                                     <a href="/JobHelper/user/<%= follower.user._id %>"
                                         class="text-break text-primary fs-6 line-reducer">
                                         <%= follower.user.email %>
                                     </a>
-                                    <!-- delete request -->
-                                    <form action="">
-                                        <button type="submit"
-                                            class="p-1 bg bg-info-subtle bg-gradient rounded border border-secondary-subtle mb-1">
-                                            <i class="fa-solid fa-user-minus text-body-secondary fs-6"></i>
-                                        </button>
-                                    </form>
                                 </span>
                                 <p class="text-break headline-reducer">
                                     <%= follower.user.profile.headline %>
@@ -515,21 +506,14 @@
             <div class="offcanvas-body">
                 <ul class="ps-0 user-network">
                     <% for(let follow of user.profile.following) {%>
-                        <li class="d-flex ms-3 me-3 mt-1 p-1 rounded bg-body-secondary">
+                        <li class="d-flex ms-3 me-3 mt-1 p-1 rounded"  style="background-color: rgb(147 199 250 / 14%);">
                             <img src="<%= follow.user.profile.profilePicture.url %>" alt="" class="user-image">
-                            <div class="ms-2">
+                            <div class="ms-2" style="width: 15rem;">
                                 <span class="d-flex justify-content-between align-items-center">
                                     <a href="/JobHelper/user/<%= follow.user._id %>"
                                         class="text-break text-primary fs-6 line-reducer">
                                         <%= follow.user.email %>
                                     </a>
-                                    <!-- delete request -->
-                                    <form action="">
-                                        <button type="submit"
-                                            class="p-1 bg bg-info-subtle bg-gradient rounded border border-secondary-subtle mb-1">
-                                            <i class="fa-solid fa-user-minus text-body-secondary fs-6"></i>
-                                        </button>
-                                    </form>
                                 </span>
                                 <p class="text-break headline-reducer">
                                     <%= follow.user.profile.headline %>

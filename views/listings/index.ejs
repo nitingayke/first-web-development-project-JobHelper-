@@ -1,4 +1,4 @@
-<%= layout("/layouts/boilerplates.ejs") %>
+<%- layout("/layouts/boilerplates.ejs") %>
 
     <body>
 
@@ -20,13 +20,12 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-    
         
-
 
         <% for(let i=posts.length-1; i>= 0; i--) { %>
             <div class=" post-box ">
-                <div class="post-header d-flex border-top border-bottom pt-1 pb-1">
+               
+                <div class="post-header d-flex border-top justify-content-between align-items-center border-bottom pt-1 pb-1">
                     <a href="/JobHelper/user/<%= posts[i].user._id %>">
                         <span class="user-email d-flex">
                             <div class="d-flex align-items-center">
@@ -42,17 +41,34 @@
                             </span>
                         </span>
                     </a>
-                    <button type="button" class="btn btn-outline-info rounded-pill ms-auto fw-semibold">
-                        <a href="#" class="ps-2 pe-2">Follow</a></button>
+                    
+                    <% if(!(posts[i].user._id.equals(loginUser._id))) { %>
+
+                        <% if(posts[i].user.profile.followers.some((follower) => follower.user._id.toString() === loginUser._id.toString())) { %>
+                            <button type="button" class="btn btn-info rounded-pill ms-auto fw-semibold ps-3 pe-3">
+                                Following
+                            </button>
+                        <% } else {%>
+                            <form method="post" action="/JobHelper/profile-update/<%= posts[i].user._id %>">
+                                <button type="submit" class="btn btn-outline-info rounded-pill ms-auto fw-semibold ps-3 pe-3">
+                                    Follow
+                                </button>
+                            </form>
+                        <% } %>
+                    <% } %>
+
+                    
+    
+
                 </div>
 
                 <p class="mt-2 mb-1 text-secondary">
                     postedAt: <%= posts[i].createdAt.toString().split(" ").slice(1,4).join(" -") %>
-                        <% if(posts[i].createdAt.getTime() !==posts[i].updatedAt.getTime()) { %>
-                            <i class="text-danger m-0"> this post are updated at:
-                                <%= posts[i].updatedAt.toString().split(" ").slice(1,4).join("-") %>
-                            </i>
-                            <% } %>
+                    <% if(posts[i].createdAt.toDateString() !== posts[i].updatedAt.toDateString()) { %>
+                        <i class="text-danger m-0"> this post was updated at:
+                            <%= posts[i].updatedAt.toString().split(" ").slice(1,4).join("-") %>
+                        </i>
+                    <% } %>
                 </p>
                 <a href="/JobHelper/aboutPost/<%= posts[i]._id %>">
                     <div class="container-box">
@@ -62,7 +78,7 @@
                             <% } %>
 
                                 <div class="post-data pt-0">
-                                    <p class="post-title">
+                                    <p class="post-title" style="white-space: pre-wrap;">
                                         <%= posts[i].title %>
                                     </p>
                                 </div>
