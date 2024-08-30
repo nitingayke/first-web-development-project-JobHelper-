@@ -148,41 +148,9 @@
 
                                             <li class="ps-2">
                                                 <% if( comment.user._id.equals(loginUser._id)) { %>
-
-                                                    <button type="button"
-                                                        class="comment-delete-btn border-0 bg-transparent"
-                                                        data-bs-toggle="modal" data-bs-target="#removecommentalert<%= comment._id %>"><i
-                                                            class="fa-solid fa-trash"></i>
-                                                    </button>
-
-                                                    <!-- post delete warning  problem is here-->
-                                                    <div class="modal fade" id="removecommentalert<%= comment._id %>" tabindex="-1"
-                                                        data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
-                                                        aria-hidden="true">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header d-flex align-items-center">
-                                                                    <h1 class="modal-title fs-5 text-break fw-bolder"
-                                                                        id="exampleModalLabel"><i
-                                                                            class="fa-regular fa-circle-question text-danger fw-bolder fs-3"></i>Do
-                                                                        You Want To Delete This Comment</h1>
-                                                                    <button type="button" class="btn-close"
-                                                                        data-bs-dismiss="modal"
-                                                                        aria-label="Close"></button>
-                                                                </div>
-
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary"
-                                                                        data-bs-dismiss="modal">Cancel</button>
-                                                                    <form method="post"
-                                                                        action="/JobHelper/post/<%= post._id %>/comment/<%= comment._id %>?_method=DELETE">
-                                                                        <button type="submit"
-                                                                            class="btn btn-danger">Delete</button>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    <form method="post" action="/JobHelper/post/<%= post._id %>/comment/<%= comment._id %>?_method=DELETE">
+                                                        <button type="submit" class="bg-transparent text-danger border-0"><i class="fa-solid fa-trash text-danger"></i>&nbsp;Delete</button>
+                                                    </form>
                                                 <% } %>
                                             </li>
                                         </ul>

@@ -9,29 +9,33 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <form method="post" action="/JobHelper/newPost/<%= loginUser._id %>" enctype="multipart/form-data" class="needs-validation" novalidate>
+            <form method="post" action="/JobHelper/newPost/<%= loginUser._id %>" enctype="multipart/form-data"
+                class="needs-validation" novalidate>
                 <div class="modal-body pb-0">
-                    <textarea placeholder="Enter Text" name="title" rows="5" required></textarea >
+                    <textarea placeholder="Enter Text" name="title" rows="5" required></textarea>
                     <div class="invalid-feedback">
-                        Please Enter Text    
+                        Please Enter Text
                     </div>
-                           
+
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-image text-info"></i></span>
+                        <span class="input-group-text" id="basic-addon1"><i
+                                class="fa-regular fa-image text-info"></i></span>
                         <input type="file" class="form-control" name="imageURL">
                     </div>
                 </div>
-    
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><b>Cancel</b></button>
-                    <button type="submit" class="btn btn-success" ><b>Post</b> <i class="fa-solid fa-paper-plane text-body"></i></button>
+                    <button type="submit" class="btn btn-success"><b>Post</b> <i
+                            class="fa-solid fa-paper-plane text-body"></i></button>
                 </div>
             </form>
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="delete-profile-warning" tabindex="-1" data-bs-backdrop="static" aria-labelledby="delete-profile-warning" aria-hidden="true">
+<div class="modal fade" id="delete-profile-warning" tabindex="-1" data-bs-backdrop="static"
+    aria-labelledby="delete-profile-warning" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header d-flex align-items-center border-bottom border-success">
@@ -39,12 +43,12 @@
                     <i class="fa-solid fa-triangle-exclamation fw-bolder text-danger fs-3"></i>
                     Do You Want To Delete You Account
                 </h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                    aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <i class="text-danger" style="font-size: 0.2rem;">You Never Access This Account Agrain</i>
-            <form action="/JobHelper/userprofile/removeaccount?_method=DELETE" method="post"  class="needs-validation p-2" novalidate>
-                
+            <form action="/JobHelper/userprofile/removeaccount?_method=DELETE" method="post"
+                class="needs-validation p-2" novalidate>
+
                 <div class="input-group mb-1">
                     <span class="input-group-text" id="basic-addon1">Username</span>
                     <input name="username" type="text" class="form-control " required>
@@ -61,11 +65,25 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary"
-                        data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+<!-- message to user -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="messageToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header bg-dark">
+            <strong class="me-auto text-light"><i class="fa-solid fa-user-tie text-primary"></i>JobHelper</strong>
+            <small class="text-light">Just now</small>
+            <button type="button" class="bg-transparent border-0 ms-2" data-bs-dismiss="toast" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="toast-body bg-dark text-light">
+            Not Added Functionality Till Yet Now..
+        </div>
+    </div>
+</div>
+

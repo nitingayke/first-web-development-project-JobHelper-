@@ -69,3 +69,21 @@ function handleMouseOut(box){
 }
 
 
+const toastTrigger = document.getElementById('showMessage');
+const toastLiveExample = document.getElementById('messageToast');
+if (toastTrigger) {
+    toastTrigger.addEventListener('click', function () {
+        let toast = new bootstrap.Toast(toastLiveExample);
+        toast.show();
+    });
+}
+
+document.querySelectorAll('.showMessage').forEach(function(button) {
+    button.addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent default action if the button is inside a link
+        let toastElement = document.getElementById('messageToast');
+        let toast = new bootstrap.Toast(toastElement);
+        toast.show();
+    });
+});
+

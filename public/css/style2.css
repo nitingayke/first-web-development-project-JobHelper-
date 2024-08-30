@@ -96,31 +96,16 @@ body{
 }
 /*------- error ----- */
 .error-emoji{
-    height: 200px;
-    width: 200px;
+    height: 250px;
+    width: 250px;
     margin: auto;
-    border: 2px solid rgb(84, 84, 84);
-    box-shadow: 0 0 10px red;
     transform: translateY(50%);
 }
-.error-emoji .first-box{
+.error-emoji i{
     display: flex;
-    justify-content: space-around;
-    margin-top: 25%;
-}
-.error-emoji .first-box span{
-    background: rgba(128, 128, 128, 0.498);
-    height: 2rem;
-    width: 1rem;
-    padding: 0.5rem;
-    box-shadow: 0 0 5px gray;
-    border: 1px solid black;
-}
-.error-emoji .second-box{
-    width: 50%;
-    height: 5%;
-    margin: 2.5rem auto;
-    border: 1px solid black;
+    align-items: center;
+    justify-content: center;
+    color: gray;
 }
 
 .navbar-brand{ 

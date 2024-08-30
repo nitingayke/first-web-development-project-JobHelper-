@@ -94,8 +94,6 @@ app.use("/JobHelper/remove-content", removeContent);
 app.use("/JobHelper/profile-update", profileIncrementDec);
 app.use("/JobHelper", listingRouter);
 
-
-
 // ----------------------------------------Errors and invalid path------------------------------------------------------------------------------------
 app.get("*",(req, res) => {
     

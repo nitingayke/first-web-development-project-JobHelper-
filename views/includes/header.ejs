@@ -28,10 +28,9 @@
                     <div id="collapseOne" class="accordion-collapse collapse show"
                         data-bs-parent="#accordionExample">
                         <ul class="accordion-body">
-                            <li><a href="">Post Job</a></li>
-                            <li><a href="">Hire Freshers</a></li>
-                            <li><a href="">Hire Work Experience</a></li>
-
+                            <li class="showMessage"><a href="">Post Job</a></li>
+                            <li class="showMessage"><a href="">Hire Freshers</a></li>
+                            <li class="showMessage"><a href="">Hire Work Experience</a></li>
                         </ul>
                         <hr>
                     </div>
@@ -46,17 +45,17 @@
                     </h2>
                     <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                         <ul class="accordion-body">
-                            <li><a href="">Web Development Jobs</a></li>
-                            <li><a href="">App Development Jobs</a></li>
-                            <li><a href="">Machine Learning Jobs</a></li>
-                            <li><a href="">Cyber Security Jobs</a></li>
-                            <li><a href="">Artificial intelligence Jobs</a></li>
-                            <li><a href="">IT Jobs</a></li>
-                            <li><a href="">Cloud Engineer</a></li>
-                            <li><a href="">Blockchain Developer</a></li>
-                            <li><a href="">Software Engineer</a></li>
-                            <li><a href="">Product Manager</a></li>
-                            <li><a href="" style="color: blue; text-decoration: underline;">More<i
+                            <li class="showMessage"><a href="">Web Development Jobs</a></li>
+                            <li class="showMessage"><a href="">App Development Jobs</a></li>
+                            <li class="showMessage"><a href="">Machine Learning Jobs</a></li>
+                            <li class="showMessage"><a href="">Cyber Security Jobs</a></li>
+                            <li class="showMessage"><a href="">Artificial intelligence Jobs</a></li>
+                            <li class="showMessage"><a href="">IT Jobs</a></li>
+                            <li class="showMessage"><a href="">Cloud Engineer</a></li>
+                            <li class="showMessage"><a href="">Blockchain Developer</a></li>
+                            <li class="showMessage"><a href="">Software Engineer</a></li>
+                            <li class="showMessage"><a href="">Product Manager</a></li>
+                            <li class="showMessage"><a href="" style="color: blue; text-decoration: underline;">More<i
                                         class="fa-solid fa-angles-right"></i></a></li>
                         </ul>
                         <hr>
@@ -72,22 +71,22 @@
                     </h2>
                     <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                         <ul class="accordion-body">
-                            <li><a href="">Internship</a></li>
-                            <li><a href="">hackathons</a></li>
-                            <li><a href="">Project-Based Work</a></li>
-                            <li><a href="">GSoC</a></li>
-                            <li><a href="">Open Source</a></li>
-                            <li><a href="">Online Certifications</a></li>
+                            <li class="showMessage"><a href="">Internship</a></li>
+                            <li class="showMessage"><a href="">hackathons</a></li>
+                            <li class="showMessage"><a href="">Project-Based Work</a></li>
+                            <li class="showMessage"><a href="">GSoC</a></li>
+                            <li class="showMessage"><a href="">Open Source</a></li>
+                            <li class="showMessage"><a href="">Online Certifications</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
             <hr>
             <ul class="job-lists">
-                <li><a href="">Part-time jobs</a></li>
-                <li><a href="">Full-time jobs</a></li>
-                <li><a href="">Remote jobs</a></li>
-                <li><a href="">More<i class="fa-solid fa-angles-right" style="color: blue;"></i></a></li>
+                <li class="showMessage"><a href="">Part-time jobs</a></li>
+                <li class="showMessage"><a href="">Full-time jobs</a></li>
+                <li class="showMessage"><a href="">Remote jobs</a></li>
+                <li class="showMessage"><a href="">More<i class="fa-solid fa-angles-right" style="color: blue;"></i></a></li>
             </ul>
 
         </section>
@@ -121,11 +120,11 @@
     </div>
     <div class="user-profile-container hidden-box">
         <ul class="list-unstyled ps-0 mb-0">
-        
-            <a href="/JobHelper/user/<%= loginUser._id %>"><li><i class="fa-solid fa-user"></i> Profile</li></a>
-            <a href=""><li><i class="fa-solid fa-bell"></i> Notifications <span class=" badge text-bg-danger">9+</span></li></a>
-            <a href=""><li><i class="fa-solid fa-circle-question"></i> Help</li></a>
-            <a href=""><li><i class="fa-solid fa-key"></i> Change Password</li></a>
+            
+            <a href="/JobHelper/user/<%= loginUser._id %>"><li><i class="fa-solid fa-user"></i>Profile</li></a>
+            <a href=""><li class="showMessage"><i class="fa-solid fa-bell"></i> Notifications <span class=" badge text-bg-danger">9+</span></li></a>
+            <a href=""><li class="showMessage"><i class="fa-solid fa-circle-question"></i> Help</li></a>
+            <a href=""><li class="showMessage"><i class="fa-solid fa-key"></i> Change Password</li></a>
             <a href="/JobHelper/userListings/logout"><li><i class="fa-solid fa-sign-out-alt"></i> Logout</li></a>
             
             <li>
@@ -137,6 +136,7 @@
         </ul>
     </div>
 </div>
+
 
 
 

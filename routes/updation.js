@@ -21,7 +21,7 @@ router.get("/user-content", wrapAsync(listingController.userContent));
 
 router.post("/add-education", wrapAsync(listingController.addEducation));
 
-router.post("/add-skill", wrapAsync(listingController.addSkill));
+router.post("/add-skills", wrapAsync(listingController.addSkill));
 
 router.post("/add-experience", wrapAsync(listingController.addExperience));
 
