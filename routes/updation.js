@@ -29,4 +29,7 @@ router.post("/add-project", wrapAsync(listingController.addProject));
 
 router.post("/add-certificate",upload.single("certificatelink"), wrapAsync(listingController.addCertificate));
 
+router.post("/announce-job", upload.single("announcejob"), wrapAsync(listingController.announceJob));
+
+router.delete("/announce-job/:id", wrapAsync(listingController.deleteJob));
 module.exports = router;

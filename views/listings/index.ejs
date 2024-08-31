@@ -6,7 +6,14 @@
             <div class="carousel-inner">
                 <% for(let i = 0; i < jobposts.length; i++) { %>
                     <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
-                        <img src="<%= jobposts[i].imageLink %>" class="job-post-img" alt="">
+                        <% if(loginUser._id.toString() === jobposts[i].user.toString()) { %>
+                            <form method="post" action="/JobHelper/update/announce-job/<%= jobposts[i]._id %>?_method=DELETE">
+                                <button type="submit" class="btn announce-job-delete-btn" data-bs-dismiss="modal">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </button>
+                            </form>
+                        <% } %>
+                        <img src="<%= jobposts[i].imageLink.url %>" class="job-post-img" alt="">
                     </div>
                 <% } %>
             </div>
@@ -73,26 +80,34 @@
                                 src="<%= posts[i].imageLink.url %>" alt="">
                             <% } %>
 
-                                <div class="post-data pt-0">
-                                    <p class="post-title" style="white-space: pre-wrap;">
-                                        <%= posts[i].title %>
-                                    </p>
-                                </div>
+                        <div class="post-data pt-0">
+                            <p class="post-title" style="white-space: pre-wrap;">
+                                <%= posts[i].title %>
+                            </p>
+                        </div>
                     </div>
                 </a>
-
-
-
+           
                 <ul class="response-buttons">
-
+                    
                     <li class="post-likes">
-                        <button class="positive-like me-3" data-id="<%= posts[i]._id %>">
+                    
+                        <% if(posts[i].likes.some((like) => like.toString() === loginUser._id.toString())) { %>
+                            <div class="positive-like me-3">
+                                <i class="fa-solid fa-thumbs-up text-danger"></i>
+                                <span>
+                                    <%= posts[i].likes.length %>
+                                </span>
+                            </div>
+                        <% } else { %>
+                            <button class="positive-like me-3" data-id="<%= posts[i]._id %>">
 
-                            <i class="fa-regular fa-thumbs-up"></i>
-                            <span id="like-count-<%= posts[i]._id %>">
-                                <%= posts[i].likes %>
-                            </span>
-                        </button>
+                                <i class="fa-regular fa-thumbs-up"></i>
+                                <span id="like-count-<%= posts[i]._id %>">
+                                    <%= posts[i].likes.length %>
+                                </span>
+                            </button>
+                        <% } %>
                         <i class="fa-regular fa-thumbs-down"></i>
                     </li>
 

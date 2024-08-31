@@ -258,6 +258,9 @@ body{
 .download-card p{
     margin-bottom: 0;
 }
+.download-card:hover{
+    box-shadow: 0 0 10px rgb(60, 60, 60);
+}
 .copyright{
     padding: 0.5rem;
     font-size: 0.8rem;
@@ -451,6 +454,21 @@ hr{
 .posted-image-close-btn i{
     color: whitesmoke !important;
 }
+.announce-job-delete-btn{
+    position: absolute;
+    right: 0.2rem;
+    border: none;
+    margin-top: 0.2rem;
+    font-size: 1.5rem;
+    opacity: 0.5;
+    z-index: 1000;
+}
+.announce-job-delete-btn:hover i{
+    opacity: 1 !important;
+    z-index: 1000;
+    color: rgb(169, 0, 0) !important;
+}
+
 .special-users-data li{
     list-style-type: none;
 }

@@ -1,5 +1,6 @@
 const Post = require("../models/postValidation.js");
-const User = require("../models/userValidation.js")
+const User = require("../models/userValidation.js");
+const JobPost = require("../models/jobheaderimage.js");
 
 module.exports.aboutpost = async(req, res, next) => {
     let { id } = req.params;
@@ -123,4 +124,26 @@ module.exports.addCertificate = async(req, res, next) => {
 
     req.flash("success", "User profile has been updated successfully: Added new certificate.");
     return res.redirect(`/JobHelper/user/${id}`);
+}
+
+module.exports.announceJob = async(req, res, next) => {
+    let url = req.file.path;
+    let filename = req.file.filename;
+    let id = req.user._id;
+
+    let announce = new JobPost({
+        user: id,
+        imageLink: { url, filename }
+    })
+    await announce.save();
+
+    req.flash("success", `New Job Announce By ${req.user.username}`);
+    res.redirect("/JobHelper");
+}
+module.exports.deleteJob = async(req, res, next) => {
+    let { id } = req.params;
+    await JobPost.findByIdAndDelete(id);
+
+    req.flash("success", "Remove Announce Job Successfully");
+    res.redirect("/JobHelper");
 }

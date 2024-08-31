@@ -25,7 +25,6 @@ for(let likebtn of likeButtons){
                 }
             })
             .catch(error => {
-                console.error("Error: ", error);
                 alert("An error occurred while liking the post.");
             });
         }

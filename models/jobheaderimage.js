@@ -8,12 +8,9 @@ const headerSchema = new Schema({
         required: true,
     },
     imageLink: {
-        type: String,
-        required: true,
-    },
-    titie: {
-        type: String,
-    },
+        url: String,
+        filename: String,
+    }
 });
 
 const JobPost = mongoose.model("JobPost", headerSchema);

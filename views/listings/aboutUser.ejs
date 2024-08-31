@@ -88,13 +88,23 @@
                             </a>
                             <ul class="response-buttons">
                                 <li class="post-likes">
-                                    <button class="positive-like me-3" data-id="<%= post._id %>">
-
-                                        <i class="fa-regular fa-thumbs-up"></i>
-                                        <span id="like-count-<%= post._id %>">
-                                            <%= post.likes %>
-                                        </span>
-                                    </button>
+                                    
+                                    <% if(post.likes.some((like) => like.toString() === loginUser._id.toString())) { %>
+                                        <div class="positive-like me-3">
+                                            <i class="fa-solid fa-thumbs-up text-danger"></i>
+                                            <span>
+                                                <%= post.likes.length %>
+                                            </span>
+                                        </div>
+                                    <% } else { %>
+                                        <button class="positive-like me-3" data-id="<%= post._id %>">
+            
+                                            <i class="fa-regular fa-thumbs-up"></i>
+                                            <span id="like-count-<%= post._id %>">
+                                                <%= post.likes.length %>
+                                            </span>
+                                        </button>
+                                    <% } %>
                                     <i class="fa-regular fa-thumbs-down"></i>
                                 </li>
                                 <li>

@@ -101,7 +101,7 @@
 
     <form method="get" action="/JobHelper/search" class="search-form">
         <div class="input-group header-input-group">
-            <input name="query" type="text" class="form-control no-focus-border pe-0" placeholder="Search">
+            <input name="query" type="text" class="form-control no-focus-border pe-0" placeholder="Search [enter username]">
             <button type="reset" class="input-reset-btn input-group-text ps-0"><i class="fa-solid fa-xmark"></i></button>
             <button type="submit" class="input-search-btn input-group-text"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
@@ -123,6 +123,12 @@
             
             <a href="/JobHelper/user/<%= loginUser._id %>"><li><i class="fa-solid fa-user"></i>Profile</li></a>
             <a href=""><li class="showMessage"><i class="fa-solid fa-bell"></i> Notifications <span class=" badge text-bg-danger">9+</span></li></a>
+            <li>
+                <i class="fas fa-bullhorn"></i>
+                <button type="button" class="border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#announce-job">
+                    Announce New Job</button>
+            </li>
+            
             <a href=""><li class="showMessage"><i class="fa-solid fa-circle-question"></i> Help</li></a>
             <a href=""><li class="showMessage"><i class="fa-solid fa-key"></i> Change Password</li></a>
             <a href="/JobHelper/userListings/logout"><li><i class="fa-solid fa-sign-out-alt"></i> Logout</li></a>
@@ -136,7 +142,6 @@
         </ul>
     </div>
 </div>
-
 
 
 

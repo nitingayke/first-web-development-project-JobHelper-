@@ -17,10 +17,12 @@ const postSchema = new Schema({
         url: String,
         filename: String,
     },
-    likes: {
-        type: Number,
-        default: 0,
-    },
+    likes: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "User",
+        }
+    ],
     comments: [
         {
             user: {

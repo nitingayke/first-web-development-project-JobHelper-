@@ -44,10 +44,12 @@ module.exports.postlike = async (req, res, next) => {
         let error = "Post Not Found";
         throw new ExpressError(404, error);
     }
-
-    currPost.likes += 1;
-    await currPost.save();
-    res.json({ success: true, newLikes: currPost.likes}); // Send the new likes count back to the client
+    let userId = req.user._id;
+    if(userId){
+        currPost.likes.push(userId);
+        await currPost.save();
+    }
+    res.json({ success: true, newLikes: currPost.likes.length}); // Send the new likes count back to the client
 };
 
 module.exports.userpost = async(req, res, next) =>{
