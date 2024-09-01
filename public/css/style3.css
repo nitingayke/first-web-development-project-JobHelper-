@@ -51,7 +51,7 @@
     color: gray;
 }
 .user-profile-container li:hover button{
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
 }
 .post-edit-box{
     position: absolute !important;
@@ -331,18 +331,29 @@ textarea::-webkit-scrollbar-thumb{
 }
 
 .post-not-found-box{
-    animation: rotatebox 2s ease-in-out 2 forwards;
+    animation: rotatebox 2s ease-in-out infinite forwards;
 }
 @keyframes rotatebox {
     0%{
         rotate: 5deg;
-    }30%{
+    }15%{
         rotate: 10deg;
-    }50%{
-        rotate: -10deg;
-    }70%{
+    }30%{
         rotate: 5deg;
+    }45%{
+        rotate: 0deg;
+    }60%{
+        rotate: -5deg;
+    }75%{
+        rotate: -10deg;
+    }95%{
+        rotate: -5deg;
     }100%{
         rotate: 0deg;
     }
+}
+.hiring-job-hover-bg-primary:hover {
+    background-color: #e7f1ff; 
+    transform: scale(1.02); /* Slightly enlarge on hover */
+    transition: all 0.3s ease; 
 }

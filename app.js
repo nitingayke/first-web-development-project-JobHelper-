@@ -68,6 +68,7 @@ const listingRouter = require("./routes/userdata.js");
 const userprofileRouter = require("./routes/userprofile.js");
 const removeContent = require("./routes/deleteData.js");
 const profileIncrementDec = require("./routes/userprofileupdate.js");
+const searchJobs = require("./routes/searchJob.js");
 
 app.use((req, res, next) => {
     res.locals.success = req.flash("success");
@@ -92,6 +93,7 @@ app.use("/JobHelper/reviews", reviewRouter);
 app.use("/JobHelper/userprofile", userprofileRouter);
 app.use("/JobHelper/remove-content", removeContent);
 app.use("/JobHelper/profile-update", profileIncrementDec);
+app.use("/JobHelper/jobs", searchJobs);
 app.use("/JobHelper", listingRouter);
 
 // ----------------------------------------Errors and invalid path------------------------------------------------------------------------------------

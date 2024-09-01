@@ -100,7 +100,8 @@
                 </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="post" action="/JobHelper/update/announce-job" class="needs-validation " novalidate enctype="multipart/form-data">
+            <form method="post" action="/JobHelper/update/announce-job" class="needs-validation " novalidate
+                enctype="multipart/form-data">
 
                 <div class="modal-body pt-0">
                     <small class="text-danger">Try To Select 1200 X 650 Image</small>
@@ -108,11 +109,50 @@
                     <div class="invalid-feedback">
                         please select image
                     </div>
-                    
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-success">Announce</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- search model -->
+<div class="modal fade modal-lg" id="searchjobs" tabindex="-1" aria-labelledby="search-jobs-label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-4 fw-bold text-secondary text-success" id="search-jobs-label">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    Search Jobs
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="get" action="/JobHelper/jobs/recent-jobs" class="needs-validation ps-2 pe-2" novalidate>
+            
+                    <div class="input-group mb-3 mt-2">
+                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-briefcase text-secondary"></i></span>
+                        <input type="text" name="jobtitle" class="form-control" placeholder="Enter Job Title" required>
+                        <div class="invalid-feedback">
+                            please enter job title
+                        </div>
+                    </div>
+
+                    <div class="input-group mb-1">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-location-dot"></i></span>
+                        <input name="location" class="form-control" placeholder="location [city destination country]" type="text" required />
+                        <div class="invalid-feedback">
+                            please enter job location
+                        </div>
+                    </div>
+
+          
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Search</button>
                 </div>
             </form>
         </div>

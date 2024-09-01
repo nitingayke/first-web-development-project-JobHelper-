@@ -86,3 +86,14 @@ document.querySelectorAll('.showMessage').forEach(function(button) {
     });
 });
 
+
+document.querySelectorAll(".queryMessage").forEach((searchBtn) => {
+    searchBtn.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        const itemQuery = searchBtn.getAttribute("data-query-item");
+
+        const url = `/JobHelper/jobs/recent-jobs?jobtitle=${encodeURIComponent(itemQuery)}`;
+        window.location.href = url;
+    });
+});

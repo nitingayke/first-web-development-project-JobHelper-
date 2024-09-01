@@ -1,0 +1,26 @@
+<%- layout("./layouts/boilerplates.ejs") %>
+<div class="m-auto col-xl-8 col-lg-8 col-md-10 col-sm-11 p-1 mt-4">
+    <% if(jobs.data.data.length > 0) { %>
+        <% for(let job of jobs.data.data) { %>
+            <div class="border rounded shadow-lg mb-3 p-3 bg-light hiring-job-hover-bg-primary">
+                <h2 class="text-primary fw-bold text-decoration-underline mb-2"><%= job.publisher_name %></h2>
+                <p class="mb-1"><strong>Role:</strong> <%= job.job_title %></p>
+                <p class="mb-1"><strong>Location:</strong> <%= job.location %></p>
+             
+                <div class="mt-2">
+                    <p class="mb-1"><strong>Min Salary:</strong> <%=(job.min_salary || "").toLocaleString("en-IN") %>&#8377;</p>
+                    <p class="mb-1"><strong>Max Salary:</strong> <%= (job.max_salary || "").toLocaleString("en-IN") %>&#8377;</p>
+                </div>
+                
+                <a href="<%= job.publisher_link %>" class="btn btn-primary d-block mb-2">Apply Now</a>
+            </div>
+        <% } %>
+    <% } else { %>
+        <div class="col-12 d-flex justify-content-center align-items-center mt-3 mb-3" style="height: 100%;">
+            <div>            
+                <h2 class="d-flex fw-bold justify-content-center text-secondary">NOT FOUND </h2>
+                <i class="fas fa-box-open post-not-found-box" style="font-size: 10rem; color: lightgray;"></i>
+            </div>
+        </div>
+    <% } %>
+</div>
