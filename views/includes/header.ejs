@@ -109,7 +109,7 @@
     <div class="navbar-links">
     
         <button type="button" class="new-posts-btn d-flex align-items-center me-3 border rounded" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            <p class="new-posts"><i class="fa-solid fa-plus"></i>Post</p>
+            <p class="new-posts"><i class="fa-solid fa-plus"></i><span class="new-post-text">Post</span></p>
         </button>
         <div type="button" class="header-login-btn position-relative me-3">
             <img src="<%= loginUser.profile.profilePicture.url %>" alt="" class="user-image" id="user-image">
@@ -133,17 +133,15 @@
                 <button type="button" class="border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#announce-job">
                     Announce New Job</button>
             </li>
-            
-            <a href=""><li class="showMessage"><i class="fa-solid fa-circle-question"></i> Help</li></a>
-            <a href=""><li class="showMessage"><i class="fa-solid fa-key"></i> Change Password</li></a>
-            <a href="/JobHelper/userListings/logout"><li><i class="fa-solid fa-sign-out-alt"></i> Logout</li></a>
-            
             <li>
                 <i class="fa-solid fa-trash-alt"></i> 
                 <button type="button" class="border-0 bg-transparent width-100" data-bs-toggle="modal" data-bs-target="#delete-profile-warning">Delete Account</button>
             </li>
             
             <a href=""><li><i class="fa-solid fa-cog"></i> Setting</li></a>
+            <a href=""><li class="showMessage"><i class="fa-solid fa-circle-question"></i> Help</li></a>
+            <a href=""><li class="showMessage"><i class="fa-solid fa-key"></i> Change Password</li></a>
+            <a href="/JobHelper/userListings/logout"><li><i class="fa-solid fa-sign-out-alt"></i> Logout</li></a>
         </ul>
     </div>
 </div>

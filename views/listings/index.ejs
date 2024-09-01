@@ -1,7 +1,7 @@
 <%- layout("/layouts/boilerplates.ejs") %>
 
     <body>
-
+       
         <div id="carouselExampleIndicators" class="carousel slide d-flex post-box" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <% for(let i = 0; i < jobposts.length; i++) { %>
@@ -93,14 +93,14 @@
                     <li class="post-likes">
                     
                         <% if(posts[i].likes.some((like) => like.toString() === loginUser._id.toString())) { %>
-                            <div class="positive-like me-3">
+                            <div class="d-flex align-items-center flex-nowrap positive-like me-3">
                                 <i class="fa-solid fa-thumbs-up text-danger"></i>
                                 <span>
                                     <%= posts[i].likes.length %>
                                 </span>
                             </div>
                         <% } else { %>
-                            <button class="positive-like me-3" data-id="<%= posts[i]._id %>">
+                            <button class="d-flex align-items-center flex-nowrap positive-like me-3" data-id="<%= posts[i]._id %>">
 
                                 <i class="fa-regular fa-thumbs-up"></i>
                                 <span id="like-count-<%= posts[i]._id %>">
@@ -119,7 +119,7 @@
                         </button>
                     </li>
                     <li>
-                        <a href="#">Share<i class="fa-regular fa-paper-plane"></i></a>
+                        <a href="">Share<i class="fa-regular fa-paper-plane"></i></a>
                     </li>
                     <li>
                         <a href="#">Report<i class="fa-solid fa-share-nodes"></i></i></a>

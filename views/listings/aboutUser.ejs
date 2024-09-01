@@ -1,6 +1,6 @@
 <%- layout("/layouts/boilerplates.ejs") %>
     <section>
-        <div class="m-auto col-sm-11 col-md-11 col-lg-10 col-xl-9 col-12 mt-4 p-2">
+        <div class="m-auto col-sm-11 col-md-11 col-lg-10 col-xl-9 col-12 mt-4 p-3">
             <div class=" d-flex user-data-container">
                 <div class="d-flex justify-content-center mb-4 me-4">
                     <img src="<%= user.profile.profilePicture.url %>" alt="" height="250"
@@ -18,7 +18,7 @@
                         </span>
                         <% if(loginUser._id.equals(user._id)) { %>
                             <span class=" edit-profile-btn btn-hover">
-                                <a href="/JobHelper/userprofile"><i class="fa-solid fa-pen text-secondary-emphasis"></i></a>
+                                <a href="/JobHelper/userprofile"><i class="fa-solid fa-square-pen"></i></a>
                             </span>
                         <% } %>
                     </div>
@@ -64,7 +64,7 @@
                 <div class="d-flex">
                     <button class="col-6 p-2 fw-bold text-success userContent userContent-btn"><i
                             class="fas fa-pencil-alt text-success"></i> Posts</button>
-                    <button class="col-6 p-2 fw-bold text-success userContent"><i class="fas fa-tools text-success"></i>
+                    <button class="col-6 p-2 fw-bold text-success userContent"><i class="fas fa-tools changeToGreen"></i>
                         Skills</button>
                 </div>
 
@@ -90,14 +90,14 @@
                                 <li class="post-likes">
                                     
                                     <% if(post.likes.some((like) => like.toString() === loginUser._id.toString())) { %>
-                                        <div class="positive-like me-3">
+                                        <div class="d-flex align-items-center flex-nowrap positive-like me-3">
                                             <i class="fa-solid fa-thumbs-up text-danger"></i>
                                             <span>
                                                 <%= post.likes.length %>
                                             </span>
                                         </div>
                                     <% } else { %>
-                                        <button class="positive-like me-3" data-id="<%= post._id %>">
+                                        <button class="d-flex align-items-center flex-nowrap positive-like me-3" data-id="<%= post._id %>">
             
                                             <i class="fa-regular fa-thumbs-up"></i>
                                             <span id="like-count-<%= post._id %>">
@@ -405,7 +405,7 @@
 
                 <form method="post" action="/JobHelper/reviews/<%= user._id %>"
                     class="needs-validation mt-3 review-form" novalidate>
-                    <p class="text-success fw-bold">Share Your Valuable Feedback with Us: </p>
+                    <p class="changeToGreen fw-bold">Share Your Valuable Feedback with Us: </p>
 
                     <label for="Rating">Rating</label>
                     <fieldset class="starability-slot">
@@ -440,7 +440,7 @@
             <div class="offcanvas-header border-bottom">
                 <h5 class="offcanvas-title d-flex" id="offcanvasRightLabel1">
                     <img src="<%= user.profile.profilePicture.url %>" alt="" class="user-image">
-                    <p class="text-success m-auto fw-bold ms-3 fs-4 hover-border-bottom">Followers <span
+                    <p class="changeToGreen m-auto fw-bold ms-3 fs-4 hover-border-bottom">Followers <span
                             class="badge bg-success-subtle text-black">
                             <%= user.profile.followers.length %>
                         </span></p>
@@ -474,7 +474,7 @@
             <div class="offcanvas-header border-bottom">
                 <h5 class="offcanvas-title d-flex" id="offcanvasRightLabel1">
                     <img src="<%= user.profile.profilePicture.url %>" alt="" class="user-image">
-                    <p class="text-success m-auto fw-bold ms-3 fs-4 hover-border-bottom">Following <span
+                    <p class="changeToGreen m-auto fw-bold ms-3 fs-4 hover-border-bottom">Following <span
                             class="badge bg-success-subtle text-black">
                             <%= user.profile.following.length %>
                         </span></p>

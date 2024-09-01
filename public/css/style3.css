@@ -254,9 +254,9 @@ textarea::-webkit-scrollbar-thumb{
         height: 3rem;
     }
     .sidebar-btn{
-        height: 1.8rem;
-        width: 1.8rem;
-        font-size: 0.8rem;
+        height: 1.5rem;
+        width: 1.5rem;
+        font-size: 0.5rem;
         margin-right: 0.4rem;
     }
     .navbar-brand-content{
@@ -280,6 +280,12 @@ textarea::-webkit-scrollbar-thumb{
     .new-posts{
         font-size: 0.9rem !important; 
         padding: 0.2rem 0.2rem !important;
+    }
+    .new-post-text{
+        display: none;
+    }
+    .new-posts-btn{
+        margin: 0.5rem !important;
     }
     #user-image{
         object-fit: contain;
@@ -356,4 +362,7 @@ textarea::-webkit-scrollbar-thumb{
     background-color: #e7f1ff; 
     transform: scale(1.02); /* Slightly enlarge on hover */
     transition: all 0.3s ease; 
+}
+.changeToGreen{
+    color: rgb(0, 178, 0);
 }

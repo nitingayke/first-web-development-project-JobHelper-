@@ -5,11 +5,11 @@
     <div class="m-auto col-12 p-2 col-sm-11 col-md-10 col-lg-9 col-xl-9">
         <% for(let user of users) { %>
             <a href="/JobHelper/user/<%= user._id %>">
-                <div class="d-flex border rounded mt-4 p-3">
-                    <div>
-                        <img src="<%= user.profile.profilePicture.url %>" alt="" class="search-user-image rounded-circle" >
+                <div class="d-flex flex-wrap justify-content-center border rounded mt-2 mb-2 p-3">
+                    <div class=" mb-3 d-flex justify-content-center col-md-5">
+                        <img src="<%= user.profile.profilePicture.url %>" alt="" class="search-user-image rounded-circle " >
                     </div>
-                    <div class="col-9 m-auto">
+                    <div class="col-12 col-md-7">
                         <div class="d-flex align-items-center justify-content-between">
                             <h2 class="text-primary fw-bold line-reducer"><%= user.username %></h2>
                             <% if(!(user._id.equals(loginUser._id))) { %>

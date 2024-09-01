@@ -53,16 +53,15 @@
         <ul class="response-buttons">
 
             <li class="post-likes">
-                <% if(posts[i].likes.some((like) => like.toString() === loginUser._id.toString())) { %>
-                    <div class="positive-like me-3">
+                <% if(post.likes.some((like) => like.toString() === loginUser._id.toString())) { %>
+                    <div class="d-flex align-items-center positive-like me-3">
                         <i class="fa-solid fa-thumbs-up text-danger"></i>
                         <span>
-                            <%= posts[i].likes.length %>
+                            <%= post.likes.length %>
                         </span>
                     </div>
                 <% } else { %>
-                    <button class="positive-like me-3" data-id="<%= posts[i]._id %>">
-
+                    <button class="d-flex align-items-center positive-like me-3" data-id="<%= posts[i]._id %>">
                         <i class="fa-regular fa-thumbs-up"></i>
                         <span id="like-count-<%= posts[i]._id %>">
                             <%= posts[i].likes.length %>

@@ -61,6 +61,7 @@ module.exports.userpost = async(req, res, next) =>{
         req.flash("error", "Post Does Not Found!");
         res.redirect("/JobHelper");
     }else{
+        console.log(post);
         res.render("./listings/aboutPost.ejs", { post });
     }
 };

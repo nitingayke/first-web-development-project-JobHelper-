@@ -5,7 +5,7 @@
             <div class="border rounded shadow-lg mb-3 p-3 bg-light hiring-job-hover-bg-primary">
                 <h2 class="text-primary fw-bold text-decoration-underline mb-2"><%= job.publisher_name %></h2>
                 <p class="mb-1"><strong>Role:</strong> <%= job.job_title %></p>
-                <p class="mb-1"><strong>Location:</strong> <%= job.location %></p>
+                <p class="mb-1"><strong>Location:</strong><a href="https://www.google.com/maps/place/<%= job.location %>" ><%= job.location %></a>
              
                 <div class="mt-2">
                     <p class="mb-1"><strong>Min Salary:</strong> <%=(job.min_salary || "").toLocaleString("en-IN") %>&#8377;</p>
