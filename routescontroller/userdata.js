@@ -15,7 +15,7 @@ module.exports.searchQuery = async(req, res, next) => {
 
     let users = await User.find({username: query});
 
-    res.render("./listings/users.ejs", { users });
+    return res.render("./listings/users.ejs", { users });
 };
 
 module.exports.newpost = async (req, res, next) =>{
@@ -59,9 +59,9 @@ module.exports.userpost = async(req, res, next) =>{
 
     if(!post){
         req.flash("error", "Post Does Not Found!");
-        res.redirect("/JobHelper");
+        return res.redirect("/JobHelper");
     }else{
-        res.render("./listings/aboutPost.ejs", { post });
+        return res.render("./listings/aboutPost.ejs", { post });
     }
 };
 
@@ -83,9 +83,9 @@ module.exports.aboutuser = async (req, res, next) =>{
    
     if(!userData){
         req.flash("error", "User Does Not Have An Account!");
-        res.redirect("/JobHelper");
+        return res.redirect("/JobHelper");
     }else{
-        res.render("./listings/aboutUser.ejs", {user: userData, posts});
+        return res.render("./listings/aboutUser.ejs", {user: userData, posts});
     }
 };
 

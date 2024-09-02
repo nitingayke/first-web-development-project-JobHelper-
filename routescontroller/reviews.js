@@ -14,7 +14,7 @@ module.exports.newreview = async(req, res, next) => {
         let user = await User.findByIdAndUpdate(id, {$push: {"profile.reviews": newReview._id}}, {new: true});
         req.flash("success", `new review added to ${user.username}`);
     }
-    res.redirect(`/JobHelper/user/${id}`);
+    return res.redirect(`/JobHelper/user/${id}`);
 };
 
 module.exports.deletereview = async(req, res, next) => {
@@ -23,5 +23,5 @@ module.exports.deletereview = async(req, res, next) => {
     await User.findByIdAndUpdate(id, {$pull: {"profile.reviews": reviewid}}, {new: true});
     
     req.flash("success", "Review deleted successfully.");
-    res.redirect(`/JobHelper/user/${id}`);
+    return res.redirect(`/JobHelper/user/${id}`);
 }

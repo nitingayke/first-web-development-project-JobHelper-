@@ -24,7 +24,7 @@ module.exports.searchJobs = async (req, res, next) => {
             }
         };
         const jobs = await axios.request(options);
-        res.render("./listings/jobIndex.ejs", { jobs });
+        return res.render("./listings/jobIndex.ejs", { jobs });
     }
 };
 
@@ -48,6 +48,6 @@ module.exports.newPostedJob = async (req, res, next) => {
         return res.render("./listings/newPostedJobs.ejs", {jobs: response.data.results});
     }else{
         req.flash("error", "Unable to reach the API, cannot get response.");
-        res.redirect("/JobHelper");
+        return res.redirect("/JobHelper");
     }
 };

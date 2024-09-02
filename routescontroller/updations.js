@@ -8,9 +8,9 @@ module.exports.aboutpost = async(req, res, next) => {
 
     if(!post){
         req.flash("error", "Does Not Found Post!, Please Try Again.");
-        res.redirect(`/JobHelper/aboutPost/${id}`);
+        return res.redirect(`/JobHelper/aboutPost/${id}`);
     }else{
-        res.render("./listings/editpost.ejs", {post});
+        return res.render("./listings/editpost.ejs", {post});
     }
 };
 
@@ -42,7 +42,7 @@ module.exports.postupdate = async (req, res, next) => {
     } else {
         req.flash("success", "Update Successful! The post has been updated.");
     }
-    res.redirect(`/JobHelper/aboutPost/${id}`);
+    return res.redirect(`/JobHelper/aboutPost/${id}`);
 };
 
 module.exports.deletepost = async(req, res, next) => {
@@ -50,10 +50,10 @@ module.exports.deletepost = async(req, res, next) => {
     let post = await Post.findByIdAndDelete(id);
     if(!post){
         req.flash("error", "No Post Found with the given ID.");
-        res.redirect(`/JobHelper/aboutPost/${id}`);
+        return res.redirect(`/JobHelper/aboutPost/${id}`);
     }else{
         req.flash("success", "Deletion Successful! The post has been deleted.");
-        res.redirect("/JobHelper");
+        return res.redirect("/JobHelper");
     }
 };
 
@@ -65,12 +65,12 @@ module.exports.deleteaccount = async (req, res, next) => {
     }else{
         await User.findByIdAndDelete(req.user._id); // write here id (we have to create form to enter users data is valid user or chapari)
         req.flash("success", "Account Has Been Deleted Successfully.");
-        res.redirect("/JobHelper/userListings/login");
     }
+    return res.redirect("/JobHelper/userListings/login");
 };
 
 module.exports.userContent = async(req, res, next) => {
-    res.render("./updatelistings/userContentEdit.ejs")
+    return res.render("./updatelistings/userContentEdit.ejs")
 };
 
 module.exports.addEducation = async(req, res, next) => {
@@ -138,12 +138,12 @@ module.exports.announceJob = async(req, res, next) => {
     await announce.save();
 
     req.flash("success", `New Job Announce By ${req.user.username}`);
-    res.redirect("/JobHelper");
+    return res.redirect("/JobHelper");
 }
 module.exports.deleteJob = async(req, res, next) => {
     let { id } = req.params;
     await JobPost.findByIdAndDelete(id);
 
     req.flash("success", "Remove Announce Job Successfully");
-    res.redirect("/JobHelper");
+    return res.redirect("/JobHelper");
 }

@@ -2,7 +2,7 @@ const passport = require("passport");
 const User = require("../models/userValidation");
 
 module.exports.editprofile = async(req, res, next) => {
-    res.render("./updatelistings/userprofile.ejs");
+    return res.render("./updatelistings/userprofile.ejs");
 };
 
 module.exports.updatedProfile = async(req, res, next) => {
@@ -59,6 +59,6 @@ module.exports.deleteAccount = async(req, res, next) => {
         req.logout();
         
         req.flash("success", "Account deleted successfully");
-        res.redirect("/JobHelper/userListings/Login");
+        return res.redirect("/JobHelper/userListings/Login");
     }
 };

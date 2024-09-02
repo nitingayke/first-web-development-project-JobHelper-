@@ -13,5 +13,5 @@ module.exports.addfollow = async(req, res, next) => {
     await currLogin.save();
 
     req.flash("success", `started following to ${followUser.username}`);
-    res.redirect("/JobHelper");
+    return res.redirect("/JobHelper");
 };

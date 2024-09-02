@@ -10,6 +10,8 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate"); // Use To Define A template
 
 const session = require("express-session");
+const MongoStore = require('connect-mongo');
+
 const flash = require("connect-flash");
 
 const passport = require("passport");
@@ -26,19 +28,32 @@ app.use(express.json()); // Middleware to parse JSON request bodies
 
 
 // ------------mongoDB server  -----------
-const MONGO_URL = "mongodb://127.0.0.1:27017/JobHelpers";
+// const MONGO_URL = "mongodb://127.0.0.1:27017/JobHelpers";
+const mongo_URL = process.env.ATLASDB_URL;
 main().then((res) => {
     console.log("Connect Successfully!");
 }).catch((error) => {
     console.log("Connection Fail");
 });
 async function main(){
-    await mongoose.connect(MONGO_URL);
+    await mongoose.connect(mongo_URL);
 }
 
+const store = MongoStore.create({
+    mongoUrl: mongo_URL,
+    crypto: {
+        secret: process.env.SECRET,
+    },
+    touchAfter: 24 * 60 * 60,
+});
+
+store.on("error", ()=>{
+    console.log("Error in MONGO SESSION store", err);
+})
 
 const sessionOption = { 
-    secret: "userloginidkey", 
+    store: store,
+    secret: process.env.SECRET, 
     resave: false, 
     saveUninitialized: true,
 
@@ -48,6 +63,7 @@ const sessionOption = {
         httpOnly: true,
     },
 };
+
 
 app.use(session(sessionOption));
 app.use(flash());

@@ -24,7 +24,7 @@ module.exports.newsignup = async (req, res, next) =>{
             return next(err);
         }
         req.flash("success", `Welcome, ${registeredUser.username} to JobHelper!`);
-        res.redirect("/JobHelper");
+        return res.redirect("/JobHelper");
     });
 };
 
@@ -35,6 +35,6 @@ module.exports.logout = (req, res) => {
             return next(err);
         }
         req.flash("success", "Logout Successfully");
-        res.redirect("/JobHelper/userListings/login");
+        return res.redirect("/JobHelper/userListings/login");
     });
 };

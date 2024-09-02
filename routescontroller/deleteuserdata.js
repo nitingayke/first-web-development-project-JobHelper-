@@ -8,7 +8,7 @@ module.exports.removeEducation = async(req, res, next) => {
     await User.findByIdAndUpdate(userId, {$pull: {"profile.education": {_id: id}}}, {new: true});
 
     req.flash("success", "Profile data has been updated! deleted education section.");
-    res.redirect("/JobHelper/update/user-content");
+    return res.redirect("/JobHelper/update/user-content");
 };
 
 module.exports.removeSkill = async(req, res, next) => {
@@ -35,7 +35,7 @@ module.exports.removeExperience = async(req, res, next) => {
     await User.findByIdAndUpdate(userId, {$pull: {"profile.experience": {_id: id}}}, {new: true});
 
     req.flash("success", "Profile data has been updated! deleted experience section.");
-    res.redirect("/JobHelper/update/user-content");
+    return res.redirect("/JobHelper/update/user-content");
 };
 
 module.exports.removeProject = async(req, res, next) => {
@@ -44,7 +44,7 @@ module.exports.removeProject = async(req, res, next) => {
     await User.findByIdAndUpdate(userId, {$pull: {"profile.projects": {_id: id}}}, {new: true});
 
     req.flash("success", "Profile data has been updated! deleted project section.");
-    res.redirect("/JobHelper/update/user-content");
+    return res.redirect("/JobHelper/update/user-content");
 };
 
 module.exports.removeCertificate = async(req, res, next) => {
@@ -53,5 +53,5 @@ module.exports.removeCertificate = async(req, res, next) => {
     await User.findByIdAndUpdate(userId, {$pull: {"profile.certifications": {_id: id}}}, {new: true});
 
     req.flash("success", "Profile data has been updated! deleted certificate section.");
-    res.redirect("/JobHelper/update/user-content");
+    return res.redirect("/JobHelper/update/user-content");
 };
