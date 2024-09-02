@@ -30,7 +30,7 @@ module.exports.updatedProfile = async(req, res, next) => {
     currUser.profile.experience = req.body.editexperience ? req.body.editexperience : currUser.profile.experience;
     currUser.profile.projects = req.body.editprojects ? req.body.editprojects : currUser.profile.projects;
 
-    let user = await currUser.save();
+    await currUser.save();
 
     req.flash("success", "User data has been updated successfully.");
     return res.redirect(`/JobHelper/user/${id}`);
