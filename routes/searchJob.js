@@ -5,4 +5,6 @@ const wrapAsync = require("../utilError/errorHandling.js");
 
 router.get("/recent-jobs", wrapAsync(listingController.searchJobs));
 
+router.get("/new-posted-job", wrapAsync(listingController.newPostedJob));
+
 module.exports = router;

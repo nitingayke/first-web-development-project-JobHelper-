@@ -1,0 +1,25 @@
+<%- layout("./layouts/boilerplates.ejs") %>
+<div class="m-auto col-xl-11 col-lg-10 col-md-10 col-sm-11 p-1 mt-4">
+    <% if(jobs && jobs.length > 0) { %>
+        <% jobs.forEach(function(job) { %>
+            <div class="border rounded shadow-lg mb-3 p-3 bg-light hiring-job-hover-bg-primary">
+                <h2 class="text-primary fw-bold text-decoration-underline mb-2"><%= job.company.display_name %></h2>
+                <%= job.company.link %>
+                <p class="fw-bold fs-5 text-secondary"><%= job.title %></p>
+               
+                <p class=""><strong class="text-secondary">Location:</strong><a class="text-primary" href="https://www.google.com/maps/place/<%= job.location.display_name %>" ><%= job.location.display_name %></a></p>
+                <p class=""><strong class="text-secondary">Category:</strong> <%= job.category.label %></p>
+                <p class=""><strong class="text-secondary">Posted on:</strong> <%= new Date(job.created).toDateString() %></p>
+                <p class=""><strong class="text-secondary">Description:</strong> <%= job.description %></p>
+                <a class="btn btn-primary d-block mb-2 mt-1" href="<%= job.redirect_url %>">View Job</a>
+            </div>
+        <% }); %>
+    <% } else { %>
+        <div class="col-12 d-flex justify-content-center align-items-center mt-3 mb-3" style="height: 100%;">
+            <div class="d-grid">            
+                <h2 class="d-flex fw-bold justify-content-center text-secondary">No job results found</h2>
+                <i class="fas fa-box-open post-not-found-box m-auto" style="font-size: 10rem; color: lightgray;"></i>
+            </div>
+        </div>
+    <% } %>
+</div>
