@@ -28,31 +28,31 @@ app.use(express.json()); // Middleware to parse JSON request bodies
 
 
 // ------------mongoDB server  -----------
-// const MONGO_URL = "mongodb://127.0.0.1:27017/JobHelpers";
-const mongo_URL = process.env.ATLASDB_URL;
+const MONGO_URL = "mongodb://127.0.0.1:27017/JobHelpers";
+// const mongo_URL = process.env.ATLASDB_URL;
 main().then((res) => {
     console.log("Connect Successfully!");
 }).catch((error) => {
     console.log("Connection Fail");
 });
 async function main(){
-    await mongoose.connect(mongo_URL);
+    await mongoose.connect(MONGO_URL);
 }
 
-const store = MongoStore.create({
-    mongoUrl: mongo_URL,
-    crypto: {
-        secret: process.env.SECRET,
-    },
-    touchAfter: 24 * 60 * 60,
-});
+// const store = MongoStore.create({
+//     mongoUrl: mongo_URL,
+//     crypto: {
+//         secret: process.env.SECRET,
+//     },
+//     touchAfter: 24 * 60 * 60,
+// });
 
-store.on("error", ()=>{
-    console.log("Error in MONGO SESSION store", err);
-})
+// store.on("error", ()=>{
+//     console.log("Error in MONGO SESSION store", err);
+// })
 
 const sessionOption = { 
-    store: store,
+    // store: store,
     secret: process.env.SECRET, 
     resave: false, 
     saveUninitialized: true,

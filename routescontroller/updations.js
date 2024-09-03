@@ -119,7 +119,6 @@ module.exports.addCertificate = async(req, res, next) => {
     let { title } = req.body;
     let newCertificate = {title, link};
 
-    console.log(newCertificate);
     await User.findByIdAndUpdate(id, {$push: {"profile.certifications": newCertificate}});
 
     req.flash("success", "User profile has been updated successfully: Added new certificate.");
