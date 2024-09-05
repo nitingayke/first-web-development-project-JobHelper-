@@ -30,6 +30,7 @@ app.use(express.json()); // Middleware to parse JSON request bodies
 // ------------mongoDB server  -----------
 // const MONGO_URL = "mongodb://127.0.0.1:27017/JobHelpers";
 const mongo_URL = process.env.ATLASDB_URL;
+
 main().then((res) => {
     console.log("Connect Successfully!");
 }).catch((error) => {
@@ -37,7 +38,7 @@ main().then((res) => {
 });
 
 async function main(){
-    await mongoose.connect(mongo_URL);
+    mongoose.connect(mongo_URL);
 }
 
 const store = MongoStore.create({
